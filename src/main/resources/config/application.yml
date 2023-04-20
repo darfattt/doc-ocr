@@ -210,3 +210,7 @@ jhipster:
 # ===================================================================
 
 # application:
+file-storage:
+  method: local
+  local:
+    root: /home/app/files

@@ -11,7 +11,18 @@
     <property name="datetimeType" value="datetime(6)" dbms="mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230418081840_added_entity_Documents.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230418081841_added_entity_VerifiedDocuments.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230418081842_added_entity_FormSuratJalan.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230418081843_added_entity_FormPengeluaranBarang.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230418081844_added_entity_FormPernyataan.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230418081845_added_entity_FormBASTPBP.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230418081846_added_entity_FormBASTPBPP.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20230419_darmawan_0001_added_entity_attachment_group.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230419_darmawan_0002_added_entity_attachment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230419_darmawan_0003_alter_documents_attachment_group.xml" relativeToChangelogFile="false"/>
+
 </databaseChangeLog>

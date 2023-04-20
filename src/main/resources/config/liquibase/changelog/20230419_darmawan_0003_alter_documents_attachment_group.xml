@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd">
+    <changeSet id="20230419_darmawan_0003_alter_documents_attachment_group" author="darmawan">
+        <addColumn tableName="documents">
+            <column name="attachment_group_id" type="VARCHAR(50)"/>
+        </addColumn>
+        <addColumn tableName="verified_documents">
+            <column name="attachment_group_id" type="VARCHAR(50)"/>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

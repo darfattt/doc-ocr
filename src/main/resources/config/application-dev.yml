@@ -21,6 +21,10 @@ logging:
     com.darfat.docreaderapp: DEBUG
 
 spring:
+  cloud:
+    gcp:
+      credentials:
+        location: file:src/main/resources/ocr-project-378710-380b56c762df.json
   devtools:
     restart:
       enabled: true
@@ -34,7 +38,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mariadb://localhost:3306/docreaderapp?useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
-    password:
+    password: root
     hikari:
       poolName: Hikari
       auto-commit: false
