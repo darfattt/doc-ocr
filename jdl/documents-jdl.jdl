@@ -1,0 +1,82 @@
+entity Documents {
+	id String required maxlength(50)
+    type String required maxlength(12)
+    name String required maxlength(100)
+    status String required maxlength(12)
+    createdDate Instant required
+    createdBy String maxlength(50)
+    lastModifiedDate Instant
+    lastModifiedBy String maxlength(50)
+}
+
+entity VerifiedDocuments {
+	id String required maxlength(50)
+    type String required maxlength(12)
+    name String required maxlength(100)
+    status String required maxlength(12)
+    contentId String required maxlength(50)
+    createdDate Instant required
+    createdBy String maxlength(50)
+    lastModifiedDate Instant
+    lastModifiedBy String maxlength(50)
+}
+
+
+entity FormSuratJalan{
+    id String required maxlength(50)
+    status String maxlength(2)
+    active Boolean required
+    remarks String  maxlength(500)
+    createdDate Instant required
+    createdBy String maxlength(50)
+    lastModifiedDate Instant
+    lastModifiedBy String maxlength(50)
+}
+
+entity FormPengeluaranBarang{
+    id String required maxlength(50)
+    status String maxlength(2)
+    active Boolean required
+    remarks String  maxlength(500)
+    createdDate Instant required
+    createdBy String maxlength(50)
+    lastModifiedDate Instant
+    lastModifiedBy String maxlength(50)
+}
+
+entity FormPernyataan{
+    id String required maxlength(50)
+    status String maxlength(2)
+    active Boolean required
+    remarks String  maxlength(500)
+    createdDate Instant required
+    createdBy String maxlength(50)
+    lastModifiedDate Instant
+    lastModifiedBy String maxlength(50)
+}
+
+entity FormBASTPBP{
+    id String required maxlength(50)
+    status String maxlength(2)
+    active Boolean required
+    remarks String  maxlength(500)
+    createdDate Instant required
+    createdBy String maxlength(50)
+    lastModifiedDate Instant
+    lastModifiedBy String maxlength(50)
+}
+
+entity FormBASTPBPP{
+    id String required maxlength(50)
+    status String maxlength(2)
+    active Boolean required
+    remarks String  maxlength(500)
+    createdDate Instant required
+    createdBy String maxlength(50)
+    lastModifiedDate Instant
+    lastModifiedBy String maxlength(50)
+}
+
+filter all except FormBASTPBPP, FormBASTPBP, FormPernyataan, FormPengeluaranBarang, FormSuratJalan
+service all with serviceImpl
+paginate Documents, VerifiedDocuments with pagination

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20230319_darmawan_0002_added_entity_attachment" author="darmawan">
+        <createTable tableName="attachments">
+            <column name="id" type="VARCHAR(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_attachments"/>
+            </column>
+            <column name="attachment_type" type="VARCHAR(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="description" type="VARCHAR(400)">
+                <constraints nullable="true" />
+            </column>
+            <column name="name" type="VARCHAR(200)">
+                <constraints nullable="false" />
+            </column>
+            <column name="reference_number" type="VARCHAR(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="attachment_group_id" type="VARCHAR(36)">
+                <constraints nullable="false" />
+            </column>
+
+            <column defaultValueComputed="NOW()" name="created_date" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="sys-admin" name="created_by" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="NOW()" name="last_modified_date" type="DATETIME"/>
+            <column name="last_modified_by" type="VARCHAR(100)"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="attachment_group_id"
+                                 baseTableName="attachments"
+                                 constraintName="fk_attachments_attachment_group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="attachment_group"/>
+    </changeSet>
+</databaseChangeLog>
