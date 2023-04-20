@@ -205,7 +205,7 @@ public class VerifiedDocumentsResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id)).build();
     }
 
-    @PostMapping("/documents/approved/{documentId}")
+    @PostMapping("/verified-documents/approved/{documentId}")
     public ResponseEntity<VerifiedDocuments> approvedDocument(@PathVariable String documentId) {
         VerifiedDocuments doc = verifiedDocumentsService.findOne(documentId).orElseThrow(EntityNotFoundException::new);
         verifiedDocumentsService.approved(doc);
@@ -214,7 +214,7 @@ public class VerifiedDocumentsResource {
             .body(doc);
     }
 
-    @PostMapping("/documents/save-and-approved/{documentId}")
+    @PostMapping("/verified-documents/save-and-approved/{documentId}")
     public ResponseEntity<VerifiedDocuments> approvedDocument(@PathVariable String documentId,@RequestBody VerifiedDocuments doc) {
         verifiedDocumentsService.approved(doc);
         return ResponseEntity
