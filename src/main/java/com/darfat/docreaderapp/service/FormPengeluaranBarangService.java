@@ -1,6 +1,7 @@
 package com.darfat.docreaderapp.service;
 
 import com.darfat.docreaderapp.domain.FormPengeluaranBarang;
+import com.darfat.docreaderapp.dto.FormPengeluaranBarangDTO;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,4 +54,6 @@ public interface FormPengeluaranBarangService {
      * @param id the id of the entity.
      */
     void delete(String id);
+
+    FormPengeluaranBarangDTO convertText(String text);
 }

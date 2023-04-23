@@ -1,6 +1,7 @@
 package com.darfat.docreaderapp.service.impl;
 
 import com.darfat.docreaderapp.domain.FormPengeluaranBarang;
+import com.darfat.docreaderapp.dto.FormPengeluaranBarangDTO;
 import com.darfat.docreaderapp.repository.FormPengeluaranBarangRepository;
 import com.darfat.docreaderapp.service.FormPengeluaranBarangService;
 import java.util.List;
@@ -90,5 +91,10 @@ public class FormPengeluaranBarangServiceImpl implements FormPengeluaranBarangSe
     public void delete(String id) {
         log.debug("Request to delete FormPengeluaranBarang : {}", id);
         formPengeluaranBarangRepository.deleteById(id);
+    }
+
+    @Override
+    public FormPengeluaranBarangDTO convertText(String text) {
+        return null;
     }
 }

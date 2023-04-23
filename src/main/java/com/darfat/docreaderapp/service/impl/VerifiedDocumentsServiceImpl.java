@@ -2,9 +2,12 @@ package com.darfat.docreaderapp.service.impl;
 
 import com.darfat.docreaderapp.domain.FormPengeluaranBarang;
 import com.darfat.docreaderapp.domain.VerifiedDocuments;
+import com.darfat.docreaderapp.dto.FormPengeluaranBarangDTO;
 import com.darfat.docreaderapp.repository.VerifiedDocumentsRepository;
 import com.darfat.docreaderapp.service.FormPengeluaranBarangService;
 import com.darfat.docreaderapp.service.VerifiedDocumentsService;
+import com.darfat.docreaderapp.util.ObjectMapperUtil;
+import com.darfat.docreaderapp.util.form.FormPengeluaranBarangStringUtil;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +28,10 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
     private final VerifiedDocumentsRepository verifiedDocumentsRepository;
     private final FormPengeluaranBarangService formPengeluaranBarangService;
 
-    public VerifiedDocumentsServiceImpl(VerifiedDocumentsRepository verifiedDocumentsRepository,
-                                        FormPengeluaranBarangService formPengeluaranBarangService) {
+    public VerifiedDocumentsServiceImpl(
+        VerifiedDocumentsRepository verifiedDocumentsRepository,
+        FormPengeluaranBarangService formPengeluaranBarangService
+    ) {
         this.verifiedDocumentsRepository = verifiedDocumentsRepository;
         this.formPengeluaranBarangService = formPengeluaranBarangService;
     }
@@ -104,7 +109,7 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
     @Override
     public VerifiedDocuments newDocument(VerifiedDocuments documents, String text) {
         documents.setStatus("Approval");
-        if(documents.getType().equals("001")){
+        if (documents.getType().equals("001")) {
             FormPengeluaranBarang form = generateFormPengeluaranBarang(text);
             documents.setContentId(form.getId());
         }
@@ -117,11 +122,32 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
         return this.save(documents);
     }
 
-    private FormPengeluaranBarang generateFormPengeluaranBarang(String text){
-        FormPengeluaranBarang form = new FormPengeluaranBarang();
+    private FormPengeluaranBarang generateFormPengeluaranBarang(String textFromImage) {
+        FormPengeluaranBarangDTO dto = FormPengeluaranBarangDTO
+            .builder()
+            .branch(FormPengeluaranBarangStringUtil.getBranch(textFromImage))
+            .documentTitle(FormPengeluaranBarangStringUtil.getDocumentTitle(textFromImage))
+            .documentNumber(FormPengeluaranBarangStringUtil.getDocumentNumber(textFromImage))
+            .documentSource(FormPengeluaranBarangStringUtil.getSourceDocument(textFromImage))
+            .recipientAddress(FormPengeluaranBarangStringUtil.getRecipientAddress(textFromImage))
+            .npwp(FormPengeluaranBarangStringUtil.getNpwp(textFromImage))
+            .recipientAddress(FormPengeluaranBarangStringUtil.getRecipientAddress(textFromImage))
+            .warehouseSource(FormPengeluaranBarangStringUtil.getSourceWarehouse(textFromImage))
+            .reference(FormPengeluaranBarangStringUtil.getReference(textFromImage))
+            .status(FormPengeluaranBarangStringUtil.getStatus(textFromImage))
+            .date(FormPengeluaranBarangStringUtil.getOrderDate(textFromImage))
+            .productDescription(FormPengeluaranBarangStringUtil.getProductDescription(textFromImage))
+            .sourceLocation(FormPengeluaranBarangStringUtil.getSourceLocation(textFromImage))
+            .lotNo(FormPengeluaranBarangStringUtil.getLotNo(textFromImage))
+            .quantity(FormPengeluaranBarangStringUtil.getQuantity(textFromImage))
+            .amount(FormPengeluaranBarangStringUtil.getAmount(textFromImage))
+            .sourceDestination(FormPengeluaranBarangStringUtil.getSourceDestination(textFromImage))
+            .armadaName(FormPengeluaranBarangStringUtil.getArmadaName(textFromImage))
+            .armadaNumber(FormPengeluaranBarangStringUtil.getArmadaNumber(textFromImage))
+            .build();
+        FormPengeluaranBarang form = ObjectMapperUtil.MAPPER.convertValue(dto, FormPengeluaranBarang.class);
         form.setStatus("01");
         form.setActive(Boolean.TRUE);
-        form.setRemarks(text.substring(0,450));
         return formPengeluaranBarangService.save(form);
     }
 }
