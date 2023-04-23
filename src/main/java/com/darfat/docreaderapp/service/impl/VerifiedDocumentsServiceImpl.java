@@ -134,7 +134,7 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
             .recipientAddress(FormPengeluaranBarangStringUtil.getRecipientAddress(textFromImage))
             .warehouseSource(FormPengeluaranBarangStringUtil.getSourceWarehouse(textFromImage))
             .reference(FormPengeluaranBarangStringUtil.getReference(textFromImage))
-            .status(FormPengeluaranBarangStringUtil.getStatus(textFromImage))
+            .orderStatus(FormPengeluaranBarangStringUtil.getStatus(textFromImage))
             .date(FormPengeluaranBarangStringUtil.getOrderDate(textFromImage))
             .productDescription(FormPengeluaranBarangStringUtil.getProductDescription(textFromImage))
             .sourceLocation(FormPengeluaranBarangStringUtil.getSourceLocation(textFromImage))
@@ -147,6 +147,7 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
             .build();
         FormPengeluaranBarang form = ObjectMapperUtil.MAPPER.convertValue(dto, FormPengeluaranBarang.class);
         form.setStatus("01");
+        form.setContents(textFromImage);
         form.setActive(Boolean.TRUE);
         return formPengeluaranBarangService.save(form);
     }

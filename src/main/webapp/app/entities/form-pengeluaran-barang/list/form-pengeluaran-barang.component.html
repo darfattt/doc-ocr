@@ -56,6 +56,120 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="contents">
+            <div class="d-flex">
+              <span>Contents</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="branch">
+            <div class="d-flex">
+              <span>Branch</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="documentTitle">
+            <div class="d-flex">
+              <span>Document Title</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="documentNumber">
+            <div class="d-flex">
+              <span>Document Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="recipientAddress">
+            <div class="d-flex">
+              <span>Recipient Address</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="npwp">
+            <div class="d-flex">
+              <span>Npwp</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="warehouseSource">
+            <div class="d-flex">
+              <span>Warehouse Source</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="documentSource">
+            <div class="d-flex">
+              <span>Document Source</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="reference">
+            <div class="d-flex">
+              <span>Reference</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span>Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="date">
+            <div class="d-flex">
+              <span>Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="productDescription">
+            <div class="d-flex">
+              <span>Product Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sourceLocation">
+            <div class="d-flex">
+              <span>Source Location</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lotNo">
+            <div class="d-flex">
+              <span>Lot No</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="quantity">
+            <div class="d-flex">
+              <span>Quantity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="amount">
+            <div class="d-flex">
+              <span>Amount</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sourceDestination">
+            <div class="d-flex">
+              <span>Source Destination</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="armadaName">
+            <div class="d-flex">
+              <span>Armada Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="armadaNumber">
+            <div class="d-flex">
+              <span>Armada Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col" jhiSortBy="createdDate">
             <div class="d-flex">
               <span>Created Date</span>
@@ -91,6 +205,25 @@
           <td>{{ formPengeluaranBarang.status }}</td>
           <td>{{ formPengeluaranBarang.active }}</td>
           <td>{{ formPengeluaranBarang.remarks }}</td>
+          <td>{{ formPengeluaranBarang.contents }}</td>
+          <td>{{ formPengeluaranBarang.branch }}</td>
+          <td>{{ formPengeluaranBarang.documentTitle }}</td>
+          <td>{{ formPengeluaranBarang.documentNumber }}</td>
+          <td>{{ formPengeluaranBarang.recipientAddress }}</td>
+          <td>{{ formPengeluaranBarang.npwp }}</td>
+          <td>{{ formPengeluaranBarang.warehouseSource }}</td>
+          <td>{{ formPengeluaranBarang.documentSource }}</td>
+          <td>{{ formPengeluaranBarang.reference }}</td>
+          <td>{{ formPengeluaranBarang.status }}</td>
+          <td>{{ formPengeluaranBarang.date }}</td>
+          <td>{{ formPengeluaranBarang.productDescription }}</td>
+          <td>{{ formPengeluaranBarang.sourceLocation }}</td>
+          <td>{{ formPengeluaranBarang.lotNo }}</td>
+          <td>{{ formPengeluaranBarang.quantity }}</td>
+          <td>{{ formPengeluaranBarang.amount }}</td>
+          <td>{{ formPengeluaranBarang.sourceDestination }}</td>
+          <td>{{ formPengeluaranBarang.armadaName }}</td>
+          <td>{{ formPengeluaranBarang.armadaNumber }}</td>
           <td>{{ formPengeluaranBarang.createdDate | formatMediumDatetime }}</td>
           <td>{{ formPengeluaranBarang.createdBy }}</td>
           <td>{{ formPengeluaranBarang.lastModifiedDate | formatMediumDatetime }}</td>

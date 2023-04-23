@@ -76,11 +76,11 @@ class DocumentsResourceIT {
         Documents documents = new Documents()
             .type(DEFAULT_TYPE)
             .name(DEFAULT_NAME)
-            .status(DEFAULT_STATUS);
-//            .createdDate(DEFAULT_CREATED_DATE)
-//            .createdBy(DEFAULT_CREATED_BY)
-//            .lastModifiedDate(DEFAULT_LAST_MODIFIED_DATE)
-//            .lastModifiedBy(DEFAULT_LAST_MODIFIED_BY);
+            .status(DEFAULT_STATUS)
+            .createdDate(DEFAULT_CREATED_DATE)
+            .createdBy(DEFAULT_CREATED_BY)
+            .lastModifiedDate(DEFAULT_LAST_MODIFIED_DATE)
+            .lastModifiedBy(DEFAULT_LAST_MODIFIED_BY);
         return documents;
     }
 
@@ -94,11 +94,11 @@ class DocumentsResourceIT {
         Documents documents = new Documents()
             .type(UPDATED_TYPE)
             .name(UPDATED_NAME)
-            .status(UPDATED_STATUS);
-//            .createdDate(UPDATED_CREATED_DATE)
-//            .createdBy(UPDATED_CREATED_BY)
-//            .lastModifiedDate(UPDATED_LAST_MODIFIED_DATE)
-//            .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
+            .status(UPDATED_STATUS)
+            .createdDate(UPDATED_CREATED_DATE)
+            .createdBy(UPDATED_CREATED_BY)
+            .lastModifiedDate(UPDATED_LAST_MODIFIED_DATE)
+            .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
         return documents;
     }
 
@@ -741,11 +741,11 @@ class DocumentsResourceIT {
         updatedDocuments
             .type(UPDATED_TYPE)
             .name(UPDATED_NAME)
-            .status(UPDATED_STATUS);
-//            .createdDate(UPDATED_CREATED_DATE)
-//            .createdBy(UPDATED_CREATED_BY)
-//            .lastModifiedDate(UPDATED_LAST_MODIFIED_DATE)
-//            .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
+            .status(UPDATED_STATUS)
+            .createdDate(UPDATED_CREATED_DATE)
+            .createdBy(UPDATED_CREATED_BY)
+            .lastModifiedDate(UPDATED_LAST_MODIFIED_DATE)
+            .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
 
         restDocumentsMockMvc
             .perform(
@@ -837,10 +837,10 @@ class DocumentsResourceIT {
         Documents partialUpdatedDocuments = new Documents();
         partialUpdatedDocuments.setId(documents.getId());
 
-       // partialUpdatedDocuments
-            //.createdBy(UPDATED_CREATED_BY)
-            //.lastModifiedDate(UPDATED_LAST_MODIFIED_DATE)
-            //.lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
+        partialUpdatedDocuments
+            .createdBy(UPDATED_CREATED_BY)
+            .lastModifiedDate(UPDATED_LAST_MODIFIED_DATE)
+            .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
 
         restDocumentsMockMvc
             .perform(
@@ -879,11 +879,11 @@ class DocumentsResourceIT {
         partialUpdatedDocuments
             .type(UPDATED_TYPE)
             .name(UPDATED_NAME)
-            .status(UPDATED_STATUS);
-            //.createdDate(UPDATED_CREATED_DATE)
-            //.createdBy(UPDATED_CREATED_BY)
-            //.lastModifiedDate(UPDATED_LAST_MODIFIED_DATE)
-            //.lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
+            .status(UPDATED_STATUS)
+            .createdDate(UPDATED_CREATED_DATE)
+            .createdBy(UPDATED_CREATED_BY)
+            .lastModifiedDate(UPDATED_LAST_MODIFIED_DATE)
+            .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
 
         restDocumentsMockMvc
             .perform(

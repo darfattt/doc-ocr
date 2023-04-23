@@ -5,8 +5,6 @@ import java.io.Serializable;
 import java.time.Instant;
 import javax.persistence.*;
 import javax.validation.constraints.*;
-
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.domain.Persistable;
 
 /**
@@ -16,15 +14,13 @@ import org.springframework.data.domain.Persistable;
 @Entity
 @Table(name = "form_bastpbpp")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class FormBASTPBPP extends AbstractAuditingEntity<String>  implements Serializable, Persistable<String> {
+public class FormBASTPBPP implements Serializable, Persistable<String> {
 
     private static final long serialVersionUID = 1L;
 
     @NotNull
     @Size(max = 50)
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(name = "id", length = 50, nullable = false)
     private String id;
 

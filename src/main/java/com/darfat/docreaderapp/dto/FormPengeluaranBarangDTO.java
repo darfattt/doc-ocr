@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @Builder
@@ -17,13 +19,13 @@ public class FormPengeluaranBarangDTO {
     private String warehouseSource;
     private String documentSource;
     private String reference;
-    private String status;
+    private String orderStatus;
     private String date;
     private String productDescription;
     private String sourceLocation;
     private String lotNo;
-    private String quantity;
-    private String amount;
+    private Float quantity;
+    private BigDecimal amount;
     private String sourceDestination;
     private String armadaName;
     private String armadaNumber;

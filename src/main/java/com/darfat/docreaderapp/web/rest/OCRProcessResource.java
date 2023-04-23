@@ -113,7 +113,7 @@ public class OCRProcessResource {
             .recipientAddress(FormPengeluaranBarangStringUtil.getRecipientAddress(textFromImage))
             .warehouseSource(FormPengeluaranBarangStringUtil.getSourceWarehouse(textFromImage))
             .reference(FormPengeluaranBarangStringUtil.getReference(textFromImage))
-            .status(FormPengeluaranBarangStringUtil.getStatus(textFromImage))
+            .orderStatus(FormPengeluaranBarangStringUtil.getStatus(textFromImage))
             .date(FormPengeluaranBarangStringUtil.getOrderDate(textFromImage))
             .productDescription(FormPengeluaranBarangStringUtil.getProductDescription(textFromImage))
             .sourceLocation(FormPengeluaranBarangStringUtil.getSourceLocation(textFromImage))

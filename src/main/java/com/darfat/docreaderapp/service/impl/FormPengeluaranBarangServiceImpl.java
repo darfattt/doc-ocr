@@ -1,7 +1,6 @@
 package com.darfat.docreaderapp.service.impl;
 
 import com.darfat.docreaderapp.domain.FormPengeluaranBarang;
-import com.darfat.docreaderapp.dto.FormPengeluaranBarangDTO;
 import com.darfat.docreaderapp.repository.FormPengeluaranBarangRepository;
 import com.darfat.docreaderapp.service.FormPengeluaranBarangService;
 import java.util.List;
@@ -55,6 +54,63 @@ public class FormPengeluaranBarangServiceImpl implements FormPengeluaranBarangSe
                 if (formPengeluaranBarang.getRemarks() != null) {
                     existingFormPengeluaranBarang.setRemarks(formPengeluaranBarang.getRemarks());
                 }
+                if (formPengeluaranBarang.getContents() != null) {
+                    existingFormPengeluaranBarang.setContents(formPengeluaranBarang.getContents());
+                }
+                if (formPengeluaranBarang.getBranch() != null) {
+                    existingFormPengeluaranBarang.setBranch(formPengeluaranBarang.getBranch());
+                }
+                if (formPengeluaranBarang.getDocumentTitle() != null) {
+                    existingFormPengeluaranBarang.setDocumentTitle(formPengeluaranBarang.getDocumentTitle());
+                }
+                if (formPengeluaranBarang.getDocumentNumber() != null) {
+                    existingFormPengeluaranBarang.setDocumentNumber(formPengeluaranBarang.getDocumentNumber());
+                }
+                if (formPengeluaranBarang.getRecipientAddress() != null) {
+                    existingFormPengeluaranBarang.setRecipientAddress(formPengeluaranBarang.getRecipientAddress());
+                }
+                if (formPengeluaranBarang.getNpwp() != null) {
+                    existingFormPengeluaranBarang.setNpwp(formPengeluaranBarang.getNpwp());
+                }
+                if (formPengeluaranBarang.getWarehouseSource() != null) {
+                    existingFormPengeluaranBarang.setWarehouseSource(formPengeluaranBarang.getWarehouseSource());
+                }
+                if (formPengeluaranBarang.getDocumentSource() != null) {
+                    existingFormPengeluaranBarang.setDocumentSource(formPengeluaranBarang.getDocumentSource());
+                }
+                if (formPengeluaranBarang.getReference() != null) {
+                    existingFormPengeluaranBarang.setReference(formPengeluaranBarang.getReference());
+                }
+                if (formPengeluaranBarang.getStatus() != null) {
+                    existingFormPengeluaranBarang.setStatus(formPengeluaranBarang.getStatus());
+                }
+                if (formPengeluaranBarang.getDate() != null) {
+                    existingFormPengeluaranBarang.setDate(formPengeluaranBarang.getDate());
+                }
+                if (formPengeluaranBarang.getProductDescription() != null) {
+                    existingFormPengeluaranBarang.setProductDescription(formPengeluaranBarang.getProductDescription());
+                }
+                if (formPengeluaranBarang.getSourceLocation() != null) {
+                    existingFormPengeluaranBarang.setSourceLocation(formPengeluaranBarang.getSourceLocation());
+                }
+                if (formPengeluaranBarang.getLotNo() != null) {
+                    existingFormPengeluaranBarang.setLotNo(formPengeluaranBarang.getLotNo());
+                }
+                if (formPengeluaranBarang.getQuantity() != null) {
+                    existingFormPengeluaranBarang.setQuantity(formPengeluaranBarang.getQuantity());
+                }
+                if (formPengeluaranBarang.getAmount() != null) {
+                    existingFormPengeluaranBarang.setAmount(formPengeluaranBarang.getAmount());
+                }
+                if (formPengeluaranBarang.getSourceDestination() != null) {
+                    existingFormPengeluaranBarang.setSourceDestination(formPengeluaranBarang.getSourceDestination());
+                }
+                if (formPengeluaranBarang.getArmadaName() != null) {
+                    existingFormPengeluaranBarang.setArmadaName(formPengeluaranBarang.getArmadaName());
+                }
+                if (formPengeluaranBarang.getArmadaNumber() != null) {
+                    existingFormPengeluaranBarang.setArmadaNumber(formPengeluaranBarang.getArmadaNumber());
+                }
                 if (formPengeluaranBarang.getCreatedDate() != null) {
                     existingFormPengeluaranBarang.setCreatedDate(formPengeluaranBarang.getCreatedDate());
                 }
@@ -91,10 +147,5 @@ public class FormPengeluaranBarangServiceImpl implements FormPengeluaranBarangSe
     public void delete(String id) {
         log.debug("Request to delete FormPengeluaranBarang : {}", id);
         formPengeluaranBarangRepository.deleteById(id);
-    }
-
-    @Override
-    public FormPengeluaranBarangDTO convertText(String text) {
-        return null;
     }
 }

@@ -2,6 +2,10 @@ package com.darfat.docreaderapp.util.form;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.math.BigDecimal;
+import java.text.*;
+import java.util.Locale;
+
 @Slf4j
 public class FormPengeluaranBarangStringUtil {
 
@@ -89,24 +93,26 @@ public class FormPengeluaranBarangStringUtil {
         return null;
     }
 
-    public static String getQuantity(String text) {
+    public static Float getQuantity(String text) {
         String items = split(text, NEW_LINE, 24);
         try {
             String[] values = items.split(" ");
 
-            return values[4];
+            return parseDecimal(values[4]);
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             log.error("Quantity index out of bounds");
+        } catch (ParseException e) {
+            log.error("Quantity parse exception");
         }
         return null;
     }
 
-    public static String getAmount(String text) {
+    public static BigDecimal getAmount(String text) {
         String items = split(text, NEW_LINE, 24);
         try {
             String[] values = items.split(" ");
-
-            return values[5];
+            log.info("Amount values, [{}]",values);
+            return parseBigDecimal(values[5]);
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             log.error("Amount index out of bounds");
         }
@@ -150,5 +156,26 @@ public class FormPengeluaranBarangStringUtil {
             buffer.append(" ");
         }
         return buffer.toString();
+    }
+
+    private static Float parseDecimal(String input) throws ParseException {
+        Locale in_ID = new Locale("in","ID");
+
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setDecimalSeparator(',');
+        DecimalFormat decimalFormat = new DecimalFormat("#.000");
+        decimalFormat.setDecimalFormatSymbols(symbols);
+
+        Float result = decimalFormat.parse(input).floatValue();
+        return result;
+    }
+    private static BigDecimal parseBigDecimal(String input){
+        Locale in_ID = new Locale("in","ID");
+
+        DecimalFormat nf = (DecimalFormat)NumberFormat.getInstance(in_ID);
+        nf.setParseBigDecimal(true);
+
+        return  (BigDecimal)nf.parse(input, new ParsePosition(0));
+
     }
 }
