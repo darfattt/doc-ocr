@@ -3,15 +3,14 @@ package com.darfat.docreaderapp.web.rest;
 import com.darfat.docreaderapp.constants.AttachmentTypeEnum;
 import com.darfat.docreaderapp.domain.Attachment;
 import com.darfat.docreaderapp.domain.Documents;
-import com.darfat.docreaderapp.dto.AttachmentDTO;
-import com.darfat.docreaderapp.dto.FormPengeluaranBarangDTO;
+import com.darfat.docreaderapp.dto.*;
 import com.darfat.docreaderapp.dto.request.AttachmentRequest;
 import com.darfat.docreaderapp.dto.response.AttachmentGroupResponse;
 import com.darfat.docreaderapp.dto.response.AttachmentResponse;
 import com.darfat.docreaderapp.service.AttachmentService;
 import com.darfat.docreaderapp.service.DocumentsService;
 import com.darfat.docreaderapp.util.ObjectMapperUtil;
-import com.darfat.docreaderapp.util.form.FormPengeluaranBarangStringUtil;
+import com.darfat.docreaderapp.util.form.*;
 import com.google.cloud.vision.v1.AnnotateImageResponse;
 import com.google.cloud.vision.v1.Feature;
 import java.io.IOException;
@@ -52,77 +51,170 @@ public class OCRProcessResource {
     }
 
     @PostMapping("/extractText")
-    public ResponseEntity<FormPengeluaranBarangDTO> processImage(@RequestBody AttachmentRequest attachmentRequest) {
+    public ResponseEntity<FormBASTPBPDTO> processImage(@RequestBody AttachmentRequest attachmentRequest) {
         log.info("Extract to Text [{}] , [{}]", attachmentRequest.getName(), attachmentRequest.getBasePath());
         byte[] byteArray = Base64.getMimeDecoder().decode(attachmentRequest.getAttachments().get(0).getBlobFile());
         //        String textFromImage =
         //            cloudVisionTemplate.extractTextFromImage(new ByteArrayResource(byteArray));
         String textFromImage =
-            "*\n" +
+            "POS INDONESIA\n" +
+            "Provinsi\n" +
+            "Kabupaten\n" +
+            "Kecamatan\n" +
+            "Kelurahan/Desa\n" +
+            "NO\n" +
+            "1\n" +
+            "2\n" +
+            "3\n" +
+            "4\n" +
+            "RW/RT 004/012\n" +
+            "3210062002\n" +
+            "Kami yang bertanda tangan pada daftar dibawah ini, menyatakan dengan sebenar-benarnya bahwa telah menerima 10 Kg Beras Bantuan Pangan\n" +
+            "CBP 2023 dengan kualitas baik\n" +
+            "5\n" +
+            "6\n" +
+            "7\n" +
+            "8\n" +
+            "9\n" +
+            "10\n" +
+            "3210062002212375\n" +
+            "ABIDIN\n" +
+            "NAMA\n" +
+            "3210062002212759 BLOK SUKARESMI RW 004\n" +
+            "RT 012\n" +
+            "AAM AMALIAH\n" +
+            "3210062002212701\n" +
+            "ACENG NENDI\n" +
+            "JAWA BARAT\n" +
+            ":MAJALENGKA\n" +
+            "MAJA\n" +
+            "WANAHAYU\n" +
+            "3210062002212420\n" +
+            "ACENG\n" +
+            "NURKAMAL\n" +
+            "ACIH\n" +
+            "ACIH\n" +
+            "3210062002212501\n" +
+            "ADE\n" +
+            "3210062002212540 BLOK LEBAKRARANG RW\n" +
+            "005 RT 014\n" +
+            "3210062002212662\n" +
+            "ADE BARON\n" +
+            "3210062002212774\n" +
+            "ADRIA\n" +
+            "BERITA ACARA SERAH TERIMA (BASI)\n" +
+            "PENERIMA BANTUAN PANGAN - CBP 2023\n" +
+            "ADUN\n" +
+            "Nomor Dokumen Out :\n" +
+            "Alokasi Bulan / Tahap: MARET 2023\n" +
+            "BUAPTEN\n" +
+            "ALAMAT\n" +
+            "3210062002212443 BLOK LANGGENG RW 006\n" +
+            "RT 016\n" +
+            "Cap Dinas\n" +
+            "BLOK JUMAT RW 002 RT\n" +
+            "006\n" +
+            "BLOK SELASA RW 001 RT\n" +
+            "002\n" +
+            "BLOK LANGGENG RW 006\n" +
+            "RT 015\n" +
+            "BLOK LEBAKLARANG RW\n" +
+            "005 RT 013\n" +
+            "3210062002212722 BLOK SUKARESMI RW 004\n" +
+            "RT 010\n" +
+            "BLOK REBO RW 001 RT 002\n" +
+            "BLOK SUKARESMI RW 004\n" +
+            "RT 009\n" +
+            "U\n" +
+            "Mengetahui\n" +
+            "Aparat Setempat \\\"\n" +
+            "PBP32100620022127591)\n" +
+            "1x 10\n" +
+            "OXO\n" +
+            "NOMOR BARCODE\n" +
+            "OX\n" +
+            "PUP3210082002212/011\n" +
+            "1. 10\n" +
+            "VE\n" +
+            "Okjo\n" +
+            "PBP32100620022125401\n" +
+            "1x 10\n" +
+            "BEW\n" +
+            "PBPS210062002212-431\n" +
+            "1x 10\n" +
+            "OXO\n" +
+            "ON\n" +
+            "PAP3210062002212/741\n" +
+            "1x 10\n" +
+            "KCU/KC\n" +
+            "KANTOR SERAH\n" +
+            "No BAST\n" +
+            "3\n" +
+            "OO\n" +
+            "Jumlah\n" +
+            "DO\n" +
+            "PUP3200620022123753\n" +
+            "1x 10\n" +
+            "P3200620022124201\n" +
+            "1x 10\n" +
+            "PUP32100620022125011\n" +
+            "PBP2100620022126621\n" +
+            "1x 10\n" +
+            "DD\n" +
+            "PSON\n" +
+            "PBFS2100620022127221\n" +
+            "1. 10\n" +
+            "45400-MAJALENGKA\n" +
+            "45400-MAJALENGKA\n" +
+            "JUMLAH\n" +
+            "(KG)\n" +
+            "10\n" +
+            "10\n" +
+            "10\n" +
+            "10\n" +
+            "10\n" +
+            "10\n" +
+            "10\n" +
+            "10\n" +
+            "10\n" +
+            "10\n" +
             "BULOG\n" +
-            "10030-KANCAB CIREBON\n" +
-            "Penerima:\n" +
-            "Badan Pangan Nasional\n" +
-            "Kantor Badan Pangan Nasional\n" +
-            "Jalan Harsono RM Nomor 3\n" +
-            "Ragunan, Pasar Minggu, Jakarta\n" +
-            "Selatan\n" +
-            "09. DKI Jakarta, Indonesia\n" +
-            "(021)7804476 7807377\n" +
-            "NPWP: 62.416.790.4-017.000\n" +
-            "Gudang Asal: KOMPLEKS PERGUDANGAN KASOKANDEL\n" +
-            "Dokumen Sumber : SO/1688/04/2023/10030\n" +
-            "Referensi\n" +
-            "SO/1688/04/2023/10030\n" +
-            "Lokasi Asal\n" +
-            "DOKUMEN PENGELUARAN BARANG\n" +
-            "OUT/00778/04/2023/10030.092\n" +
-            "Informasi Angkutan\n" +
-            "Nama Angkutan\n" +
-            "POS\n" +
-            "Lot/Nomor Seri\n" +
-            "[B0010146Z] BERAS MEDIUM MEDIUM 20% LOGO BANTUAN PANGAN 10 KG PSO DN\n" +
-            "Utama 002/A01.1.1 [2026-04-04] LT1515355/04/2023/10030 437,00 4.370,00 Partner Locations/Customers\n" +
-            "Yang Menerima,\n" +
-            "Status\n" +
-            "Selesai\n" +
-            "Dicetak oleh: Kepala Gudang GUDANG\n" +
-            "KASOKANDEL\n" +
-            "Pada waktu : 07-04-2023 | 14:25\n" +
-            "Tanggal\n" +
-            "07-04-2023\n" +
-            "Kuantitas Kuantum Lokasi Tujuan\n" +
-            "Catatan (Nopol / No Kontainer)\n" +
-            "E 8690 VU/WANAHAYU\n" +
-            "Cirebon, 07-04-2023\n" +
-            "Yang Menyerahkan,\n" +
-            "KOMPLEKS PERGUDANGAN\n" +
-            "KASOKANDEL\n" +
-            "BLOG\n" +
-            "Pasokandel\n" +
-            "ofconcuer";
+            "10\n" +
+            "Cap Pos\n" +
+            "TTD\n" +
+            "Ad\n" +
+            "Јелен\n" +
+            "ہل\n" +
+            "que\n" +
+            "of\n" +
+            "ACIH\n" +
+            "Heiß\n" +
+            "TGL SERAH\n" +
+            "Yang Menyerankan\n" +
+            "PT Pos Indonesia\n" +
+            "for\n" +
+            "Keterangan\n" +
+            "Aparat setempat adalah pengurus RT/RW atau sebutan nama lainnya atau aparat Keurahan Dusa atau perwakian penerima bantuan pangan sasaran\n" +
+            "**Stempel bagi yang memiliki\n" +
+            "Halaman 1\n" +
+            "2023\n" +
+            "dan 44";
+
         log.info("Text from image [{}]", textFromImage);
-        FormPengeluaranBarangDTO dto = FormPengeluaranBarangDTO
+        FormBASTPBPDTO dto = FormBASTPBPDTO
             .builder()
-            .branch(FormPengeluaranBarangStringUtil.getBranch(textFromImage))
-            .documentTitle(FormPengeluaranBarangStringUtil.getDocumentTitle(textFromImage))
-            .documentNumber(FormPengeluaranBarangStringUtil.getDocumentNumber(textFromImage))
-            .documentSource(FormPengeluaranBarangStringUtil.getSourceDocument(textFromImage))
-            .recipientAddress(FormPengeluaranBarangStringUtil.getRecipientAddress(textFromImage))
-            .npwp(FormPengeluaranBarangStringUtil.getNpwp(textFromImage))
-            .recipientAddress(FormPengeluaranBarangStringUtil.getRecipientAddress(textFromImage))
-            .warehouseSource(FormPengeluaranBarangStringUtil.getSourceWarehouse(textFromImage))
-            .reference(FormPengeluaranBarangStringUtil.getReference(textFromImage))
-            .orderStatus(FormPengeluaranBarangStringUtil.getStatus(textFromImage))
-            .date(FormPengeluaranBarangStringUtil.getOrderDate(textFromImage))
-            .productDescription(FormPengeluaranBarangStringUtil.getProductDescription(textFromImage))
-            .sourceLocation(FormPengeluaranBarangStringUtil.getSourceLocation(textFromImage))
-            .lotNo(FormPengeluaranBarangStringUtil.getLotNo(textFromImage))
-            .quantity(FormPengeluaranBarangStringUtil.getQuantity(textFromImage))
-            .amount(FormPengeluaranBarangStringUtil.getAmount(textFromImage))
-            .sourceDestination(FormPengeluaranBarangStringUtil.getSourceDestination(textFromImage))
-            .armadaName(FormPengeluaranBarangStringUtil.getArmadaName(textFromImage))
-            .armadaNumber(FormPengeluaranBarangStringUtil.getArmadaNumber(textFromImage))
+            .kelurahanDesa(FormBASTPBPUtil.getKelurahanDesa(textFromImage))
+            .kecamatan(FormBASTPBPUtil.getKecamatan(textFromImage))
+            .kabupatenKota(FormBASTPBPUtil.getKabupatenKota(textFromImage))
+            .provinsi(FormBASTPBPUtil.getProvinsi(textFromImage))
+            .documentTitle(FormBASTPBPUtil.getDocumentTitle(textFromImage))
+            .period(FormBASTPBPUtil.getPeriod(textFromImage))
+            .rtRw(FormBASTPBPUtil.getRWRT(textFromImage))
+            .kcu(FormBASTPBPUtil.getKCU(textFromImage))
+            .kantorSerah(FormBASTPBPUtil.getKantorSerah(textFromImage))
+            .bastNumber(FormBASTPBPUtil.getBastNumber(textFromImage))
+            .documentDescription(FormBASTPBPUtil.getDocumentDescription(textFromImage))
+            .pbp1(FormBASTPBPDTO.PenerimaBantuanPanganDTO.builder().nama("1").alamat("2").nomor("").jumlah("3").build())
             .build();
         return ResponseEntity.ok().body(dto);
     }
@@ -156,7 +248,8 @@ public class OCRProcessResource {
         documents = documentsService.save(documents);
 
         String textFromImage = cloudVisionTemplate.extractTextFromImage(file.getResource());
-        documentsService.approved(documents, textFromImage);
+        log.info(textFromImage);
+        //documentsService.approved(documents, textFromImage);
         return ResponseEntity.ok().body(textFromImage);
     }
 

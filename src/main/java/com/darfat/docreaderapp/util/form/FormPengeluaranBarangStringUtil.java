@@ -1,15 +1,12 @@
 package com.darfat.docreaderapp.util.form;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.math.BigDecimal;
 import java.text.*;
 import java.util.Locale;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class FormPengeluaranBarangStringUtil {
-
-    private static String NEW_LINE = "\\r?\\n";
+public class FormPengeluaranBarangStringUtil extends BaseFormUtil {
 
     public static String getBranch(String text) {
         return split(text, NEW_LINE, 2);
@@ -111,7 +108,6 @@ public class FormPengeluaranBarangStringUtil {
         String items = split(text, NEW_LINE, 24);
         try {
             String[] values = items.split(" ");
-            log.info("Amount values, [{}]",values);
             return parseBigDecimal(values[5]);
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             log.error("Amount index out of bounds");
@@ -141,41 +137,5 @@ public class FormPengeluaranBarangStringUtil {
 
     public static String getArmadaNumber(String text) {
         return split(text, NEW_LINE, 35);
-    }
-
-    public static String split(String text, String delimiter, int pos) {
-        String[] values = text.split(delimiter);
-        return values[pos];
-    }
-
-    public static String split(String text, String delimiter, int startPos, int endPos) {
-        String[] values = text.split(delimiter);
-        StringBuilder buffer = new StringBuilder();
-        for (int i = startPos; i <= endPos; i++) {
-            buffer.append(values[i]);
-            buffer.append(" ");
-        }
-        return buffer.toString();
-    }
-
-    private static Float parseDecimal(String input) throws ParseException {
-        Locale in_ID = new Locale("in","ID");
-
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-        symbols.setDecimalSeparator(',');
-        DecimalFormat decimalFormat = new DecimalFormat("#.000");
-        decimalFormat.setDecimalFormatSymbols(symbols);
-
-        Float result = decimalFormat.parse(input).floatValue();
-        return result;
-    }
-    private static BigDecimal parseBigDecimal(String input){
-        Locale in_ID = new Locale("in","ID");
-
-        DecimalFormat nf = (DecimalFormat)NumberFormat.getInstance(in_ID);
-        nf.setParseBigDecimal(true);
-
-        return  (BigDecimal)nf.parse(input, new ParsePosition(0));
-
     }
 }

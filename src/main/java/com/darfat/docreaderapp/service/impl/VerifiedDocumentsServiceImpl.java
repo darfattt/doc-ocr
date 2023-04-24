@@ -1,13 +1,11 @@
 package com.darfat.docreaderapp.service.impl;
 
-import com.darfat.docreaderapp.domain.FormPengeluaranBarang;
-import com.darfat.docreaderapp.domain.VerifiedDocuments;
-import com.darfat.docreaderapp.dto.FormPengeluaranBarangDTO;
+import com.darfat.docreaderapp.domain.*;
+import com.darfat.docreaderapp.dto.*;
 import com.darfat.docreaderapp.repository.VerifiedDocumentsRepository;
-import com.darfat.docreaderapp.service.FormPengeluaranBarangService;
-import com.darfat.docreaderapp.service.VerifiedDocumentsService;
+import com.darfat.docreaderapp.service.*;
 import com.darfat.docreaderapp.util.ObjectMapperUtil;
-import com.darfat.docreaderapp.util.form.FormPengeluaranBarangStringUtil;
+import com.darfat.docreaderapp.util.form.*;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,13 +25,25 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
 
     private final VerifiedDocumentsRepository verifiedDocumentsRepository;
     private final FormPengeluaranBarangService formPengeluaranBarangService;
+    private final FormSuratJalanService formSuratJalanService;
+    private final FormPernyataanService formPernyataanService;
+    private final FormBASTPBPPService formBASTPBPPService;
+    private final FormBASTPBPService formBASTPBPService;
 
     public VerifiedDocumentsServiceImpl(
         VerifiedDocumentsRepository verifiedDocumentsRepository,
-        FormPengeluaranBarangService formPengeluaranBarangService
+        FormPengeluaranBarangService formPengeluaranBarangService,
+        FormSuratJalanService formSuratJalanService,
+        FormPernyataanService formPernyataanService,
+        FormBASTPBPPService formBASTPBPPService,
+        FormBASTPBPService formBASTPBPService
     ) {
         this.verifiedDocumentsRepository = verifiedDocumentsRepository;
         this.formPengeluaranBarangService = formPengeluaranBarangService;
+        this.formSuratJalanService = formSuratJalanService;
+        this.formPernyataanService = formPernyataanService;
+        this.formBASTPBPPService = formBASTPBPPService;
+        this.formBASTPBPService = formBASTPBPService;
     }
 
     @Override
@@ -112,6 +122,18 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
         if (documents.getType().equals("001")) {
             FormPengeluaranBarang form = generateFormPengeluaranBarang(text);
             documents.setContentId(form.getId());
+        } else if (documents.getType().equals("002")) {
+            FormSuratJalan form = generateFormSuratJalan(text);
+            documents.setContentId(form.getId());
+        } else if (documents.getType().equals("003")) {
+            FormPernyataan form = generateFormPernyataan(text);
+            documents.setContentId(form.getId());
+        } else if (documents.getType().equals("004")) {
+            FormBASTPBPP form = generateFormBASTPengganti(text);
+            documents.setContentId(form.getId());
+        } else if (documents.getType().equals("005")) {
+            FormBASTPBP form = generateFormBAST(text);
+            documents.setContentId(form.getId());
         }
         return this.save(documents);
     }
@@ -150,5 +172,112 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
         form.setContents(textFromImage);
         form.setActive(Boolean.TRUE);
         return formPengeluaranBarangService.save(form);
+    }
+
+    private FormSuratJalan generateFormSuratJalan(String textFromImage) {
+        FormSuratJalanDTO dto = FormSuratJalanDTO
+            .builder()
+            .branch(FormSuratJalanUtil.getBranch(textFromImage))
+            .documentTitle(FormSuratJalanUtil.getDocumentTitle(textFromImage))
+            .documentNumber(FormSuratJalanUtil.getDocumentNumber(textFromImage))
+            .documentSource(FormSuratJalanUtil.getSourceDocument(textFromImage))
+            .recipientAddress(FormSuratJalanUtil.getRecipientAddress(textFromImage))
+            .npwp(FormSuratJalanUtil.getNpwp(textFromImage))
+            .recipientAddress(FormSuratJalanUtil.getRecipientAddress(textFromImage))
+            .warehouseSource(FormSuratJalanUtil.getSourceWarehouse(textFromImage))
+            .reference(FormSuratJalanUtil.getReference(textFromImage))
+            .date(FormSuratJalanUtil.getOrderDate(textFromImage))
+            .productDescription(FormSuratJalanUtil.getProductDescription(textFromImage))
+            .quantity(FormSuratJalanUtil.getQuantity(textFromImage))
+            .amount(FormSuratJalanUtil.getAmount(textFromImage))
+            .armadaNumber(FormSuratJalanUtil.getArmadaNumber(textFromImage))
+            .notes(FormSuratJalanUtil.getNotes(textFromImage))
+            .containerNumber(FormSuratJalanUtil.getContainerNo(textFromImage))
+            .build();
+        FormSuratJalan form = ObjectMapperUtil.MAPPER.convertValue(dto, FormSuratJalan.class);
+        form.setStatus("01");
+        //form.setContents(textFromImage);
+        form.setActive(Boolean.TRUE);
+        return formSuratJalanService.save(form);
+    }
+
+    private FormPernyataan generateFormPernyataan(String textFromImage) {
+        FormPernyataanDTO dto = FormPernyataanDTO
+            .builder()
+            .officerName(FormPernyataanUtil.getOfficerName(textFromImage))
+            .officerPhoneNumber(FormPernyataanUtil.getOfficerPhoneNumber(textFromImage))
+            .officerPosition(FormPernyataanUtil.getOfficerPosition(textFromImage))
+            .officerDepartment(FormPernyataanUtil.getOfficerDepartment(textFromImage))
+            .kelurahanDesa(FormPernyataanUtil.getKelurahanDesa(textFromImage))
+            .kecamatan(FormPernyataanUtil.getKecamatan(textFromImage))
+            .kabupatenKota(FormPernyataanUtil.getKabupatenKota(textFromImage))
+            .provinsi(FormPernyataanUtil.getProvinsi(textFromImage))
+            .documentTitle(FormPernyataanUtil.getDocumentTitle(textFromImage))
+            .pbp1(
+                FormPernyataanDTO.PenerimaBantuanPanganDTO
+                    .builder()
+                    .pbpTidakDitemukan("1")
+                    .alamatPbpTidakDitemukan("2")
+                    .pbpPengganti("")
+                    .alamatPbpPengganti("3")
+                    .build()
+            )
+            .build();
+
+        FormPernyataan form = ObjectMapperUtil.MAPPER.convertValue(dto, FormPernyataan.class);
+        form.setStatus("01");
+        //form.setContents(textFromImage);
+        form.setActive(Boolean.TRUE);
+        return formPernyataanService.save(form);
+    }
+
+    private FormBASTPBPP generateFormBASTPengganti(String textFromImage) {
+        FormBASTPBPPDTO dto = FormBASTPBPPDTO
+            .builder()
+            .kelurahanDesa(FormBASTPBPPUtil.getKelurahanDesa(textFromImage))
+            .kecamatan(FormBASTPBPPUtil.getKecamatan(textFromImage))
+            .kabupatenKota(FormBASTPBPPUtil.getKabupatenKota(textFromImage))
+            .provinsi(FormBASTPBPPUtil.getProvinsi(textFromImage))
+            .documentTitle(FormBASTPBPPUtil.getDocumentTitle(textFromImage))
+            .pbp1(
+                FormBASTPBPPDTO.PenerimaBantuanPanganDTO
+                    .builder()
+                    .pbpTidakDitemukan("1")
+                    .sebabPenggantian("2")
+                    .pbpPengganti("")
+                    .alamatPbpPengganti("3")
+                    .build()
+            )
+            .build();
+
+        FormBASTPBPP form = ObjectMapperUtil.MAPPER.convertValue(dto, FormBASTPBPP.class);
+        form.setStatus("01");
+        //form.setContents(textFromImage);
+        form.setActive(Boolean.TRUE);
+        return formBASTPBPPService.save(form);
+    }
+
+    private FormBASTPBP generateFormBAST(String textFromImage) {
+        FormBASTPBPDTO dto = FormBASTPBPDTO
+            .builder()
+            .kelurahanDesa(FormBASTPBPUtil.getKelurahanDesa(textFromImage))
+            .kecamatan(FormBASTPBPUtil.getKecamatan(textFromImage))
+            .kabupatenKota(FormBASTPBPUtil.getKabupatenKota(textFromImage))
+            .provinsi(FormBASTPBPUtil.getProvinsi(textFromImage))
+            .documentTitle(FormBASTPBPUtil.getDocumentTitle(textFromImage))
+            .period(FormBASTPBPUtil.getPeriod(textFromImage))
+            .rtRw(FormBASTPBPUtil.getRWRT(textFromImage))
+            .kcu(FormBASTPBPUtil.getKCU(textFromImage))
+            .kantorSerah(FormBASTPBPUtil.getKantorSerah(textFromImage))
+            .bastNumber(FormBASTPBPUtil.getBastNumber(textFromImage))
+            .documentDescription(FormBASTPBPUtil.getDocumentDescription(textFromImage))
+            .pbp1(FormBASTPBPDTO.PenerimaBantuanPanganDTO.builder().nama("1").alamat("2").nomor("").jumlah("3").build())
+            .build();
+
+        FormBASTPBP form = ObjectMapperUtil.MAPPER.convertValue(dto, FormBASTPBP.class);
+        form.setStatus("01");
+        //form.setContents(textFromImage);
+        form.setActive(Boolean.TRUE);
+        return formBASTPBPService.save(form);
     }
 }
