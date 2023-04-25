@@ -5,6 +5,7 @@ export interface IDocuments {
   type?: string | null;
   name?: string | null;
   status?: string | null;
+  number?: string | null;
   createdDate?: dayjs.Dayjs | null;
   createdBy?: string | null;
   lastModifiedDate?: dayjs.Dayjs | null;

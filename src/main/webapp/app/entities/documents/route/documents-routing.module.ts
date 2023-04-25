@@ -7,6 +7,7 @@ import { DocumentsDetailComponent } from '../detail/documents-detail.component';
 import { DocumentsUpdateComponent } from '../update/documents-update.component';
 import { DocumentsRoutingResolveService } from './documents-routing-resolve.service';
 import { ASC } from 'app/config/navigation.constants';
+import { DocumentsUploadComponent } from '../upload/documents-upload.component';
 
 const documentsRoute: Routes = [
   {
@@ -36,6 +37,14 @@ const documentsRoute: Routes = [
   {
     path: ':id/edit',
     component: DocumentsUpdateComponent,
+    resolve: {
+      documents: DocumentsRoutingResolveService,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'upload',
+    component: DocumentsUploadComponent,
     resolve: {
       documents: DocumentsRoutingResolveService,
     },

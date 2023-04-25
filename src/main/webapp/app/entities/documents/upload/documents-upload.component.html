@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-documents-heading" data-cy="DocumentsCreateUpdateHeading">Upload Document</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_type">Document Type</label>
+          <!-- <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" /> -->
+          <select class="form-control" name="type" id="field_type" data-cy="type" formControlName="type">
+            <option [ngValue]="">select</option>
+            <option [ngValue]="typeOpt" *ngFor="let typeOpt of types">{{ typeOpt }}</option>
+          </select>
+
+          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.maxlength">
+              This field cannot be longer than 12 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_number">Document Number</label>
+          <input type="text" class="form-control" name="number" id="field_number" data-cy="number" formControlName="number" />
+          <div *ngIf="editForm.get('number')!.invalid && (editForm.get('number')!.dirty || editForm.get('number')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('number')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('number')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile" />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <!-- <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button> -->
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Proceed</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
