@@ -23,6 +23,51 @@
             <column name="remarks" type="varchar(500)">
                 <constraints nullable="true" />
             </column>
+            <column name="contents" type="text">
+                <constraints nullable="true" />
+            </column>
+            <column name="branch" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="document_title" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+            <column name="document_number" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="recipient_address" type="varchar(1000)">
+                <constraints nullable="true" />
+            </column>
+            <column name="npwp" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="warehouse_source" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="document_source" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="reference" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="date" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="product_description" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="quantity" type="${floatType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="armada_number" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="container_number" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
             <column name="created_date" type="${datetimeType}">
                 <constraints nullable="false" />
             </column>
@@ -61,6 +106,21 @@
             <column name="status" type="string"/>
             <column name="active" type="boolean"/>
             <column name="remarks" type="string"/>
+            <column name="contents" type="string"/>
+            <column name="branch" type="string"/>
+            <column name="document_title" type="string"/>
+            <column name="document_number" type="string"/>
+            <column name="recipient_address" type="string"/>
+            <column name="npwp" type="string"/>
+            <column name="warehouse_source" type="string"/>
+            <column name="document_source" type="string"/>
+            <column name="reference" type="string"/>
+            <column name="date" type="string"/>
+            <column name="product_description" type="string"/>
+            <column name="quantity" type="numeric"/>
+            <column name="amount" type="numeric"/>
+            <column name="armada_number" type="string"/>
+            <column name="container_number" type="string"/>
             <column name="created_date" type="date"/>
             <column name="created_by" type="string"/>
             <column name="last_modified_date" type="date"/>

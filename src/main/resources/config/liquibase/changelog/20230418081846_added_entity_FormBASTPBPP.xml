@@ -23,6 +23,84 @@
             <column name="remarks" type="varchar(500)">
                 <constraints nullable="true" />
             </column>
+            <column name="contents" type="text">
+                <constraints nullable="true" />
+            </column>
+            <column name="document_title" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+            <column name="kelurahan_desa" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="kecamatan" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="kabupaten_kota" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="provinsi" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pbp_tidak_ditemukan_1" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sebab_penggantian_1" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pbp_pengganti_1" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_pbp_pengganti_1" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pbp_tidak_ditemukan_2" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sebab_penggantian_2" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pbp_pengganti_2" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_pbp_pengganti_2" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pbp_tidak_ditemukan_3" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sebab_penggantian_3" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pbp_pengganti_3" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_pbp_pengganti_3" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pbp_tidak_ditemukan_4" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sebab_penggantian_4" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pbp_pengganti_4" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_pbp_pengganti_4" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pbp_tidak_ditemukan_5" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sebab_penggantian_5" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="pbp_pengganti_5" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_pbp_pengganti_5" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
             <column name="created_date" type="${datetimeType}">
                 <constraints nullable="false" />
             </column>
@@ -61,6 +139,32 @@
             <column name="status" type="string"/>
             <column name="active" type="boolean"/>
             <column name="remarks" type="string"/>
+            <column name="contents" type="string"/>
+            <column name="document_title" type="string"/>
+            <column name="kelurahan_desa" type="string"/>
+            <column name="kecamatan" type="string"/>
+            <column name="kabupaten_kota" type="string"/>
+            <column name="provinsi" type="string"/>
+            <column name="pbp_tidak_ditemukan_1" type="string"/>
+            <column name="sebab_penggantian_1" type="string"/>
+            <column name="pbp_pengganti_1" type="string"/>
+            <column name="alamat_pbp_pengganti_1" type="string"/>
+            <column name="pbp_tidak_ditemukan_2" type="string"/>
+            <column name="sebab_penggantian_2" type="string"/>
+            <column name="pbp_pengganti_2" type="string"/>
+            <column name="alamat_pbp_pengganti_2" type="string"/>
+            <column name="pbp_tidak_ditemukan_3" type="string"/>
+            <column name="sebab_penggantian_3" type="string"/>
+            <column name="pbp_pengganti_3" type="string"/>
+            <column name="alamat_pbp_pengganti_3" type="string"/>
+            <column name="pbp_tidak_ditemukan_4" type="string"/>
+            <column name="sebab_penggantian_4" type="string"/>
+            <column name="pbp_pengganti_4" type="string"/>
+            <column name="alamat_pbp_pengganti_4" type="string"/>
+            <column name="pbp_tidak_ditemukan_5" type="string"/>
+            <column name="sebab_penggantian_5" type="string"/>
+            <column name="pbp_pengganti_5" type="string"/>
+            <column name="alamat_pbp_pengganti_5" type="string"/>
             <column name="created_date" type="date"/>
             <column name="created_by" type="string"/>
             <column name="last_modified_date" type="date"/>

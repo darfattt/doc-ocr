@@ -1,5 +1,6 @@
 package com.darfat.docreaderapp.web.rest;
 
+import static com.darfat.docreaderapp.web.rest.TestUtil.sameNumber;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -8,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.darfat.docreaderapp.IntegrationTest;
 import com.darfat.docreaderapp.domain.FormSuratJalan;
 import com.darfat.docreaderapp.repository.FormSuratJalanRepository;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -38,6 +40,51 @@ class FormSuratJalanResourceIT {
 
     private static final String DEFAULT_REMARKS = "AAAAAAAAAA";
     private static final String UPDATED_REMARKS = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CONTENTS = "AAAAAAAAAA";
+    private static final String UPDATED_CONTENTS = "BBBBBBBBBB";
+
+    private static final String DEFAULT_BRANCH = "AAAAAAAAAA";
+    private static final String UPDATED_BRANCH = "BBBBBBBBBB";
+
+    private static final String DEFAULT_DOCUMENT_TITLE = "AAAAAAAAAA";
+    private static final String UPDATED_DOCUMENT_TITLE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_DOCUMENT_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_DOCUMENT_NUMBER = "BBBBBBBBBB";
+
+    private static final String DEFAULT_RECIPIENT_ADDRESS = "AAAAAAAAAA";
+    private static final String UPDATED_RECIPIENT_ADDRESS = "BBBBBBBBBB";
+
+    private static final String DEFAULT_NPWP = "AAAAAAAAAA";
+    private static final String UPDATED_NPWP = "BBBBBBBBBB";
+
+    private static final String DEFAULT_WAREHOUSE_SOURCE = "AAAAAAAAAA";
+    private static final String UPDATED_WAREHOUSE_SOURCE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_DOCUMENT_SOURCE = "AAAAAAAAAA";
+    private static final String UPDATED_DOCUMENT_SOURCE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_REFERENCE = "AAAAAAAAAA";
+    private static final String UPDATED_REFERENCE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_DATE = "AAAAAAAAAA";
+    private static final String UPDATED_DATE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PRODUCT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_PRODUCT_DESCRIPTION = "BBBBBBBBBB";
+
+    private static final Float DEFAULT_QUANTITY = 1F;
+    private static final Float UPDATED_QUANTITY = 2F;
+
+    private static final BigDecimal DEFAULT_AMOUNT = new BigDecimal(1);
+    private static final BigDecimal UPDATED_AMOUNT = new BigDecimal(2);
+
+    private static final String DEFAULT_ARMADA_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_ARMADA_NUMBER = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CONTAINER_NUMBER = "AAAAAAAAAA";
+    private static final String UPDATED_CONTAINER_NUMBER = "BBBBBBBBBB";
 
     private static final Instant DEFAULT_CREATED_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_CREATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
@@ -76,10 +123,21 @@ class FormSuratJalanResourceIT {
             .status(DEFAULT_STATUS)
             .active(DEFAULT_ACTIVE)
             .remarks(DEFAULT_REMARKS)
-            .createdDate(DEFAULT_CREATED_DATE)
-            .createdBy(DEFAULT_CREATED_BY)
-            .lastModifiedDate(DEFAULT_LAST_MODIFIED_DATE)
-            .lastModifiedBy(DEFAULT_LAST_MODIFIED_BY);
+            .contents(DEFAULT_CONTENTS)
+            .branch(DEFAULT_BRANCH)
+            .documentTitle(DEFAULT_DOCUMENT_TITLE)
+            .documentNumber(DEFAULT_DOCUMENT_NUMBER)
+            .recipientAddress(DEFAULT_RECIPIENT_ADDRESS)
+            .npwp(DEFAULT_NPWP)
+            .warehouseSource(DEFAULT_WAREHOUSE_SOURCE)
+            .documentSource(DEFAULT_DOCUMENT_SOURCE)
+            .reference(DEFAULT_REFERENCE)
+            .date(DEFAULT_DATE)
+            .productDescription(DEFAULT_PRODUCT_DESCRIPTION)
+            .quantity(DEFAULT_QUANTITY)
+            .amount(DEFAULT_AMOUNT)
+            .armadaNumber(DEFAULT_ARMADA_NUMBER)
+            .containerNumber(DEFAULT_CONTAINER_NUMBER);
         return formSuratJalan;
     }
 
@@ -94,10 +152,21 @@ class FormSuratJalanResourceIT {
             .status(UPDATED_STATUS)
             .active(UPDATED_ACTIVE)
             .remarks(UPDATED_REMARKS)
-            .createdDate(UPDATED_CREATED_DATE)
-            .createdBy(UPDATED_CREATED_BY)
-            .lastModifiedDate(UPDATED_LAST_MODIFIED_DATE)
-            .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
+            .contents(UPDATED_CONTENTS)
+            .branch(UPDATED_BRANCH)
+            .documentTitle(UPDATED_DOCUMENT_TITLE)
+            .documentNumber(UPDATED_DOCUMENT_NUMBER)
+            .recipientAddress(UPDATED_RECIPIENT_ADDRESS)
+            .npwp(UPDATED_NPWP)
+            .warehouseSource(UPDATED_WAREHOUSE_SOURCE)
+            .documentSource(UPDATED_DOCUMENT_SOURCE)
+            .reference(UPDATED_REFERENCE)
+            .date(UPDATED_DATE)
+            .productDescription(UPDATED_PRODUCT_DESCRIPTION)
+            .quantity(UPDATED_QUANTITY)
+            .amount(UPDATED_AMOUNT)
+            .armadaNumber(UPDATED_ARMADA_NUMBER)
+            .containerNumber(UPDATED_CONTAINER_NUMBER);
         return formSuratJalan;
     }
 
@@ -124,6 +193,21 @@ class FormSuratJalanResourceIT {
         assertThat(testFormSuratJalan.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testFormSuratJalan.getActive()).isEqualTo(DEFAULT_ACTIVE);
         assertThat(testFormSuratJalan.getRemarks()).isEqualTo(DEFAULT_REMARKS);
+        assertThat(testFormSuratJalan.getContents()).isEqualTo(DEFAULT_CONTENTS);
+        assertThat(testFormSuratJalan.getBranch()).isEqualTo(DEFAULT_BRANCH);
+        assertThat(testFormSuratJalan.getDocumentTitle()).isEqualTo(DEFAULT_DOCUMENT_TITLE);
+        assertThat(testFormSuratJalan.getDocumentNumber()).isEqualTo(DEFAULT_DOCUMENT_NUMBER);
+        assertThat(testFormSuratJalan.getRecipientAddress()).isEqualTo(DEFAULT_RECIPIENT_ADDRESS);
+        assertThat(testFormSuratJalan.getNpwp()).isEqualTo(DEFAULT_NPWP);
+        assertThat(testFormSuratJalan.getWarehouseSource()).isEqualTo(DEFAULT_WAREHOUSE_SOURCE);
+        assertThat(testFormSuratJalan.getDocumentSource()).isEqualTo(DEFAULT_DOCUMENT_SOURCE);
+        assertThat(testFormSuratJalan.getReference()).isEqualTo(DEFAULT_REFERENCE);
+        assertThat(testFormSuratJalan.getDate()).isEqualTo(DEFAULT_DATE);
+        assertThat(testFormSuratJalan.getProductDescription()).isEqualTo(DEFAULT_PRODUCT_DESCRIPTION);
+        assertThat(testFormSuratJalan.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
+        assertThat(testFormSuratJalan.getAmount()).isEqualByComparingTo(DEFAULT_AMOUNT);
+        assertThat(testFormSuratJalan.getArmadaNumber()).isEqualTo(DEFAULT_ARMADA_NUMBER);
+        assertThat(testFormSuratJalan.getContainerNumber()).isEqualTo(DEFAULT_CONTAINER_NUMBER);
         assertThat(testFormSuratJalan.getCreatedDate()).isEqualTo(DEFAULT_CREATED_DATE);
         assertThat(testFormSuratJalan.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
         assertThat(testFormSuratJalan.getLastModifiedDate()).isEqualTo(DEFAULT_LAST_MODIFIED_DATE);
@@ -204,6 +288,21 @@ class FormSuratJalanResourceIT {
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS)))
             .andExpect(jsonPath("$.[*].active").value(hasItem(DEFAULT_ACTIVE.booleanValue())))
             .andExpect(jsonPath("$.[*].remarks").value(hasItem(DEFAULT_REMARKS)))
+            .andExpect(jsonPath("$.[*].contents").value(hasItem(DEFAULT_CONTENTS)))
+            .andExpect(jsonPath("$.[*].branch").value(hasItem(DEFAULT_BRANCH)))
+            .andExpect(jsonPath("$.[*].documentTitle").value(hasItem(DEFAULT_DOCUMENT_TITLE)))
+            .andExpect(jsonPath("$.[*].documentNumber").value(hasItem(DEFAULT_DOCUMENT_NUMBER)))
+            .andExpect(jsonPath("$.[*].recipientAddress").value(hasItem(DEFAULT_RECIPIENT_ADDRESS)))
+            .andExpect(jsonPath("$.[*].npwp").value(hasItem(DEFAULT_NPWP)))
+            .andExpect(jsonPath("$.[*].warehouseSource").value(hasItem(DEFAULT_WAREHOUSE_SOURCE)))
+            .andExpect(jsonPath("$.[*].documentSource").value(hasItem(DEFAULT_DOCUMENT_SOURCE)))
+            .andExpect(jsonPath("$.[*].reference").value(hasItem(DEFAULT_REFERENCE)))
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE)))
+            .andExpect(jsonPath("$.[*].productDescription").value(hasItem(DEFAULT_PRODUCT_DESCRIPTION)))
+            .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY.doubleValue())))
+            .andExpect(jsonPath("$.[*].amount").value(hasItem(sameNumber(DEFAULT_AMOUNT))))
+            .andExpect(jsonPath("$.[*].armadaNumber").value(hasItem(DEFAULT_ARMADA_NUMBER)))
+            .andExpect(jsonPath("$.[*].containerNumber").value(hasItem(DEFAULT_CONTAINER_NUMBER)))
             .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.toString())))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY)))
             .andExpect(jsonPath("$.[*].lastModifiedDate").value(hasItem(DEFAULT_LAST_MODIFIED_DATE.toString())))
@@ -226,6 +325,21 @@ class FormSuratJalanResourceIT {
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS))
             .andExpect(jsonPath("$.active").value(DEFAULT_ACTIVE.booleanValue()))
             .andExpect(jsonPath("$.remarks").value(DEFAULT_REMARKS))
+            .andExpect(jsonPath("$.contents").value(DEFAULT_CONTENTS))
+            .andExpect(jsonPath("$.branch").value(DEFAULT_BRANCH))
+            .andExpect(jsonPath("$.documentTitle").value(DEFAULT_DOCUMENT_TITLE))
+            .andExpect(jsonPath("$.documentNumber").value(DEFAULT_DOCUMENT_NUMBER))
+            .andExpect(jsonPath("$.recipientAddress").value(DEFAULT_RECIPIENT_ADDRESS))
+            .andExpect(jsonPath("$.npwp").value(DEFAULT_NPWP))
+            .andExpect(jsonPath("$.warehouseSource").value(DEFAULT_WAREHOUSE_SOURCE))
+            .andExpect(jsonPath("$.documentSource").value(DEFAULT_DOCUMENT_SOURCE))
+            .andExpect(jsonPath("$.reference").value(DEFAULT_REFERENCE))
+            .andExpect(jsonPath("$.date").value(DEFAULT_DATE))
+            .andExpect(jsonPath("$.productDescription").value(DEFAULT_PRODUCT_DESCRIPTION))
+            .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY.doubleValue()))
+            .andExpect(jsonPath("$.amount").value(sameNumber(DEFAULT_AMOUNT)))
+            .andExpect(jsonPath("$.armadaNumber").value(DEFAULT_ARMADA_NUMBER))
+            .andExpect(jsonPath("$.containerNumber").value(DEFAULT_CONTAINER_NUMBER))
             .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.toString()))
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY))
             .andExpect(jsonPath("$.lastModifiedDate").value(DEFAULT_LAST_MODIFIED_DATE.toString()))
@@ -256,10 +370,21 @@ class FormSuratJalanResourceIT {
             .status(UPDATED_STATUS)
             .active(UPDATED_ACTIVE)
             .remarks(UPDATED_REMARKS)
-            .createdDate(UPDATED_CREATED_DATE)
-            .createdBy(UPDATED_CREATED_BY)
-            .lastModifiedDate(UPDATED_LAST_MODIFIED_DATE)
-            .lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
+            .contents(UPDATED_CONTENTS)
+            .branch(UPDATED_BRANCH)
+            .documentTitle(UPDATED_DOCUMENT_TITLE)
+            .documentNumber(UPDATED_DOCUMENT_NUMBER)
+            .recipientAddress(UPDATED_RECIPIENT_ADDRESS)
+            .npwp(UPDATED_NPWP)
+            .warehouseSource(UPDATED_WAREHOUSE_SOURCE)
+            .documentSource(UPDATED_DOCUMENT_SOURCE)
+            .reference(UPDATED_REFERENCE)
+            .date(UPDATED_DATE)
+            .productDescription(UPDATED_PRODUCT_DESCRIPTION)
+            .quantity(UPDATED_QUANTITY)
+            .amount(UPDATED_AMOUNT)
+            .armadaNumber(UPDATED_ARMADA_NUMBER)
+            .containerNumber(UPDATED_CONTAINER_NUMBER);
 
         restFormSuratJalanMockMvc
             .perform(
@@ -276,6 +401,21 @@ class FormSuratJalanResourceIT {
         assertThat(testFormSuratJalan.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testFormSuratJalan.getActive()).isEqualTo(UPDATED_ACTIVE);
         assertThat(testFormSuratJalan.getRemarks()).isEqualTo(UPDATED_REMARKS);
+        assertThat(testFormSuratJalan.getContents()).isEqualTo(UPDATED_CONTENTS);
+        assertThat(testFormSuratJalan.getBranch()).isEqualTo(UPDATED_BRANCH);
+        assertThat(testFormSuratJalan.getDocumentTitle()).isEqualTo(UPDATED_DOCUMENT_TITLE);
+        assertThat(testFormSuratJalan.getDocumentNumber()).isEqualTo(UPDATED_DOCUMENT_NUMBER);
+        assertThat(testFormSuratJalan.getRecipientAddress()).isEqualTo(UPDATED_RECIPIENT_ADDRESS);
+        assertThat(testFormSuratJalan.getNpwp()).isEqualTo(UPDATED_NPWP);
+        assertThat(testFormSuratJalan.getWarehouseSource()).isEqualTo(UPDATED_WAREHOUSE_SOURCE);
+        assertThat(testFormSuratJalan.getDocumentSource()).isEqualTo(UPDATED_DOCUMENT_SOURCE);
+        assertThat(testFormSuratJalan.getReference()).isEqualTo(UPDATED_REFERENCE);
+        assertThat(testFormSuratJalan.getDate()).isEqualTo(UPDATED_DATE);
+        assertThat(testFormSuratJalan.getProductDescription()).isEqualTo(UPDATED_PRODUCT_DESCRIPTION);
+        assertThat(testFormSuratJalan.getQuantity()).isEqualTo(UPDATED_QUANTITY);
+        assertThat(testFormSuratJalan.getAmount()).isEqualByComparingTo(UPDATED_AMOUNT);
+        assertThat(testFormSuratJalan.getArmadaNumber()).isEqualTo(UPDATED_ARMADA_NUMBER);
+        assertThat(testFormSuratJalan.getContainerNumber()).isEqualTo(UPDATED_CONTAINER_NUMBER);
         assertThat(testFormSuratJalan.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
         assertThat(testFormSuratJalan.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
         assertThat(testFormSuratJalan.getLastModifiedDate()).isEqualTo(UPDATED_LAST_MODIFIED_DATE);
@@ -351,7 +491,12 @@ class FormSuratJalanResourceIT {
         FormSuratJalan partialUpdatedFormSuratJalan = new FormSuratJalan();
         partialUpdatedFormSuratJalan.setId(formSuratJalan.getId());
 
-        partialUpdatedFormSuratJalan.lastModifiedBy(UPDATED_LAST_MODIFIED_BY);
+        partialUpdatedFormSuratJalan
+            .documentNumber(UPDATED_DOCUMENT_NUMBER)
+            .productDescription(UPDATED_PRODUCT_DESCRIPTION)
+            .quantity(UPDATED_QUANTITY)
+            .amount(UPDATED_AMOUNT)
+            .armadaNumber(UPDATED_ARMADA_NUMBER);
 
         restFormSuratJalanMockMvc
             .perform(
@@ -368,9 +513,24 @@ class FormSuratJalanResourceIT {
         assertThat(testFormSuratJalan.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testFormSuratJalan.getActive()).isEqualTo(DEFAULT_ACTIVE);
         assertThat(testFormSuratJalan.getRemarks()).isEqualTo(DEFAULT_REMARKS);
+        assertThat(testFormSuratJalan.getContents()).isEqualTo(DEFAULT_CONTENTS);
+        assertThat(testFormSuratJalan.getBranch()).isEqualTo(DEFAULT_BRANCH);
+        assertThat(testFormSuratJalan.getDocumentTitle()).isEqualTo(DEFAULT_DOCUMENT_TITLE);
+        assertThat(testFormSuratJalan.getDocumentNumber()).isEqualTo(UPDATED_DOCUMENT_NUMBER);
+        assertThat(testFormSuratJalan.getRecipientAddress()).isEqualTo(DEFAULT_RECIPIENT_ADDRESS);
+        assertThat(testFormSuratJalan.getNpwp()).isEqualTo(DEFAULT_NPWP);
+        assertThat(testFormSuratJalan.getWarehouseSource()).isEqualTo(DEFAULT_WAREHOUSE_SOURCE);
+        assertThat(testFormSuratJalan.getDocumentSource()).isEqualTo(DEFAULT_DOCUMENT_SOURCE);
+        assertThat(testFormSuratJalan.getReference()).isEqualTo(DEFAULT_REFERENCE);
+        assertThat(testFormSuratJalan.getDate()).isEqualTo(DEFAULT_DATE);
+        assertThat(testFormSuratJalan.getProductDescription()).isEqualTo(UPDATED_PRODUCT_DESCRIPTION);
+        assertThat(testFormSuratJalan.getQuantity()).isEqualTo(UPDATED_QUANTITY);
+        assertThat(testFormSuratJalan.getAmount()).isEqualByComparingTo(UPDATED_AMOUNT);
+        assertThat(testFormSuratJalan.getArmadaNumber()).isEqualTo(UPDATED_ARMADA_NUMBER);
+        assertThat(testFormSuratJalan.getContainerNumber()).isEqualTo(DEFAULT_CONTAINER_NUMBER);
         assertThat(testFormSuratJalan.getCreatedDate()).isEqualTo(DEFAULT_CREATED_DATE);
         assertThat(testFormSuratJalan.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
-        assertThat(testFormSuratJalan.getLastModifiedDate()).isEqualTo(DEFAULT_LAST_MODIFIED_DATE);
+        assertThat(testFormSuratJalan.getLastModifiedDate()).isEqualTo(UPDATED_LAST_MODIFIED_DATE);
         assertThat(testFormSuratJalan.getLastModifiedBy()).isEqualTo(UPDATED_LAST_MODIFIED_BY);
     }
 
@@ -391,6 +551,21 @@ class FormSuratJalanResourceIT {
             .status(UPDATED_STATUS)
             .active(UPDATED_ACTIVE)
             .remarks(UPDATED_REMARKS)
+            .contents(UPDATED_CONTENTS)
+            .branch(UPDATED_BRANCH)
+            .documentTitle(UPDATED_DOCUMENT_TITLE)
+            .documentNumber(UPDATED_DOCUMENT_NUMBER)
+            .recipientAddress(UPDATED_RECIPIENT_ADDRESS)
+            .npwp(UPDATED_NPWP)
+            .warehouseSource(UPDATED_WAREHOUSE_SOURCE)
+            .documentSource(UPDATED_DOCUMENT_SOURCE)
+            .reference(UPDATED_REFERENCE)
+            .date(UPDATED_DATE)
+            .productDescription(UPDATED_PRODUCT_DESCRIPTION)
+            .quantity(UPDATED_QUANTITY)
+            .amount(UPDATED_AMOUNT)
+            .armadaNumber(UPDATED_ARMADA_NUMBER)
+            .containerNumber(UPDATED_CONTAINER_NUMBER)
             .createdDate(UPDATED_CREATED_DATE)
             .createdBy(UPDATED_CREATED_BY)
             .lastModifiedDate(UPDATED_LAST_MODIFIED_DATE)
@@ -411,6 +586,21 @@ class FormSuratJalanResourceIT {
         assertThat(testFormSuratJalan.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testFormSuratJalan.getActive()).isEqualTo(UPDATED_ACTIVE);
         assertThat(testFormSuratJalan.getRemarks()).isEqualTo(UPDATED_REMARKS);
+        assertThat(testFormSuratJalan.getContents()).isEqualTo(UPDATED_CONTENTS);
+        assertThat(testFormSuratJalan.getBranch()).isEqualTo(UPDATED_BRANCH);
+        assertThat(testFormSuratJalan.getDocumentTitle()).isEqualTo(UPDATED_DOCUMENT_TITLE);
+        assertThat(testFormSuratJalan.getDocumentNumber()).isEqualTo(UPDATED_DOCUMENT_NUMBER);
+        assertThat(testFormSuratJalan.getRecipientAddress()).isEqualTo(UPDATED_RECIPIENT_ADDRESS);
+        assertThat(testFormSuratJalan.getNpwp()).isEqualTo(UPDATED_NPWP);
+        assertThat(testFormSuratJalan.getWarehouseSource()).isEqualTo(UPDATED_WAREHOUSE_SOURCE);
+        assertThat(testFormSuratJalan.getDocumentSource()).isEqualTo(UPDATED_DOCUMENT_SOURCE);
+        assertThat(testFormSuratJalan.getReference()).isEqualTo(UPDATED_REFERENCE);
+        assertThat(testFormSuratJalan.getDate()).isEqualTo(UPDATED_DATE);
+        assertThat(testFormSuratJalan.getProductDescription()).isEqualTo(UPDATED_PRODUCT_DESCRIPTION);
+        assertThat(testFormSuratJalan.getQuantity()).isEqualTo(UPDATED_QUANTITY);
+        assertThat(testFormSuratJalan.getAmount()).isEqualByComparingTo(UPDATED_AMOUNT);
+        assertThat(testFormSuratJalan.getArmadaNumber()).isEqualTo(UPDATED_ARMADA_NUMBER);
+        assertThat(testFormSuratJalan.getContainerNumber()).isEqualTo(UPDATED_CONTAINER_NUMBER);
         assertThat(testFormSuratJalan.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
         assertThat(testFormSuratJalan.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
         assertThat(testFormSuratJalan.getLastModifiedDate()).isEqualTo(UPDATED_LAST_MODIFIED_DATE);

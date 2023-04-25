@@ -54,6 +54,84 @@ public class FormBASTPBPPServiceImpl implements FormBASTPBPPService {
                 if (formBASTPBPP.getRemarks() != null) {
                     existingFormBASTPBPP.setRemarks(formBASTPBPP.getRemarks());
                 }
+                if (formBASTPBPP.getContents() != null) {
+                    existingFormBASTPBPP.setContents(formBASTPBPP.getContents());
+                }
+                if (formBASTPBPP.getDocumentTitle() != null) {
+                    existingFormBASTPBPP.setDocumentTitle(formBASTPBPP.getDocumentTitle());
+                }
+                if (formBASTPBPP.getKelurahanDesa() != null) {
+                    existingFormBASTPBPP.setKelurahanDesa(formBASTPBPP.getKelurahanDesa());
+                }
+                if (formBASTPBPP.getKecamatan() != null) {
+                    existingFormBASTPBPP.setKecamatan(formBASTPBPP.getKecamatan());
+                }
+                if (formBASTPBPP.getKabupatenKota() != null) {
+                    existingFormBASTPBPP.setKabupatenKota(formBASTPBPP.getKabupatenKota());
+                }
+                if (formBASTPBPP.getProvinsi() != null) {
+                    existingFormBASTPBPP.setProvinsi(formBASTPBPP.getProvinsi());
+                }
+                if (formBASTPBPP.getPbpTidakDitemukan1() != null) {
+                    existingFormBASTPBPP.setPbpTidakDitemukan1(formBASTPBPP.getPbpTidakDitemukan1());
+                }
+                if (formBASTPBPP.getSebabPenggantian1() != null) {
+                    existingFormBASTPBPP.setSebabPenggantian1(formBASTPBPP.getSebabPenggantian1());
+                }
+                if (formBASTPBPP.getPbpPengganti1() != null) {
+                    existingFormBASTPBPP.setPbpPengganti1(formBASTPBPP.getPbpPengganti1());
+                }
+                if (formBASTPBPP.getAlamatPbpPengganti1() != null) {
+                    existingFormBASTPBPP.setAlamatPbpPengganti1(formBASTPBPP.getAlamatPbpPengganti1());
+                }
+                if (formBASTPBPP.getPbpTidakDitemukan2() != null) {
+                    existingFormBASTPBPP.setPbpTidakDitemukan2(formBASTPBPP.getPbpTidakDitemukan2());
+                }
+                if (formBASTPBPP.getSebabPenggantian2() != null) {
+                    existingFormBASTPBPP.setSebabPenggantian2(formBASTPBPP.getSebabPenggantian2());
+                }
+                if (formBASTPBPP.getPbpPengganti2() != null) {
+                    existingFormBASTPBPP.setPbpPengganti2(formBASTPBPP.getPbpPengganti2());
+                }
+                if (formBASTPBPP.getAlamatPbpPengganti2() != null) {
+                    existingFormBASTPBPP.setAlamatPbpPengganti2(formBASTPBPP.getAlamatPbpPengganti2());
+                }
+                if (formBASTPBPP.getPbpTidakDitemukan3() != null) {
+                    existingFormBASTPBPP.setPbpTidakDitemukan3(formBASTPBPP.getPbpTidakDitemukan3());
+                }
+                if (formBASTPBPP.getSebabPenggantian3() != null) {
+                    existingFormBASTPBPP.setSebabPenggantian3(formBASTPBPP.getSebabPenggantian3());
+                }
+                if (formBASTPBPP.getPbpPengganti3() != null) {
+                    existingFormBASTPBPP.setPbpPengganti3(formBASTPBPP.getPbpPengganti3());
+                }
+                if (formBASTPBPP.getAlamatPbpPengganti3() != null) {
+                    existingFormBASTPBPP.setAlamatPbpPengganti3(formBASTPBPP.getAlamatPbpPengganti3());
+                }
+                if (formBASTPBPP.getPbpTidakDitemukan4() != null) {
+                    existingFormBASTPBPP.setPbpTidakDitemukan4(formBASTPBPP.getPbpTidakDitemukan4());
+                }
+                if (formBASTPBPP.getSebabPenggantian4() != null) {
+                    existingFormBASTPBPP.setSebabPenggantian4(formBASTPBPP.getSebabPenggantian4());
+                }
+                if (formBASTPBPP.getPbpPengganti4() != null) {
+                    existingFormBASTPBPP.setPbpPengganti4(formBASTPBPP.getPbpPengganti4());
+                }
+                if (formBASTPBPP.getAlamatPbpPengganti4() != null) {
+                    existingFormBASTPBPP.setAlamatPbpPengganti4(formBASTPBPP.getAlamatPbpPengganti4());
+                }
+                if (formBASTPBPP.getPbpTidakDitemukan5() != null) {
+                    existingFormBASTPBPP.setPbpTidakDitemukan5(formBASTPBPP.getPbpTidakDitemukan5());
+                }
+                if (formBASTPBPP.getSebabPenggantian5() != null) {
+                    existingFormBASTPBPP.setSebabPenggantian5(formBASTPBPP.getSebabPenggantian5());
+                }
+                if (formBASTPBPP.getPbpPengganti5() != null) {
+                    existingFormBASTPBPP.setPbpPengganti5(formBASTPBPP.getPbpPengganti5());
+                }
+                if (formBASTPBPP.getAlamatPbpPengganti5() != null) {
+                    existingFormBASTPBPP.setAlamatPbpPengganti5(formBASTPBPP.getAlamatPbpPengganti5());
+                }
                 if (formBASTPBPP.getCreatedDate() != null) {
                     existingFormBASTPBPP.setCreatedDate(formBASTPBPP.getCreatedDate());
                 }

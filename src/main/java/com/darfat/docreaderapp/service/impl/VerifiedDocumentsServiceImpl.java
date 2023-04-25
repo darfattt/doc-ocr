@@ -196,7 +196,7 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
             .build();
         FormSuratJalan form = ObjectMapperUtil.MAPPER.convertValue(dto, FormSuratJalan.class);
         form.setStatus("01");
-        //form.setContents(textFromImage);
+        form.setContents(textFromImage);
         form.setActive(Boolean.TRUE);
         return formSuratJalanService.save(form);
     }
@@ -226,7 +226,7 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
 
         FormPernyataan form = ObjectMapperUtil.MAPPER.convertValue(dto, FormPernyataan.class);
         form.setStatus("01");
-        //form.setContents(textFromImage);
+        form.setContents(textFromImage);
         form.setActive(Boolean.TRUE);
         return formPernyataanService.save(form);
     }
@@ -252,7 +252,7 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
 
         FormBASTPBPP form = ObjectMapperUtil.MAPPER.convertValue(dto, FormBASTPBPP.class);
         form.setStatus("01");
-        //form.setContents(textFromImage);
+        form.setContents(textFromImage);
         form.setActive(Boolean.TRUE);
         return formBASTPBPPService.save(form);
     }
@@ -276,7 +276,7 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
 
         FormBASTPBP form = ObjectMapperUtil.MAPPER.convertValue(dto, FormBASTPBP.class);
         form.setStatus("01");
-        //form.setContents(textFromImage);
+        form.setContents(textFromImage);
         form.setActive(Boolean.TRUE);
         return formBASTPBPService.save(form);
     }

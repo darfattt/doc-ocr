@@ -54,6 +54,617 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" for="field_contents">Contents</label>
+          <input type="text" class="form-control" name="contents" id="field_contents" data-cy="contents" formControlName="contents" />
+          <div *ngIf="editForm.get('contents')!.invalid && (editForm.get('contents')!.dirty || editForm.get('contents')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('contents')?.errors?.maxlength">
+              This field cannot be longer than 65353 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_documentTitle">Document Title</label>
+          <input
+            type="text"
+            class="form-control"
+            name="documentTitle"
+            id="field_documentTitle"
+            data-cy="documentTitle"
+            formControlName="documentTitle"
+          />
+          <div
+            *ngIf="
+              editForm.get('documentTitle')!.invalid && (editForm.get('documentTitle')!.dirty || editForm.get('documentTitle')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('documentTitle')?.errors?.maxlength">
+              This field cannot be longer than 500 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_officerName">Officer Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="officerName"
+            id="field_officerName"
+            data-cy="officerName"
+            formControlName="officerName"
+          />
+          <div *ngIf="editForm.get('officerName')!.invalid && (editForm.get('officerName')!.dirty || editForm.get('officerName')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('officerName')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_officerPhoneNumber">Officer Phone Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="officerPhoneNumber"
+            id="field_officerPhoneNumber"
+            data-cy="officerPhoneNumber"
+            formControlName="officerPhoneNumber"
+          />
+          <div
+            *ngIf="
+              editForm.get('officerPhoneNumber')!.invalid &&
+              (editForm.get('officerPhoneNumber')!.dirty || editForm.get('officerPhoneNumber')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('officerPhoneNumber')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_officerPosition">Officer Position</label>
+          <input
+            type="text"
+            class="form-control"
+            name="officerPosition"
+            id="field_officerPosition"
+            data-cy="officerPosition"
+            formControlName="officerPosition"
+          />
+          <div
+            *ngIf="
+              editForm.get('officerPosition')!.invalid &&
+              (editForm.get('officerPosition')!.dirty || editForm.get('officerPosition')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('officerPosition')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_officerDepartment">Officer Department</label>
+          <input
+            type="text"
+            class="form-control"
+            name="officerDepartment"
+            id="field_officerDepartment"
+            data-cy="officerDepartment"
+            formControlName="officerDepartment"
+          />
+          <div
+            *ngIf="
+              editForm.get('officerDepartment')!.invalid &&
+              (editForm.get('officerDepartment')!.dirty || editForm.get('officerDepartment')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('officerDepartment')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_kelurahanDesa">Kelurahan Desa</label>
+          <input
+            type="text"
+            class="form-control"
+            name="kelurahanDesa"
+            id="field_kelurahanDesa"
+            data-cy="kelurahanDesa"
+            formControlName="kelurahanDesa"
+          />
+          <div
+            *ngIf="
+              editForm.get('kelurahanDesa')!.invalid && (editForm.get('kelurahanDesa')!.dirty || editForm.get('kelurahanDesa')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('kelurahanDesa')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_kecamatan">Kecamatan</label>
+          <input type="text" class="form-control" name="kecamatan" id="field_kecamatan" data-cy="kecamatan" formControlName="kecamatan" />
+          <div *ngIf="editForm.get('kecamatan')!.invalid && (editForm.get('kecamatan')!.dirty || editForm.get('kecamatan')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('kecamatan')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_kabupatenKota">Kabupaten Kota</label>
+          <input
+            type="text"
+            class="form-control"
+            name="kabupatenKota"
+            id="field_kabupatenKota"
+            data-cy="kabupatenKota"
+            formControlName="kabupatenKota"
+          />
+          <div
+            *ngIf="
+              editForm.get('kabupatenKota')!.invalid && (editForm.get('kabupatenKota')!.dirty || editForm.get('kabupatenKota')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('kabupatenKota')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_provinsi">Provinsi</label>
+          <input type="text" class="form-control" name="provinsi" id="field_provinsi" data-cy="provinsi" formControlName="provinsi" />
+          <div *ngIf="editForm.get('provinsi')!.invalid && (editForm.get('provinsi')!.dirty || editForm.get('provinsi')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('provinsi')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pbpTidakDitemukan1">Pbp Tidak Ditemukan 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pbpTidakDitemukan1"
+            id="field_pbpTidakDitemukan1"
+            data-cy="pbpTidakDitemukan1"
+            formControlName="pbpTidakDitemukan1"
+          />
+          <div
+            *ngIf="
+              editForm.get('pbpTidakDitemukan1')!.invalid &&
+              (editForm.get('pbpTidakDitemukan1')!.dirty || editForm.get('pbpTidakDitemukan1')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('pbpTidakDitemukan1')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamatPbpTidakDitemukan1">Alamat Pbp Tidak Ditemukan 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alamatPbpTidakDitemukan1"
+            id="field_alamatPbpTidakDitemukan1"
+            data-cy="alamatPbpTidakDitemukan1"
+            formControlName="alamatPbpTidakDitemukan1"
+          />
+          <div
+            *ngIf="
+              editForm.get('alamatPbpTidakDitemukan1')!.invalid &&
+              (editForm.get('alamatPbpTidakDitemukan1')!.dirty || editForm.get('alamatPbpTidakDitemukan1')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('alamatPbpTidakDitemukan1')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pbpPengganti1">Pbp Pengganti 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pbpPengganti1"
+            id="field_pbpPengganti1"
+            data-cy="pbpPengganti1"
+            formControlName="pbpPengganti1"
+          />
+          <div
+            *ngIf="
+              editForm.get('pbpPengganti1')!.invalid && (editForm.get('pbpPengganti1')!.dirty || editForm.get('pbpPengganti1')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('pbpPengganti1')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamatPbpPengganti1">Alamat Pbp Pengganti 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alamatPbpPengganti1"
+            id="field_alamatPbpPengganti1"
+            data-cy="alamatPbpPengganti1"
+            formControlName="alamatPbpPengganti1"
+          />
+          <div
+            *ngIf="
+              editForm.get('alamatPbpPengganti1')!.invalid &&
+              (editForm.get('alamatPbpPengganti1')!.dirty || editForm.get('alamatPbpPengganti1')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('alamatPbpPengganti1')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pbpTidakDitemukan2">Pbp Tidak Ditemukan 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pbpTidakDitemukan2"
+            id="field_pbpTidakDitemukan2"
+            data-cy="pbpTidakDitemukan2"
+            formControlName="pbpTidakDitemukan2"
+          />
+          <div
+            *ngIf="
+              editForm.get('pbpTidakDitemukan2')!.invalid &&
+              (editForm.get('pbpTidakDitemukan2')!.dirty || editForm.get('pbpTidakDitemukan2')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('pbpTidakDitemukan2')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamatPbpTidakDitemukan2">Alamat Pbp Tidak Ditemukan 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alamatPbpTidakDitemukan2"
+            id="field_alamatPbpTidakDitemukan2"
+            data-cy="alamatPbpTidakDitemukan2"
+            formControlName="alamatPbpTidakDitemukan2"
+          />
+          <div
+            *ngIf="
+              editForm.get('alamatPbpTidakDitemukan2')!.invalid &&
+              (editForm.get('alamatPbpTidakDitemukan2')!.dirty || editForm.get('alamatPbpTidakDitemukan2')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('alamatPbpTidakDitemukan2')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pbpPengganti2">Pbp Pengganti 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pbpPengganti2"
+            id="field_pbpPengganti2"
+            data-cy="pbpPengganti2"
+            formControlName="pbpPengganti2"
+          />
+          <div
+            *ngIf="
+              editForm.get('pbpPengganti2')!.invalid && (editForm.get('pbpPengganti2')!.dirty || editForm.get('pbpPengganti2')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('pbpPengganti2')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamatPbpPengganti2">Alamat Pbp Pengganti 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alamatPbpPengganti2"
+            id="field_alamatPbpPengganti2"
+            data-cy="alamatPbpPengganti2"
+            formControlName="alamatPbpPengganti2"
+          />
+          <div
+            *ngIf="
+              editForm.get('alamatPbpPengganti2')!.invalid &&
+              (editForm.get('alamatPbpPengganti2')!.dirty || editForm.get('alamatPbpPengganti2')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('alamatPbpPengganti2')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pbpTidakDitemukan3">Pbp Tidak Ditemukan 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pbpTidakDitemukan3"
+            id="field_pbpTidakDitemukan3"
+            data-cy="pbpTidakDitemukan3"
+            formControlName="pbpTidakDitemukan3"
+          />
+          <div
+            *ngIf="
+              editForm.get('pbpTidakDitemukan3')!.invalid &&
+              (editForm.get('pbpTidakDitemukan3')!.dirty || editForm.get('pbpTidakDitemukan3')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('pbpTidakDitemukan3')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamatPbpTidakDitemukan3">Alamat Pbp Tidak Ditemukan 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alamatPbpTidakDitemukan3"
+            id="field_alamatPbpTidakDitemukan3"
+            data-cy="alamatPbpTidakDitemukan3"
+            formControlName="alamatPbpTidakDitemukan3"
+          />
+          <div
+            *ngIf="
+              editForm.get('alamatPbpTidakDitemukan3')!.invalid &&
+              (editForm.get('alamatPbpTidakDitemukan3')!.dirty || editForm.get('alamatPbpTidakDitemukan3')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('alamatPbpTidakDitemukan3')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pbpPengganti3">Pbp Pengganti 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pbpPengganti3"
+            id="field_pbpPengganti3"
+            data-cy="pbpPengganti3"
+            formControlName="pbpPengganti3"
+          />
+          <div
+            *ngIf="
+              editForm.get('pbpPengganti3')!.invalid && (editForm.get('pbpPengganti3')!.dirty || editForm.get('pbpPengganti3')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('pbpPengganti3')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamatPbpPengganti3">Alamat Pbp Pengganti 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alamatPbpPengganti3"
+            id="field_alamatPbpPengganti3"
+            data-cy="alamatPbpPengganti3"
+            formControlName="alamatPbpPengganti3"
+          />
+          <div
+            *ngIf="
+              editForm.get('alamatPbpPengganti3')!.invalid &&
+              (editForm.get('alamatPbpPengganti3')!.dirty || editForm.get('alamatPbpPengganti3')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('alamatPbpPengganti3')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pbpTidakDitemukan4">Pbp Tidak Ditemukan 4</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pbpTidakDitemukan4"
+            id="field_pbpTidakDitemukan4"
+            data-cy="pbpTidakDitemukan4"
+            formControlName="pbpTidakDitemukan4"
+          />
+          <div
+            *ngIf="
+              editForm.get('pbpTidakDitemukan4')!.invalid &&
+              (editForm.get('pbpTidakDitemukan4')!.dirty || editForm.get('pbpTidakDitemukan4')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('pbpTidakDitemukan4')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamatPbpTidakDitemukan4">Alamat Pbp Tidak Ditemukan 4</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alamatPbpTidakDitemukan4"
+            id="field_alamatPbpTidakDitemukan4"
+            data-cy="alamatPbpTidakDitemukan4"
+            formControlName="alamatPbpTidakDitemukan4"
+          />
+          <div
+            *ngIf="
+              editForm.get('alamatPbpTidakDitemukan4')!.invalid &&
+              (editForm.get('alamatPbpTidakDitemukan4')!.dirty || editForm.get('alamatPbpTidakDitemukan4')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('alamatPbpTidakDitemukan4')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pbpPengganti4">Pbp Pengganti 4</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pbpPengganti4"
+            id="field_pbpPengganti4"
+            data-cy="pbpPengganti4"
+            formControlName="pbpPengganti4"
+          />
+          <div
+            *ngIf="
+              editForm.get('pbpPengganti4')!.invalid && (editForm.get('pbpPengganti4')!.dirty || editForm.get('pbpPengganti4')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('pbpPengganti4')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamatPbpPengganti4">Alamat Pbp Pengganti 4</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alamatPbpPengganti4"
+            id="field_alamatPbpPengganti4"
+            data-cy="alamatPbpPengganti4"
+            formControlName="alamatPbpPengganti4"
+          />
+          <div
+            *ngIf="
+              editForm.get('alamatPbpPengganti4')!.invalid &&
+              (editForm.get('alamatPbpPengganti4')!.dirty || editForm.get('alamatPbpPengganti4')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('alamatPbpPengganti4')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pbpTidakDitemukan5">Pbp Tidak Ditemukan 5</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pbpTidakDitemukan5"
+            id="field_pbpTidakDitemukan5"
+            data-cy="pbpTidakDitemukan5"
+            formControlName="pbpTidakDitemukan5"
+          />
+          <div
+            *ngIf="
+              editForm.get('pbpTidakDitemukan5')!.invalid &&
+              (editForm.get('pbpTidakDitemukan5')!.dirty || editForm.get('pbpTidakDitemukan5')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('pbpTidakDitemukan5')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamatPbpTidakDitemukan5">Alamat Pbp Tidak Ditemukan 5</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alamatPbpTidakDitemukan5"
+            id="field_alamatPbpTidakDitemukan5"
+            data-cy="alamatPbpTidakDitemukan5"
+            formControlName="alamatPbpTidakDitemukan5"
+          />
+          <div
+            *ngIf="
+              editForm.get('alamatPbpTidakDitemukan5')!.invalid &&
+              (editForm.get('alamatPbpTidakDitemukan5')!.dirty || editForm.get('alamatPbpTidakDitemukan5')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('alamatPbpTidakDitemukan5')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_pbpPengganti5">Pbp Pengganti 5</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pbpPengganti5"
+            id="field_pbpPengganti5"
+            data-cy="pbpPengganti5"
+            formControlName="pbpPengganti5"
+          />
+          <div
+            *ngIf="
+              editForm.get('pbpPengganti5')!.invalid && (editForm.get('pbpPengganti5')!.dirty || editForm.get('pbpPengganti5')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('pbpPengganti5')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamatPbpPengganti5">Alamat Pbp Pengganti 5</label>
+          <input
+            type="text"
+            class="form-control"
+            name="alamatPbpPengganti5"
+            id="field_alamatPbpPengganti5"
+            data-cy="alamatPbpPengganti5"
+            formControlName="alamatPbpPengganti5"
+          />
+          <div
+            *ngIf="
+              editForm.get('alamatPbpPengganti5')!.invalid &&
+              (editForm.get('alamatPbpPengganti5')!.dirty || editForm.get('alamatPbpPengganti5')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('alamatPbpPengganti5')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" for="field_createdDate">Created Date</label>
           <div class="d-flex">
             <input

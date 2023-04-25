@@ -1,6 +1,8 @@
 package com.darfat.docreaderapp.web.rest;
 
+import com.darfat.docreaderapp.constants.AttachmentTypeEnum;
 import com.darfat.docreaderapp.domain.Documents;
+import com.darfat.docreaderapp.dto.AttachmentDTO;
 import com.darfat.docreaderapp.dto.request.AttachmentRequest;
 import com.darfat.docreaderapp.dto.response.AttachmentGroupResponse;
 import com.darfat.docreaderapp.repository.DocumentsRepository;
@@ -8,11 +10,10 @@ import com.darfat.docreaderapp.service.DocumentsQueryService;
 import com.darfat.docreaderapp.service.DocumentsService;
 import com.darfat.docreaderapp.service.criteria.DocumentsCriteria;
 import com.darfat.docreaderapp.web.rest.errors.BadRequestAlertException;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -26,6 +27,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
@@ -52,12 +54,12 @@ public class DocumentsResource {
     private final DocumentsQueryService documentsQueryService;
     private CloudVisionTemplate cloudVisionTemplate;
 
-
     public DocumentsResource(
         DocumentsService documentsService,
         DocumentsRepository documentsRepository,
         DocumentsQueryService documentsQueryService,
-        CloudVisionTemplate cloudVisionTemplate) {
+        CloudVisionTemplate cloudVisionTemplate
+    ) {
         this.documentsService = documentsService;
         this.documentsRepository = documentsRepository;
         this.documentsQueryService = documentsQueryService;
@@ -129,7 +131,7 @@ public class DocumentsResource {
      * or with status {@code 500 (Internal Server Error)} if the documents couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PatchMapping(value = "/documents/{id}", consumes = {"application/json", "application/merge-patch+json"})
+    @PatchMapping(value = "/documents/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<Documents> partialUpdateDocuments(
         @PathVariable(value = "id", required = false) final String id,
         @NotNull @RequestBody Documents documents
@@ -214,6 +216,9 @@ public class DocumentsResource {
     public ResponseEntity<Documents> uploadDocument(@PathVariable String documentType, @RequestBody AttachmentRequest attachmentRequest) {
         attachmentRequest.setClassName(Documents.class.getSimpleName());
         String fileName = attachmentRequest.getName();
+        if (attachmentRequest.getBasePath() == null) {
+            attachmentRequest.setBasePath(documentType);
+        }
         AttachmentGroupResponse attachmentGroupResponse = documentsService.handleAttachment(attachmentRequest);
         Documents documents = new Documents();
         documents.setType(documentType);
@@ -222,30 +227,55 @@ public class DocumentsResource {
         documents.setAttachmentGroupId(attachmentGroupResponse.getAttachmentGroupId());
         documents = documentsService.save(documents);
 
-        return ResponseEntity
-            .ok()
-            .body(documents);
+        return ResponseEntity.ok().body(documents);
     }
 
     @PostMapping("/documents/approved/{documentId}")
     public ResponseEntity<Documents> approvedDocument(@PathVariable String documentId) {
         Documents documents = documentsService.findOne(documentId).orElseThrow(EntityNotFoundException::new);
         Resource resource = documentsService.getDocumentFile(documents);
-        String textFromImage =
-            cloudVisionTemplate.extractTextFromImage(resource);
+        String textFromImage = cloudVisionTemplate.extractTextFromImage(resource);
         documents = documentsService.approved(documents, textFromImage);
 
-        return ResponseEntity
-            .ok()
-            .body(documents);
+        return ResponseEntity.ok().body(documents);
     }
 
     @PostMapping("/documents/rejected/{documentId}")
     public ResponseEntity<Documents> rejectDocument(@PathVariable String documentId) {
         Documents documents = documentsService.findOne(documentId).orElseThrow(EntityNotFoundException::new);
         documents = documentsService.rejected(documents);
-        return ResponseEntity
-            .ok()
-            .body(documents);
+        return ResponseEntity.ok().body(documents);
+    }
+
+    @PostMapping("/documents/{documentType}/new")
+    public ResponseEntity<Documents> newDocument(
+        @PathVariable String documentType,
+        @RequestParam("fileName") String fileName,
+        @RequestParam("file") MultipartFile file
+    ) throws IOException {
+        byte[] encoded = Base64.getEncoder().encode(file.getBytes());
+        String blobStr = new String(encoded);
+        AttachmentRequest attachmentRequest = new AttachmentRequest();
+        attachmentRequest.setName(fileName);
+        attachmentRequest.setClassName(Documents.class.getSimpleName());
+        if (attachmentRequest.getBasePath() == null) {
+            attachmentRequest.setBasePath(documentType);
+        }
+        AttachmentDTO attachmentDTO = new AttachmentDTO();
+        attachmentDTO.setName(fileName);
+        attachmentDTO.setBlobFile(blobStr);
+        attachmentDTO.setType(AttachmentTypeEnum.Image.name());
+        List<AttachmentDTO> attachments = new ArrayList<>();
+        attachments.add(attachmentDTO);
+        attachmentRequest.setAttachments(attachments);
+        AttachmentGroupResponse attachmentGroupResponse = documentsService.handleAttachment(attachmentRequest);
+        Documents documents = new Documents();
+        documents.setType(documentType);
+        documents.setName(fileName);
+        documents.setStatus("NEW");
+        documents.setAttachmentGroupId(attachmentGroupResponse.getAttachmentGroupId());
+        documents = documentsService.save(documents);
+
+        return ResponseEntity.ok().body(documents);
     }
 }

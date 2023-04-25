@@ -54,6 +54,596 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" for="field_contents">Contents</label>
+          <input type="text" class="form-control" name="contents" id="field_contents" data-cy="contents" formControlName="contents" />
+          <div *ngIf="editForm.get('contents')!.invalid && (editForm.get('contents')!.dirty || editForm.get('contents')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('contents')?.errors?.maxlength">
+              This field cannot be longer than 65353 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_documentTitle">Document Title</label>
+          <input
+            type="text"
+            class="form-control"
+            name="documentTitle"
+            id="field_documentTitle"
+            data-cy="documentTitle"
+            formControlName="documentTitle"
+          />
+          <div
+            *ngIf="
+              editForm.get('documentTitle')!.invalid && (editForm.get('documentTitle')!.dirty || editForm.get('documentTitle')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('documentTitle')?.errors?.maxlength">
+              This field cannot be longer than 500 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_documentNumber">Document Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="documentNumber"
+            id="field_documentNumber"
+            data-cy="documentNumber"
+            formControlName="documentNumber"
+          />
+          <div
+            *ngIf="
+              editForm.get('documentNumber')!.invalid && (editForm.get('documentNumber')!.dirty || editForm.get('documentNumber')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('documentNumber')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_kelurahanDesa">Kelurahan Desa</label>
+          <input
+            type="text"
+            class="form-control"
+            name="kelurahanDesa"
+            id="field_kelurahanDesa"
+            data-cy="kelurahanDesa"
+            formControlName="kelurahanDesa"
+          />
+          <div
+            *ngIf="
+              editForm.get('kelurahanDesa')!.invalid && (editForm.get('kelurahanDesa')!.dirty || editForm.get('kelurahanDesa')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('kelurahanDesa')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_kecamatan">Kecamatan</label>
+          <input type="text" class="form-control" name="kecamatan" id="field_kecamatan" data-cy="kecamatan" formControlName="kecamatan" />
+          <div *ngIf="editForm.get('kecamatan')!.invalid && (editForm.get('kecamatan')!.dirty || editForm.get('kecamatan')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('kecamatan')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_kabupatenKota">Kabupaten Kota</label>
+          <input
+            type="text"
+            class="form-control"
+            name="kabupatenKota"
+            id="field_kabupatenKota"
+            data-cy="kabupatenKota"
+            formControlName="kabupatenKota"
+          />
+          <div
+            *ngIf="
+              editForm.get('kabupatenKota')!.invalid && (editForm.get('kabupatenKota')!.dirty || editForm.get('kabupatenKota')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('kabupatenKota')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_provinsi">Provinsi</label>
+          <input type="text" class="form-control" name="provinsi" id="field_provinsi" data-cy="provinsi" formControlName="provinsi" />
+          <div *ngIf="editForm.get('provinsi')!.invalid && (editForm.get('provinsi')!.dirty || editForm.get('provinsi')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('provinsi')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_rtRw">Rt Rw</label>
+          <input type="text" class="form-control" name="rtRw" id="field_rtRw" data-cy="rtRw" formControlName="rtRw" />
+          <div *ngIf="editForm.get('rtRw')!.invalid && (editForm.get('rtRw')!.dirty || editForm.get('rtRw')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('rtRw')?.errors?.maxlength">
+              This field cannot be longer than 10 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_kcu">Kcu</label>
+          <input type="text" class="form-control" name="kcu" id="field_kcu" data-cy="kcu" formControlName="kcu" />
+          <div *ngIf="editForm.get('kcu')!.invalid && (editForm.get('kcu')!.dirty || editForm.get('kcu')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('kcu')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_kantorSerah">Kantor Serah</label>
+          <input
+            type="text"
+            class="form-control"
+            name="kantorSerah"
+            id="field_kantorSerah"
+            data-cy="kantorSerah"
+            formControlName="kantorSerah"
+          />
+          <div *ngIf="editForm.get('kantorSerah')!.invalid && (editForm.get('kantorSerah')!.dirty || editForm.get('kantorSerah')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('kantorSerah')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_bastNumber">Bast Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="bastNumber"
+            id="field_bastNumber"
+            data-cy="bastNumber"
+            formControlName="bastNumber"
+          />
+          <div *ngIf="editForm.get('bastNumber')!.invalid && (editForm.get('bastNumber')!.dirty || editForm.get('bastNumber')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('bastNumber')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_documentDescription">Document Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="documentDescription"
+            id="field_documentDescription"
+            data-cy="documentDescription"
+            formControlName="documentDescription"
+          />
+          <div
+            *ngIf="
+              editForm.get('documentDescription')!.invalid &&
+              (editForm.get('documentDescription')!.dirty || editForm.get('documentDescription')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('documentDescription')?.errors?.maxlength">
+              This field cannot be longer than 500 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nama1">Nama 1</label>
+          <input type="text" class="form-control" name="nama1" id="field_nama1" data-cy="nama1" formControlName="nama1" />
+          <div *ngIf="editForm.get('nama1')!.invalid && (editForm.get('nama1')!.dirty || editForm.get('nama1')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nama1')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamat1">Alamat 1</label>
+          <input type="text" class="form-control" name="alamat1" id="field_alamat1" data-cy="alamat1" formControlName="alamat1" />
+          <div *ngIf="editForm.get('alamat1')!.invalid && (editForm.get('alamat1')!.dirty || editForm.get('alamat1')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('alamat1')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomor1">Nomor 1</label>
+          <input type="text" class="form-control" name="nomor1" id="field_nomor1" data-cy="nomor1" formControlName="nomor1" />
+          <div *ngIf="editForm.get('nomor1')!.invalid && (editForm.get('nomor1')!.dirty || editForm.get('nomor1')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomor1')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jumlah1">Jumlah 1</label>
+          <input type="text" class="form-control" name="jumlah1" id="field_jumlah1" data-cy="jumlah1" formControlName="jumlah1" />
+          <div *ngIf="editForm.get('jumlah1')!.invalid && (editForm.get('jumlah1')!.dirty || editForm.get('jumlah1')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('jumlah1')?.errors?.maxlength">
+              This field cannot be longer than 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nama2">Nama 2</label>
+          <input type="text" class="form-control" name="nama2" id="field_nama2" data-cy="nama2" formControlName="nama2" />
+          <div *ngIf="editForm.get('nama2')!.invalid && (editForm.get('nama2')!.dirty || editForm.get('nama2')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nama2')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamat2">Alamat 2</label>
+          <input type="text" class="form-control" name="alamat2" id="field_alamat2" data-cy="alamat2" formControlName="alamat2" />
+          <div *ngIf="editForm.get('alamat2')!.invalid && (editForm.get('alamat2')!.dirty || editForm.get('alamat2')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('alamat2')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomor2">Nomor 2</label>
+          <input type="text" class="form-control" name="nomor2" id="field_nomor2" data-cy="nomor2" formControlName="nomor2" />
+          <div *ngIf="editForm.get('nomor2')!.invalid && (editForm.get('nomor2')!.dirty || editForm.get('nomor2')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomor2')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jumlah2">Jumlah 2</label>
+          <input type="text" class="form-control" name="jumlah2" id="field_jumlah2" data-cy="jumlah2" formControlName="jumlah2" />
+          <div *ngIf="editForm.get('jumlah2')!.invalid && (editForm.get('jumlah2')!.dirty || editForm.get('jumlah2')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('jumlah2')?.errors?.maxlength">
+              This field cannot be longer than 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nama3">Nama 3</label>
+          <input type="text" class="form-control" name="nama3" id="field_nama3" data-cy="nama3" formControlName="nama3" />
+          <div *ngIf="editForm.get('nama3')!.invalid && (editForm.get('nama3')!.dirty || editForm.get('nama3')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nama3')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamat3">Alamat 3</label>
+          <input type="text" class="form-control" name="alamat3" id="field_alamat3" data-cy="alamat3" formControlName="alamat3" />
+          <div *ngIf="editForm.get('alamat3')!.invalid && (editForm.get('alamat3')!.dirty || editForm.get('alamat3')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('alamat3')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomor3">Nomor 3</label>
+          <input type="text" class="form-control" name="nomor3" id="field_nomor3" data-cy="nomor3" formControlName="nomor3" />
+          <div *ngIf="editForm.get('nomor3')!.invalid && (editForm.get('nomor3')!.dirty || editForm.get('nomor3')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomor3')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jumlah3">Jumlah 3</label>
+          <input type="text" class="form-control" name="jumlah3" id="field_jumlah3" data-cy="jumlah3" formControlName="jumlah3" />
+          <div *ngIf="editForm.get('jumlah3')!.invalid && (editForm.get('jumlah3')!.dirty || editForm.get('jumlah3')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('jumlah3')?.errors?.maxlength">
+              This field cannot be longer than 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nama4">Nama 4</label>
+          <input type="text" class="form-control" name="nama4" id="field_nama4" data-cy="nama4" formControlName="nama4" />
+          <div *ngIf="editForm.get('nama4')!.invalid && (editForm.get('nama4')!.dirty || editForm.get('nama4')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nama4')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamat4">Alamat 4</label>
+          <input type="text" class="form-control" name="alamat4" id="field_alamat4" data-cy="alamat4" formControlName="alamat4" />
+          <div *ngIf="editForm.get('alamat4')!.invalid && (editForm.get('alamat4')!.dirty || editForm.get('alamat4')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('alamat4')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomor4">Nomor 4</label>
+          <input type="text" class="form-control" name="nomor4" id="field_nomor4" data-cy="nomor4" formControlName="nomor4" />
+          <div *ngIf="editForm.get('nomor4')!.invalid && (editForm.get('nomor4')!.dirty || editForm.get('nomor4')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomor4')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jumlah4">Jumlah 4</label>
+          <input type="text" class="form-control" name="jumlah4" id="field_jumlah4" data-cy="jumlah4" formControlName="jumlah4" />
+          <div *ngIf="editForm.get('jumlah4')!.invalid && (editForm.get('jumlah4')!.dirty || editForm.get('jumlah4')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('jumlah4')?.errors?.maxlength">
+              This field cannot be longer than 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nama5">Nama 5</label>
+          <input type="text" class="form-control" name="nama5" id="field_nama5" data-cy="nama5" formControlName="nama5" />
+          <div *ngIf="editForm.get('nama5')!.invalid && (editForm.get('nama5')!.dirty || editForm.get('nama5')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nama5')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamat5">Alamat 5</label>
+          <input type="text" class="form-control" name="alamat5" id="field_alamat5" data-cy="alamat5" formControlName="alamat5" />
+          <div *ngIf="editForm.get('alamat5')!.invalid && (editForm.get('alamat5')!.dirty || editForm.get('alamat5')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('alamat5')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomor5">Nomor 5</label>
+          <input type="text" class="form-control" name="nomor5" id="field_nomor5" data-cy="nomor5" formControlName="nomor5" />
+          <div *ngIf="editForm.get('nomor5')!.invalid && (editForm.get('nomor5')!.dirty || editForm.get('nomor5')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomor5')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jumlah5">Jumlah 5</label>
+          <input type="text" class="form-control" name="jumlah5" id="field_jumlah5" data-cy="jumlah5" formControlName="jumlah5" />
+          <div *ngIf="editForm.get('jumlah5')!.invalid && (editForm.get('jumlah5')!.dirty || editForm.get('jumlah5')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('jumlah5')?.errors?.maxlength">
+              This field cannot be longer than 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nama6">Nama 6</label>
+          <input type="text" class="form-control" name="nama6" id="field_nama6" data-cy="nama6" formControlName="nama6" />
+          <div *ngIf="editForm.get('nama6')!.invalid && (editForm.get('nama6')!.dirty || editForm.get('nama6')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nama6')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nama7">Nama 7</label>
+          <input type="text" class="form-control" name="nama7" id="field_nama7" data-cy="nama7" formControlName="nama7" />
+          <div *ngIf="editForm.get('nama7')!.invalid && (editForm.get('nama7')!.dirty || editForm.get('nama7')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nama7')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamat7">Alamat 7</label>
+          <input type="text" class="form-control" name="alamat7" id="field_alamat7" data-cy="alamat7" formControlName="alamat7" />
+          <div *ngIf="editForm.get('alamat7')!.invalid && (editForm.get('alamat7')!.dirty || editForm.get('alamat7')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('alamat7')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomor7">Nomor 7</label>
+          <input type="text" class="form-control" name="nomor7" id="field_nomor7" data-cy="nomor7" formControlName="nomor7" />
+          <div *ngIf="editForm.get('nomor7')!.invalid && (editForm.get('nomor7')!.dirty || editForm.get('nomor7')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomor7')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jumlah7">Jumlah 7</label>
+          <input type="text" class="form-control" name="jumlah7" id="field_jumlah7" data-cy="jumlah7" formControlName="jumlah7" />
+          <div *ngIf="editForm.get('jumlah7')!.invalid && (editForm.get('jumlah7')!.dirty || editForm.get('jumlah7')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('jumlah7')?.errors?.maxlength">
+              This field cannot be longer than 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nama8">Nama 8</label>
+          <input type="text" class="form-control" name="nama8" id="field_nama8" data-cy="nama8" formControlName="nama8" />
+          <div *ngIf="editForm.get('nama8')!.invalid && (editForm.get('nama8')!.dirty || editForm.get('nama8')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nama8')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamat8">Alamat 8</label>
+          <input type="text" class="form-control" name="alamat8" id="field_alamat8" data-cy="alamat8" formControlName="alamat8" />
+          <div *ngIf="editForm.get('alamat8')!.invalid && (editForm.get('alamat8')!.dirty || editForm.get('alamat8')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('alamat8')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomor8">Nomor 8</label>
+          <input type="text" class="form-control" name="nomor8" id="field_nomor8" data-cy="nomor8" formControlName="nomor8" />
+          <div *ngIf="editForm.get('nomor8')!.invalid && (editForm.get('nomor8')!.dirty || editForm.get('nomor8')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomor8')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jumlah8">Jumlah 8</label>
+          <input type="text" class="form-control" name="jumlah8" id="field_jumlah8" data-cy="jumlah8" formControlName="jumlah8" />
+          <div *ngIf="editForm.get('jumlah8')!.invalid && (editForm.get('jumlah8')!.dirty || editForm.get('jumlah8')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('jumlah8')?.errors?.maxlength">
+              This field cannot be longer than 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nama9">Nama 9</label>
+          <input type="text" class="form-control" name="nama9" id="field_nama9" data-cy="nama9" formControlName="nama9" />
+          <div *ngIf="editForm.get('nama9')!.invalid && (editForm.get('nama9')!.dirty || editForm.get('nama9')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nama9')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamat9">Alamat 9</label>
+          <input type="text" class="form-control" name="alamat9" id="field_alamat9" data-cy="alamat9" formControlName="alamat9" />
+          <div *ngIf="editForm.get('alamat9')!.invalid && (editForm.get('alamat9')!.dirty || editForm.get('alamat9')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('alamat9')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomor9">Nomor 9</label>
+          <input type="text" class="form-control" name="nomor9" id="field_nomor9" data-cy="nomor9" formControlName="nomor9" />
+          <div *ngIf="editForm.get('nomor9')!.invalid && (editForm.get('nomor9')!.dirty || editForm.get('nomor9')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomor9')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jumlah9">Jumlah 9</label>
+          <input type="text" class="form-control" name="jumlah9" id="field_jumlah9" data-cy="jumlah9" formControlName="jumlah9" />
+          <div *ngIf="editForm.get('jumlah9')!.invalid && (editForm.get('jumlah9')!.dirty || editForm.get('jumlah9')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('jumlah9')?.errors?.maxlength">
+              This field cannot be longer than 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nama10">Nama 10</label>
+          <input type="text" class="form-control" name="nama10" id="field_nama10" data-cy="nama10" formControlName="nama10" />
+          <div *ngIf="editForm.get('nama10')!.invalid && (editForm.get('nama10')!.dirty || editForm.get('nama10')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nama10')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamat10">Alamat 10</label>
+          <input type="text" class="form-control" name="alamat10" id="field_alamat10" data-cy="alamat10" formControlName="alamat10" />
+          <div *ngIf="editForm.get('alamat10')!.invalid && (editForm.get('alamat10')!.dirty || editForm.get('alamat10')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('alamat10')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomor10">Nomor 10</label>
+          <input type="text" class="form-control" name="nomor10" id="field_nomor10" data-cy="nomor10" formControlName="nomor10" />
+          <div *ngIf="editForm.get('nomor10')!.invalid && (editForm.get('nomor10')!.dirty || editForm.get('nomor10')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomor10')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jumlah10">Jumlah 10</label>
+          <input type="text" class="form-control" name="jumlah10" id="field_jumlah10" data-cy="jumlah10" formControlName="jumlah10" />
+          <div *ngIf="editForm.get('jumlah10')!.invalid && (editForm.get('jumlah10')!.dirty || editForm.get('jumlah10')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('jumlah10')?.errors?.maxlength">
+              This field cannot be longer than 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_alamat6">Alamat 6</label>
+          <input type="text" class="form-control" name="alamat6" id="field_alamat6" data-cy="alamat6" formControlName="alamat6" />
+          <div *ngIf="editForm.get('alamat6')!.invalid && (editForm.get('alamat6')!.dirty || editForm.get('alamat6')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('alamat6')?.errors?.maxlength">
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomor6">Nomor 6</label>
+          <input type="text" class="form-control" name="nomor6" id="field_nomor6" data-cy="nomor6" formControlName="nomor6" />
+          <div *ngIf="editForm.get('nomor6')!.invalid && (editForm.get('nomor6')!.dirty || editForm.get('nomor6')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nomor6')?.errors?.maxlength">
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_jumlah6">Jumlah 6</label>
+          <input type="text" class="form-control" name="jumlah6" id="field_jumlah6" data-cy="jumlah6" formControlName="jumlah6" />
+          <div *ngIf="editForm.get('jumlah6')!.invalid && (editForm.get('jumlah6')!.dirty || editForm.get('jumlah6')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('jumlah6')?.errors?.maxlength">
+              This field cannot be longer than 3 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" for="field_createdDate">Created Date</label>
           <div class="d-flex">
             <input

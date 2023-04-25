@@ -35,6 +35,36 @@ type FormPernyataanFormGroupContent = {
   status: FormControl<FormPernyataanFormRawValue['status']>;
   active: FormControl<FormPernyataanFormRawValue['active']>;
   remarks: FormControl<FormPernyataanFormRawValue['remarks']>;
+  contents: FormControl<FormPernyataanFormRawValue['contents']>;
+  documentTitle: FormControl<FormPernyataanFormRawValue['documentTitle']>;
+  officerName: FormControl<FormPernyataanFormRawValue['officerName']>;
+  officerPhoneNumber: FormControl<FormPernyataanFormRawValue['officerPhoneNumber']>;
+  officerPosition: FormControl<FormPernyataanFormRawValue['officerPosition']>;
+  officerDepartment: FormControl<FormPernyataanFormRawValue['officerDepartment']>;
+  kelurahanDesa: FormControl<FormPernyataanFormRawValue['kelurahanDesa']>;
+  kecamatan: FormControl<FormPernyataanFormRawValue['kecamatan']>;
+  kabupatenKota: FormControl<FormPernyataanFormRawValue['kabupatenKota']>;
+  provinsi: FormControl<FormPernyataanFormRawValue['provinsi']>;
+  pbpTidakDitemukan1: FormControl<FormPernyataanFormRawValue['pbpTidakDitemukan1']>;
+  alamatPbpTidakDitemukan1: FormControl<FormPernyataanFormRawValue['alamatPbpTidakDitemukan1']>;
+  pbpPengganti1: FormControl<FormPernyataanFormRawValue['pbpPengganti1']>;
+  alamatPbpPengganti1: FormControl<FormPernyataanFormRawValue['alamatPbpPengganti1']>;
+  pbpTidakDitemukan2: FormControl<FormPernyataanFormRawValue['pbpTidakDitemukan2']>;
+  alamatPbpTidakDitemukan2: FormControl<FormPernyataanFormRawValue['alamatPbpTidakDitemukan2']>;
+  pbpPengganti2: FormControl<FormPernyataanFormRawValue['pbpPengganti2']>;
+  alamatPbpPengganti2: FormControl<FormPernyataanFormRawValue['alamatPbpPengganti2']>;
+  pbpTidakDitemukan3: FormControl<FormPernyataanFormRawValue['pbpTidakDitemukan3']>;
+  alamatPbpTidakDitemukan3: FormControl<FormPernyataanFormRawValue['alamatPbpTidakDitemukan3']>;
+  pbpPengganti3: FormControl<FormPernyataanFormRawValue['pbpPengganti3']>;
+  alamatPbpPengganti3: FormControl<FormPernyataanFormRawValue['alamatPbpPengganti3']>;
+  pbpTidakDitemukan4: FormControl<FormPernyataanFormRawValue['pbpTidakDitemukan4']>;
+  alamatPbpTidakDitemukan4: FormControl<FormPernyataanFormRawValue['alamatPbpTidakDitemukan4']>;
+  pbpPengganti4: FormControl<FormPernyataanFormRawValue['pbpPengganti4']>;
+  alamatPbpPengganti4: FormControl<FormPernyataanFormRawValue['alamatPbpPengganti4']>;
+  pbpTidakDitemukan5: FormControl<FormPernyataanFormRawValue['pbpTidakDitemukan5']>;
+  alamatPbpTidakDitemukan5: FormControl<FormPernyataanFormRawValue['alamatPbpTidakDitemukan5']>;
+  pbpPengganti5: FormControl<FormPernyataanFormRawValue['pbpPengganti5']>;
+  alamatPbpPengganti5: FormControl<FormPernyataanFormRawValue['alamatPbpPengganti5']>;
   createdDate: FormControl<FormPernyataanFormRawValue['createdDate']>;
   createdBy: FormControl<FormPernyataanFormRawValue['createdBy']>;
   lastModifiedDate: FormControl<FormPernyataanFormRawValue['lastModifiedDate']>;
@@ -66,6 +96,96 @@ export class FormPernyataanFormService {
       }),
       remarks: new FormControl(formPernyataanRawValue.remarks, {
         validators: [Validators.maxLength(500)],
+      }),
+      contents: new FormControl(formPernyataanRawValue.contents, {
+        validators: [Validators.maxLength(65353)],
+      }),
+      documentTitle: new FormControl(formPernyataanRawValue.documentTitle, {
+        validators: [Validators.maxLength(500)],
+      }),
+      officerName: new FormControl(formPernyataanRawValue.officerName, {
+        validators: [Validators.maxLength(100)],
+      }),
+      officerPhoneNumber: new FormControl(formPernyataanRawValue.officerPhoneNumber, {
+        validators: [Validators.maxLength(50)],
+      }),
+      officerPosition: new FormControl(formPernyataanRawValue.officerPosition, {
+        validators: [Validators.maxLength(100)],
+      }),
+      officerDepartment: new FormControl(formPernyataanRawValue.officerDepartment, {
+        validators: [Validators.maxLength(100)],
+      }),
+      kelurahanDesa: new FormControl(formPernyataanRawValue.kelurahanDesa, {
+        validators: [Validators.maxLength(100)],
+      }),
+      kecamatan: new FormControl(formPernyataanRawValue.kecamatan, {
+        validators: [Validators.maxLength(100)],
+      }),
+      kabupatenKota: new FormControl(formPernyataanRawValue.kabupatenKota, {
+        validators: [Validators.maxLength(100)],
+      }),
+      provinsi: new FormControl(formPernyataanRawValue.provinsi, {
+        validators: [Validators.maxLength(100)],
+      }),
+      pbpTidakDitemukan1: new FormControl(formPernyataanRawValue.pbpTidakDitemukan1, {
+        validators: [Validators.maxLength(100)],
+      }),
+      alamatPbpTidakDitemukan1: new FormControl(formPernyataanRawValue.alamatPbpTidakDitemukan1, {
+        validators: [Validators.maxLength(100)],
+      }),
+      pbpPengganti1: new FormControl(formPernyataanRawValue.pbpPengganti1, {
+        validators: [Validators.maxLength(100)],
+      }),
+      alamatPbpPengganti1: new FormControl(formPernyataanRawValue.alamatPbpPengganti1, {
+        validators: [Validators.maxLength(100)],
+      }),
+      pbpTidakDitemukan2: new FormControl(formPernyataanRawValue.pbpTidakDitemukan2, {
+        validators: [Validators.maxLength(100)],
+      }),
+      alamatPbpTidakDitemukan2: new FormControl(formPernyataanRawValue.alamatPbpTidakDitemukan2, {
+        validators: [Validators.maxLength(100)],
+      }),
+      pbpPengganti2: new FormControl(formPernyataanRawValue.pbpPengganti2, {
+        validators: [Validators.maxLength(100)],
+      }),
+      alamatPbpPengganti2: new FormControl(formPernyataanRawValue.alamatPbpPengganti2, {
+        validators: [Validators.maxLength(100)],
+      }),
+      pbpTidakDitemukan3: new FormControl(formPernyataanRawValue.pbpTidakDitemukan3, {
+        validators: [Validators.maxLength(100)],
+      }),
+      alamatPbpTidakDitemukan3: new FormControl(formPernyataanRawValue.alamatPbpTidakDitemukan3, {
+        validators: [Validators.maxLength(100)],
+      }),
+      pbpPengganti3: new FormControl(formPernyataanRawValue.pbpPengganti3, {
+        validators: [Validators.maxLength(100)],
+      }),
+      alamatPbpPengganti3: new FormControl(formPernyataanRawValue.alamatPbpPengganti3, {
+        validators: [Validators.maxLength(100)],
+      }),
+      pbpTidakDitemukan4: new FormControl(formPernyataanRawValue.pbpTidakDitemukan4, {
+        validators: [Validators.maxLength(100)],
+      }),
+      alamatPbpTidakDitemukan4: new FormControl(formPernyataanRawValue.alamatPbpTidakDitemukan4, {
+        validators: [Validators.maxLength(100)],
+      }),
+      pbpPengganti4: new FormControl(formPernyataanRawValue.pbpPengganti4, {
+        validators: [Validators.maxLength(100)],
+      }),
+      alamatPbpPengganti4: new FormControl(formPernyataanRawValue.alamatPbpPengganti4, {
+        validators: [Validators.maxLength(100)],
+      }),
+      pbpTidakDitemukan5: new FormControl(formPernyataanRawValue.pbpTidakDitemukan5, {
+        validators: [Validators.maxLength(100)],
+      }),
+      alamatPbpTidakDitemukan5: new FormControl(formPernyataanRawValue.alamatPbpTidakDitemukan5, {
+        validators: [Validators.maxLength(100)],
+      }),
+      pbpPengganti5: new FormControl(formPernyataanRawValue.pbpPengganti5, {
+        validators: [Validators.maxLength(100)],
+      }),
+      alamatPbpPengganti5: new FormControl(formPernyataanRawValue.alamatPbpPengganti5, {
+        validators: [Validators.maxLength(100)],
       }),
       createdDate: new FormControl(formPernyataanRawValue.createdDate, {
         validators: [Validators.required],

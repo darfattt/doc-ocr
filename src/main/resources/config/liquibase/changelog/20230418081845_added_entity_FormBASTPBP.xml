@@ -23,6 +23,162 @@
             <column name="remarks" type="varchar(500)">
                 <constraints nullable="true" />
             </column>
+            <column name="contents" type="text">
+                <constraints nullable="true" />
+            </column>
+            <column name="document_title" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+            <column name="document_number" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="kelurahan_desa" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="kecamatan" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="kabupaten_kota" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="provinsi" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="rt_rw" type="varchar(10)">
+                <constraints nullable="true" />
+            </column>
+            <column name="kcu" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="kantor_serah" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="bast_number" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="document_description" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nama_1" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_1" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nomor_1" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="jumlah_1" type="varchar(3)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nama_2" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_2" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nomor_2" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="jumlah_2" type="varchar(3)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nama_3" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_3" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nomor_3" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="jumlah_3" type="varchar(3)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nama_4" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_4" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nomor_4" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="jumlah_4" type="varchar(3)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nama_5" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_5" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nomor_5" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="jumlah_5" type="varchar(3)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nama_6" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nama_7" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_7" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nomor_7" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="jumlah_7" type="varchar(3)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nama_8" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_8" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nomor_8" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="jumlah_8" type="varchar(3)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nama_9" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_9" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nomor_9" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="jumlah_9" type="varchar(3)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nama_10" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_10" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nomor_10" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="jumlah_10" type="varchar(3)">
+                <constraints nullable="true" />
+            </column>
+            <column name="alamat_6" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+            <column name="nomor_6" type="varchar(50)">
+                <constraints nullable="true" />
+            </column>
+            <column name="jumlah_6" type="varchar(3)">
+                <constraints nullable="true" />
+            </column>
             <column name="created_date" type="${datetimeType}">
                 <constraints nullable="false" />
             </column>
@@ -61,6 +217,58 @@
             <column name="status" type="string"/>
             <column name="active" type="boolean"/>
             <column name="remarks" type="string"/>
+            <column name="contents" type="string"/>
+            <column name="document_title" type="string"/>
+            <column name="document_number" type="string"/>
+            <column name="kelurahan_desa" type="string"/>
+            <column name="kecamatan" type="string"/>
+            <column name="kabupaten_kota" type="string"/>
+            <column name="provinsi" type="string"/>
+            <column name="rt_rw" type="string"/>
+            <column name="kcu" type="string"/>
+            <column name="kantor_serah" type="string"/>
+            <column name="bast_number" type="string"/>
+            <column name="document_description" type="string"/>
+            <column name="nama_1" type="string"/>
+            <column name="alamat_1" type="string"/>
+            <column name="nomor_1" type="string"/>
+            <column name="jumlah_1" type="string"/>
+            <column name="nama_2" type="string"/>
+            <column name="alamat_2" type="string"/>
+            <column name="nomor_2" type="string"/>
+            <column name="jumlah_2" type="string"/>
+            <column name="nama_3" type="string"/>
+            <column name="alamat_3" type="string"/>
+            <column name="nomor_3" type="string"/>
+            <column name="jumlah_3" type="string"/>
+            <column name="nama_4" type="string"/>
+            <column name="alamat_4" type="string"/>
+            <column name="nomor_4" type="string"/>
+            <column name="jumlah_4" type="string"/>
+            <column name="nama_5" type="string"/>
+            <column name="alamat_5" type="string"/>
+            <column name="nomor_5" type="string"/>
+            <column name="jumlah_5" type="string"/>
+            <column name="nama_6" type="string"/>
+            <column name="nama_7" type="string"/>
+            <column name="alamat_7" type="string"/>
+            <column name="nomor_7" type="string"/>
+            <column name="jumlah_7" type="string"/>
+            <column name="nama_8" type="string"/>
+            <column name="alamat_8" type="string"/>
+            <column name="nomor_8" type="string"/>
+            <column name="jumlah_8" type="string"/>
+            <column name="nama_9" type="string"/>
+            <column name="alamat_9" type="string"/>
+            <column name="nomor_9" type="string"/>
+            <column name="jumlah_9" type="string"/>
+            <column name="nama_10" type="string"/>
+            <column name="alamat_10" type="string"/>
+            <column name="nomor_10" type="string"/>
+            <column name="jumlah_10" type="string"/>
+            <column name="alamat_6" type="string"/>
+            <column name="nomor_6" type="string"/>
+            <column name="jumlah_6" type="string"/>
             <column name="created_date" type="date"/>
             <column name="created_by" type="string"/>
             <column name="last_modified_date" type="date"/>

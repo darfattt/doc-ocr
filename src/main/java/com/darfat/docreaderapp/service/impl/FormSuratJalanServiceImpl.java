@@ -54,6 +54,51 @@ public class FormSuratJalanServiceImpl implements FormSuratJalanService {
                 if (formSuratJalan.getRemarks() != null) {
                     existingFormSuratJalan.setRemarks(formSuratJalan.getRemarks());
                 }
+                if (formSuratJalan.getContents() != null) {
+                    existingFormSuratJalan.setContents(formSuratJalan.getContents());
+                }
+                if (formSuratJalan.getBranch() != null) {
+                    existingFormSuratJalan.setBranch(formSuratJalan.getBranch());
+                }
+                if (formSuratJalan.getDocumentTitle() != null) {
+                    existingFormSuratJalan.setDocumentTitle(formSuratJalan.getDocumentTitle());
+                }
+                if (formSuratJalan.getDocumentNumber() != null) {
+                    existingFormSuratJalan.setDocumentNumber(formSuratJalan.getDocumentNumber());
+                }
+                if (formSuratJalan.getRecipientAddress() != null) {
+                    existingFormSuratJalan.setRecipientAddress(formSuratJalan.getRecipientAddress());
+                }
+                if (formSuratJalan.getNpwp() != null) {
+                    existingFormSuratJalan.setNpwp(formSuratJalan.getNpwp());
+                }
+                if (formSuratJalan.getWarehouseSource() != null) {
+                    existingFormSuratJalan.setWarehouseSource(formSuratJalan.getWarehouseSource());
+                }
+                if (formSuratJalan.getDocumentSource() != null) {
+                    existingFormSuratJalan.setDocumentSource(formSuratJalan.getDocumentSource());
+                }
+                if (formSuratJalan.getReference() != null) {
+                    existingFormSuratJalan.setReference(formSuratJalan.getReference());
+                }
+                if (formSuratJalan.getDate() != null) {
+                    existingFormSuratJalan.setDate(formSuratJalan.getDate());
+                }
+                if (formSuratJalan.getProductDescription() != null) {
+                    existingFormSuratJalan.setProductDescription(formSuratJalan.getProductDescription());
+                }
+                if (formSuratJalan.getQuantity() != null) {
+                    existingFormSuratJalan.setQuantity(formSuratJalan.getQuantity());
+                }
+                if (formSuratJalan.getAmount() != null) {
+                    existingFormSuratJalan.setAmount(formSuratJalan.getAmount());
+                }
+                if (formSuratJalan.getArmadaNumber() != null) {
+                    existingFormSuratJalan.setArmadaNumber(formSuratJalan.getArmadaNumber());
+                }
+                if (formSuratJalan.getContainerNumber() != null) {
+                    existingFormSuratJalan.setContainerNumber(formSuratJalan.getContainerNumber());
+                }
                 if (formSuratJalan.getCreatedDate() != null) {
                     existingFormSuratJalan.setCreatedDate(formSuratJalan.getCreatedDate());
                 }

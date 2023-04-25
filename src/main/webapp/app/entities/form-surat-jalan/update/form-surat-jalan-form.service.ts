@@ -35,6 +35,21 @@ type FormSuratJalanFormGroupContent = {
   status: FormControl<FormSuratJalanFormRawValue['status']>;
   active: FormControl<FormSuratJalanFormRawValue['active']>;
   remarks: FormControl<FormSuratJalanFormRawValue['remarks']>;
+  contents: FormControl<FormSuratJalanFormRawValue['contents']>;
+  branch: FormControl<FormSuratJalanFormRawValue['branch']>;
+  documentTitle: FormControl<FormSuratJalanFormRawValue['documentTitle']>;
+  documentNumber: FormControl<FormSuratJalanFormRawValue['documentNumber']>;
+  recipientAddress: FormControl<FormSuratJalanFormRawValue['recipientAddress']>;
+  npwp: FormControl<FormSuratJalanFormRawValue['npwp']>;
+  warehouseSource: FormControl<FormSuratJalanFormRawValue['warehouseSource']>;
+  documentSource: FormControl<FormSuratJalanFormRawValue['documentSource']>;
+  reference: FormControl<FormSuratJalanFormRawValue['reference']>;
+  date: FormControl<FormSuratJalanFormRawValue['date']>;
+  productDescription: FormControl<FormSuratJalanFormRawValue['productDescription']>;
+  quantity: FormControl<FormSuratJalanFormRawValue['quantity']>;
+  amount: FormControl<FormSuratJalanFormRawValue['amount']>;
+  armadaNumber: FormControl<FormSuratJalanFormRawValue['armadaNumber']>;
+  containerNumber: FormControl<FormSuratJalanFormRawValue['containerNumber']>;
   createdDate: FormControl<FormSuratJalanFormRawValue['createdDate']>;
   createdBy: FormControl<FormSuratJalanFormRawValue['createdBy']>;
   lastModifiedDate: FormControl<FormSuratJalanFormRawValue['lastModifiedDate']>;
@@ -66,6 +81,47 @@ export class FormSuratJalanFormService {
       }),
       remarks: new FormControl(formSuratJalanRawValue.remarks, {
         validators: [Validators.maxLength(500)],
+      }),
+      contents: new FormControl(formSuratJalanRawValue.contents, {
+        validators: [Validators.maxLength(65353)],
+      }),
+      branch: new FormControl(formSuratJalanRawValue.branch, {
+        validators: [Validators.maxLength(100)],
+      }),
+      documentTitle: new FormControl(formSuratJalanRawValue.documentTitle, {
+        validators: [Validators.maxLength(500)],
+      }),
+      documentNumber: new FormControl(formSuratJalanRawValue.documentNumber, {
+        validators: [Validators.maxLength(100)],
+      }),
+      recipientAddress: new FormControl(formSuratJalanRawValue.recipientAddress, {
+        validators: [Validators.maxLength(100)],
+      }),
+      npwp: new FormControl(formSuratJalanRawValue.npwp, {
+        validators: [Validators.maxLength(100)],
+      }),
+      warehouseSource: new FormControl(formSuratJalanRawValue.warehouseSource, {
+        validators: [Validators.maxLength(100)],
+      }),
+      documentSource: new FormControl(formSuratJalanRawValue.documentSource, {
+        validators: [Validators.maxLength(100)],
+      }),
+      reference: new FormControl(formSuratJalanRawValue.reference, {
+        validators: [Validators.maxLength(100)],
+      }),
+      date: new FormControl(formSuratJalanRawValue.date, {
+        validators: [Validators.maxLength(100)],
+      }),
+      productDescription: new FormControl(formSuratJalanRawValue.productDescription, {
+        validators: [Validators.maxLength(100)],
+      }),
+      quantity: new FormControl(formSuratJalanRawValue.quantity),
+      amount: new FormControl(formSuratJalanRawValue.amount),
+      armadaNumber: new FormControl(formSuratJalanRawValue.armadaNumber, {
+        validators: [Validators.maxLength(100)],
+      }),
+      containerNumber: new FormControl(formSuratJalanRawValue.containerNumber, {
+        validators: [Validators.maxLength(100)],
       }),
       createdDate: new FormControl(formSuratJalanRawValue.createdDate, {
         validators: [Validators.required],
