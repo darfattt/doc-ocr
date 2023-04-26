@@ -8,6 +8,7 @@ import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IDocuments, NewDocuments } from '../documents.model';
+import { AttachmentRequest } from '../attachment.model';
 
 export type PartialUpdateDocuments = Partial<IDocuments> & Pick<IDocuments, 'id'>;
 
@@ -71,6 +72,12 @@ export class DocumentsService {
 
   getDocumentsIdentifier(documents: Pick<IDocuments, 'id'>): string {
     return documents.id;
+  }
+
+  upload(attachmentReq: AttachmentRequest): Observable<EntityResponseType> {
+    return this.http
+      .post<RestDocuments>(`${this.resourceUrl}/${attachmentReq.type}/upload`, attachmentReq, { observe: 'response' })
+      .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
   compareDocuments(o1: Pick<IDocuments, 'id'> | null, o2: Pick<IDocuments, 'id'> | null): boolean {

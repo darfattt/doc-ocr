@@ -6,7 +6,9 @@ import { finalize } from 'rxjs/operators';
 
 import { IDocuments } from '../documents.model';
 import { DocumentsService } from '../service/documents.service';
-import { DocumentsFormGroup, DocumentsFormService } from '../update/documents-form.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Attachment, AttachmentRequest } from '../attachment.model';
+import { DocumentsFormService } from '../update/documents-form.service';
 
 @Component({
   selector: 'jhi-documents-upload',
@@ -16,21 +18,33 @@ export class DocumentsUploadComponent implements OnInit {
   isSaving = false;
   documents: IDocuments | null = null;
 
-  editForm: DocumentsFormGroup = this.documentsFormService.createDocumentsFormGroup();
   types: string[] = ['Surat Jalan', 'Pengeluaran Barang', 'Pernyataan', 'BASTPBP', 'BASTPBPP'];
+  typeNumbers: string[] = ['001', '002', '003', '004', '005'];
+  attachmentRequest = new AttachmentRequest();
+  editForm: FormGroup;
+  number: string = '';
 
   constructor(
     protected documentsService: DocumentsService,
     protected documentsFormService: DocumentsFormService,
-    protected activatedRoute: ActivatedRoute
-  ) {}
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {
+    this.editForm = this.fb.group(
+      {
+        type: ['', Validators.required],
+        number: ['', Validators.required],
+      },
+      {}
+    );
+  }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ documents }) => {
       this.documents = documents;
-      if (documents) {
-        this.updateForm(documents);
-      }
+      // if (documents) {
+      //   this.updateForm(documents);
+      // }
     });
   }
 
@@ -39,13 +53,9 @@ export class DocumentsUploadComponent implements OnInit {
   }
 
   save(): void {
+    this.attachmentRequest.name = this.attachmentRequest.number;
     this.isSaving = true;
-    const documents = this.documentsFormService.getDocuments(this.editForm);
-    if (documents.id !== null) {
-      this.subscribeToSaveResponse(this.documentsService.update(documents));
-    } else {
-      this.subscribeToSaveResponse(this.documentsService.create(documents));
-    }
+    this.subscribeToSaveResponse(this.documentsService.upload(this.attachmentRequest));
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IDocuments>>): void {
@@ -56,7 +66,9 @@ export class DocumentsUploadComponent implements OnInit {
   }
 
   protected onSaveSuccess(): void {
-    this.previousState();
+    this.attachmentRequest = new AttachmentRequest();
+    this.editForm.reset();
+    // this.previousState();
   }
 
   protected onSaveError(): void {
@@ -67,8 +79,35 @@ export class DocumentsUploadComponent implements OnInit {
     this.isSaving = false;
   }
 
-  protected updateForm(documents: IDocuments): void {
-    this.documents = documents;
-    this.documentsFormService.resetForm(this.editForm, documents);
+  canSave() {
+    let valid = this.attachmentRequest.attachments && this.attachmentRequest.attachments.length > 0;
+    return valid;
+  }
+
+  handleUpload(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      let attachment = this.convertFile2Attachment(file);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        // data:image/png;base64,iVBO
+        // console.log(reader.result);
+        attachment.blobFile = reader.result;
+        if (attachment.blobFile) {
+          attachment.blobFile = attachment.blobFile.split('base64,')[1];
+          console.log(attachment);
+          this.attachmentRequest.attachments?.push(attachment);
+        }
+      };
+    }
+  }
+
+  convertFile2Attachment(file: any) {
+    let attachment = new Attachment();
+    attachment.name = file.name;
+    attachment.type = file.type;
+    attachment.size = file.size;
+    return attachment;
   }
 }
