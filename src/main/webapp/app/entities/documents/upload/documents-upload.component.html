@@ -9,9 +9,9 @@
         <div class="row mb-3">
           <label class="form-label" for="field_type">Document Type</label>
           <!-- <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" /> -->
-          <select class="form-control" name="type" id="field_type" data-cy="type" formControlName="type">
-            <option [ngValue]="">select</option>
-            <option [ngValue]="typeOpt" *ngFor="let typeOpt of types">{{ typeOpt }}</option>
+          <select class="form-control" id="field_type" data-cy="type" formControlName="type" [(ngModel)]="attachmentRequest.type" required>
+            <option [ngValue]="" selected></option>
+            <option *ngFor="let typeOpt of types; let i = index" [ngValue]="typeNumbers[i]">{{ typeOpt }}</option>
           </select>
 
           <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
@@ -24,7 +24,15 @@
 
         <div class="row mb-3">
           <label class="form-label" for="field_number">Document Number</label>
-          <input type="text" class="form-control" name="number" id="field_number" data-cy="number" formControlName="number" />
+          <input
+            type="text"
+            class="form-control"
+            formControlName="number"
+            id="field_number"
+            [(ngModel)]="attachmentRequest.number"
+            required
+            maxlength="100"
+          />
           <div *ngIf="editForm.get('number')!.invalid && (editForm.get('number')!.dirty || editForm.get('number')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('number')?.errors?.required"> This field is required. </small>
             <small class="form-text text-danger" *ngIf="editForm.get('number')?.errors?.maxlength">
@@ -35,7 +43,18 @@
 
         <div class="row mb-3">
           <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile" />
+            <input type="file" class="custom-file-input" id="customFile" (change)="handleUpload($event)" />
+          </div>
+          <div *ngFor="let attachment of attachmentRequest.attachments">
+            <span>{{ attachment.name }}</span
+            ><br />
+            <ng-container *ngIf="attachment?.type?.includes('image')">
+              <img src="data:{{ attachment.type }};base64,{{ attachment.blobFile }}" alt="" height="100px" />
+            </ng-container>
+            <ng-container *ngIf="!attachment?.type?.includes('image')">
+              <i class="fa fa-file-text fa-5x" aria-hidden="true"></i>
+            </ng-container>
+            <br />
           </div>
         </div>
       </div>
@@ -45,14 +64,8 @@
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
         </button> -->
 
-        <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-primary"
-        >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Proceed</span>
+        <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid || isSaving || !canSave()">
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Proceed - {{ isSaving }} - {{ canSave() }}</span>
         </button>
       </div>
     </form>
