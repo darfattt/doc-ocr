@@ -27,6 +27,8 @@ export class DocumentsComponent implements OnInit {
   itemsPerPage = ITEMS_PER_PAGE;
   totalItems = 0;
   page = 1;
+  filterDocType: string = '';
+  filterDocNumber: string = '';
 
   constructor(
     protected documentsService: DocumentsService,
@@ -118,6 +120,13 @@ export class DocumentsComponent implements OnInit {
       size: this.itemsPerPage,
       sort: this.getSortQueryParam(predicate, ascending),
     };
+    queryObject['status.equals'] = 'NEW';
+    if (this.filterDocNumber) {
+      queryObject['id.contains'] = this.filterDocNumber;
+    }
+    if (this.filterDocType) {
+      queryObject['type.contains'] = this.filterDocType;
+    }
     filterOptions?.forEach(filterOption => {
       queryObject[filterOption.name] = filterOption.values;
     });
@@ -148,5 +157,10 @@ export class DocumentsComponent implements OnInit {
     } else {
       return [predicate + ',' + ascendingQueryParam];
     }
+  }
+
+  search() {
+    console.log('search');
+    this.load();
   }
 }

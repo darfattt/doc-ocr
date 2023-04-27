@@ -7,15 +7,27 @@
       <div class="row">
         <div class="form-group col-md-4">
           <label for="number" class="sr-only">Search by Number</label>
-          <input type="text" class="form-control" id="number" placeholder="Search by Number" />
+          <input
+            type="text"
+            class="form-control"
+            id="number"
+            name="field_number"
+            placeholder="Search by Number"
+            [(ngModel)]="filterDocNumber"
+          />
         </div>
         <div class="form-group col-md-4">
           <label for="type" class="sr-only">Search by Type</label>
-          <input type="text" class="form-control" id="type" placeholder="Search by Type" />
+          <input type="text" class="form-control" id="type" name="field_type" placeholder="Search by Type" [(ngModel)]="filterDocType" />
         </div>
-        <div class="form-group col-md-4">
-          <button type="submit" class="btn btn-info mb-2">Approve All</button>
-          <button type="submit" class="btn btn-primary mb-2">Reject All</button>
+        <div class="form-group col-md-2">
+          <button type="button" class="btn btn-info mb-2" (click)="search()">
+            <span class="fa fa-search"></span>&nbsp;<span>Search</span>
+          </button>
+        </div>
+        <div class="form-group col-md-2">
+          <button type="button" class="btn btn-info mb-2">Approve All</button>
+          <button type="button" class="btn btn-primary mb-2">Reject All</button>
         </div>
       </div>
     </form>

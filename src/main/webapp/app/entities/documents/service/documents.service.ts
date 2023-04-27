@@ -76,7 +76,7 @@ export class DocumentsService {
 
   upload(attachmentReq: AttachmentRequest): Observable<EntityResponseType> {
     return this.http
-      .post<RestDocuments>(`${this.resourceUrl}/${attachmentReq.type}/upload`, attachmentReq, { observe: 'response' })
+      .post<RestDocuments>(`${this.resourceUrl}/${attachmentReq.docType}/upload`, attachmentReq, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
