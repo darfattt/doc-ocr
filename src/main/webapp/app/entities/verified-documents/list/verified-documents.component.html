@@ -2,7 +2,55 @@
   <h2 id="page-heading" data-cy="VerifiedDocumentsHeading">
     <span>Verified Documents</span>
 
-    <div class="d-flex justify-content-end">
+    <br /><br />
+    <form class="form-inline">
+      <div class="row">
+        <div class="form-group col-md-3">
+          <label for="number" class="sr-only">Search by Number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="number"
+            name="field_number"
+            placeholder="Search by Number"
+            [(ngModel)]="filterDocNumber"
+          />
+        </div>
+        <div class="form-group col-md-3">
+          <label for="type" class="sr-only">Search by Type</label>
+          <input type="text" class="form-control" id="type" name="field_type" placeholder="Search by Type" [(ngModel)]="filterDocType" />
+        </div>
+        <div class="form-group col-md-3">
+          <label for="type" class="sr-only">Search by Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="type"
+            name="field_type"
+            placeholder="Search by Name"
+            [(ngModel)]="filterDocFileName"
+          />
+        </div>
+        <div class="form-group col-md-1">
+          <button type="button" class="btn btn-info mb-2" (click)="search()">
+            <span class="fa fa-search"></span>&nbsp;<span>Search</span>
+          </button>
+        </div>
+        <div class="form-group col-md-2">
+          <button
+            id="jh-create-entity"
+            data-cy="entityCreateButton"
+            class="btn btn-primary jh-create-entity create-verified-documents"
+            [routerLink]="['/verified-documents/new']"
+          >
+            <fa-icon icon="plus"></fa-icon>
+            <span> Create a new Verified Documents </span>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh list</span>
@@ -17,7 +65,7 @@
         <fa-icon icon="plus"></fa-icon>
         <span> Create a new Verified Documents </span>
       </button>
-    </div>
+    </div> -->
   </h2>
 
   <jhi-alert-error></jhi-alert-error>
@@ -36,7 +84,7 @@
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
           <th scope="col" jhiSortBy="id">
             <div class="d-flex">
-              <span>Id</span>
+              <span>Number</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -64,7 +112,7 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="createdDate">
+          <!-- <th scope="col" jhiSortBy="createdDate">
             <div class="d-flex">
               <span>Created Date</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
@@ -87,7 +135,7 @@
               <span>Last Modified By</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
-          </th>
+          </th> -->
           <th scope="col"></th>
         </tr>
       </thead>
@@ -100,10 +148,10 @@
           <td>{{ verifiedDocuments.name }}</td>
           <td>{{ verifiedDocuments.status }}</td>
           <td>{{ verifiedDocuments.contentId }}</td>
-          <td>{{ verifiedDocuments.createdDate | formatMediumDatetime }}</td>
+          <!-- <td>{{ verifiedDocuments.createdDate | formatMediumDatetime }}</td>
           <td>{{ verifiedDocuments.createdBy }}</td>
           <td>{{ verifiedDocuments.lastModifiedDate | formatMediumDatetime }}</td>
-          <td>{{ verifiedDocuments.lastModifiedBy }}</td>
+          <td>{{ verifiedDocuments.lastModifiedBy }}</td> -->
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -129,6 +177,11 @@
               <button type="submit" (click)="delete(verifiedDocuments)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">Delete</span>
+              </button>
+
+              <button type="button" class="btn btn-light btn-sm" (click)="download(verifiedDocuments)">
+                <i class="fa fa-download" aria-hidden="true"></i>
+                <span class="d-none d-md-inline">Download</span>
               </button>
             </div>
           </td>

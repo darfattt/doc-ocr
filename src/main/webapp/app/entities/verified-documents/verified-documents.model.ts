@@ -10,6 +10,7 @@ export interface IVerifiedDocuments {
   createdBy?: string | null;
   lastModifiedDate?: dayjs.Dayjs | null;
   lastModifiedBy?: string | null;
+  attachmentGroupId?: number | null;
 }
 
 export type NewVerifiedDocuments = Omit<IVerifiedDocuments, 'id'> & { id: null };

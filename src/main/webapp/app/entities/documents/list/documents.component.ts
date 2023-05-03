@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpResponse, HttpEvent, HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
 import { combineLatest, filter, Observable, switchMap, tap } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { IDocuments } from '../documents.model';
-
-import { ITEMS_PER_PAGE, PAGE_HEADER, TOTAL_COUNT_RESPONSE_HEADER } from 'app/config/pagination.constants';
+import { ITEMS_PER_PAGE, PAGE_HEADER } from 'app/config/pagination.constants';
 import { ASC, DESC, SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigation.constants';
 import { EntityArrayResponseType, DocumentsService } from '../service/documents.service';
 import { DocumentsDeleteDialogComponent } from '../delete/documents-delete-dialog.component';
 import { FilterOptions, IFilterOptions, IFilterOption } from 'app/shared/filter/filter.model';
+import { TOTAL_COUNT_RESPONSE_HEADER } from 'app/config/pagination.constants';
 
 @Component({
   selector: 'jhi-documents',
@@ -29,12 +28,14 @@ export class DocumentsComponent implements OnInit {
   page = 1;
   filterDocType: string = '';
   filterDocNumber: string = '';
+  filterDocFileName: string = '';
 
   constructor(
     protected documentsService: DocumentsService,
     protected activatedRoute: ActivatedRoute,
     public router: Router,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private http: HttpClient
   ) {}
 
   trackId = (_index: number, item: IDocuments): string => this.documentsService.getDocumentsIdentifier(item);
@@ -127,6 +128,9 @@ export class DocumentsComponent implements OnInit {
     if (this.filterDocType) {
       queryObject['type.contains'] = this.filterDocType;
     }
+    if (this.filterDocFileName) {
+      queryObject['name.contains'] = this.filterDocFileName;
+    }
     filterOptions?.forEach(filterOption => {
       queryObject[filterOption.name] = filterOption.values;
     });
@@ -162,5 +166,24 @@ export class DocumentsComponent implements OnInit {
   search() {
     console.log('search');
     this.load();
+  }
+
+  async download(doc: IDocuments) {
+    if (doc && doc.attachmentGroupId) {
+      const req = this.documentsService.downloadAttachment(doc.attachmentGroupId);
+      this.http.request(req).subscribe((res: any) => {
+        if (res instanceof HttpResponse) {
+          if (res.body) {
+            console.log(res.headers);
+            const a: any = document.createElement('a');
+            a.href = window.URL.createObjectURL(res.body);
+            a.target = '_blank';
+            a.download = 'document-' + new Date().getTime();
+            document.body.appendChild(a);
+            a.click();
+          }
+        }
+      });
+    }
   }
 }
