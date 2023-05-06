@@ -10,6 +10,7 @@ export interface IDocuments {
   createdBy?: string | null;
   lastModifiedDate?: dayjs.Dayjs | null;
   lastModifiedBy?: string | null;
+  attachmentGroupId?: number | null;
 }
 
 export type NewDocuments = Omit<IDocuments, 'id'> & { id: null };

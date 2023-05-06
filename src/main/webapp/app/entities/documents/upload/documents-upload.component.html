@@ -3,58 +3,72 @@
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
       <h2 id="jhi-documents-heading" data-cy="DocumentsCreateUpdateHeading">Upload Document</h2>
 
-      <div>
+      <div class="mt-5">
+        <jhi-alert></jhi-alert>
         <jhi-alert-error></jhi-alert-error>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_type">Document Type</label>
-          <!-- <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" /> -->
-          <select class="form-control" id="field_type" data-cy="type" formControlName="type" [(ngModel)]="attachmentRequest.type" required>
-            <option [ngValue]="" selected></option>
-            <option *ngFor="let typeOpt of types; let i = index" [ngValue]="typeNumbers[i]">{{ typeOpt }}</option>
-          </select>
+          <div class="col-md">
+            <label class="form-label" for="field_type">Document Type</label>
+            <!-- <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" /> -->
+            <select
+              class="form-control"
+              id="field_type"
+              data-cy="type"
+              formControlName="type"
+              [(ngModel)]="attachmentRequest.docType"
+              required
+            >
+              <option [ngValue]="" selected></option>
+              <option *ngFor="let typeOpt of types; let i = index" [ngValue]="typeNumbers[i]">{{ typeNumbers[i] }} - {{ typeOpt }}</option>
+            </select>
 
-          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required"> This field is required. </small>
-            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.maxlength">
-              This field cannot be longer than 12 characters.
-            </small>
+            <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required"> This field is required. </small>
+              <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.maxlength">
+                This field cannot be longer than 12 characters.
+              </small>
+            </div>
           </div>
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" for="field_number">Document Number</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="number"
-            id="field_number"
-            [(ngModel)]="attachmentRequest.number"
-            required
-            maxlength="100"
-          />
-          <div *ngIf="editForm.get('number')!.invalid && (editForm.get('number')!.dirty || editForm.get('number')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('number')?.errors?.required"> This field is required. </small>
-            <small class="form-text text-danger" *ngIf="editForm.get('number')?.errors?.maxlength">
-              This field cannot be longer than 100 characters.
-            </small>
+          <div class="col-md">
+            <label class="form-label" for="field_number">Document Number</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="number"
+              id="field_number"
+              [(ngModel)]="attachmentRequest.docNumber"
+              required
+              maxlength="100"
+            />
+            <div *ngIf="editForm.get('number')!.invalid && (editForm.get('number')!.dirty || editForm.get('number')!.touched)">
+              <small class="form-text text-danger" *ngIf="editForm.get('number')?.errors?.required"> This field is required. </small>
+              <small class="form-text text-danger" *ngIf="editForm.get('number')?.errors?.maxlength">
+                This field cannot be longer than 100 characters.
+              </small>
+            </div>
           </div>
         </div>
 
         <div class="row mb-3">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile" (change)="handleUpload($event)" />
-          </div>
-          <div *ngFor="let attachment of attachmentRequest.attachments">
-            <span>{{ attachment.name }}</span
-            ><br />
-            <ng-container *ngIf="attachment?.type?.includes('image')">
-              <img src="data:{{ attachment.type }};base64,{{ attachment.blobFile }}" alt="" height="100px" />
-            </ng-container>
-            <ng-container *ngIf="!attachment?.type?.includes('image')">
-              <i class="fa fa-file-text fa-5x" aria-hidden="true"></i>
-            </ng-container>
-            <br />
+          <div class="col-md">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile" (change)="handleUpload($event)" />
+            </div>
+            <div *ngFor="let attachment of attachmentRequest.attachments">
+              <span>{{ attachment.name }}</span
+              ><br />
+              <ng-container *ngIf="attachment?.type?.includes('image')">
+                <img src="data:{{ attachment.type }};base64,{{ attachment.blobFile }}" alt="" height="100px" />
+              </ng-container>
+              <ng-container *ngIf="!attachment?.type?.includes('image')">
+                <i class="fa fa-file-text fa-5x" aria-hidden="true"></i>
+              </ng-container>
+              <br />
+            </div>
           </div>
         </div>
       </div>
@@ -65,7 +79,7 @@
         </button> -->
 
         <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid || isSaving || !canSave()">
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Proceed - {{ isSaving }} - {{ canSave() }}</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Proceed</span>
         </button>
       </div>
     </form>

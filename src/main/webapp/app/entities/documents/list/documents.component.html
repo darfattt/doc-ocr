@@ -5,17 +5,40 @@
     <br /><br />
     <form class="form-inline">
       <div class="row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
           <label for="number" class="sr-only">Search by Number</label>
-          <input type="text" class="form-control" id="number" placeholder="Search by Number" />
+          <input
+            type="text"
+            class="form-control"
+            id="number"
+            name="field_number"
+            placeholder="Search by Number"
+            [(ngModel)]="filterDocNumber"
+          />
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
           <label for="type" class="sr-only">Search by Type</label>
-          <input type="text" class="form-control" id="type" placeholder="Search by Type" />
+          <input type="text" class="form-control" id="type" name="field_type" placeholder="Search by Type" [(ngModel)]="filterDocType" />
         </div>
-        <div class="form-group col-md-4">
-          <button type="submit" class="btn btn-info mb-2">Approve All</button>
-          <button type="submit" class="btn btn-primary mb-2">Reject All</button>
+        <div class="form-group col-md-3">
+          <label for="type" class="sr-only">Search by File Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="type"
+            name="field_fileName"
+            placeholder="Search by File Name"
+            [(ngModel)]="filterDocFileName"
+          />
+        </div>
+        <div class="form-group col-md-1">
+          <button type="button" class="btn btn-info mb-2" (click)="search()">
+            <span class="fa fa-search"></span>&nbsp;<span>Search</span>
+          </button>
+        </div>
+        <div class="form-group col-md-2">
+          <button type="button" class="btn btn-info mb-2">Approve All</button>
+          <button type="button" class="btn btn-primary mb-2">Reject All</button>
         </div>
       </div>
     </form>
@@ -150,12 +173,7 @@
                 <span class="d-none d-md-inline">Reject</span>
               </button>
 
-              <button
-                type="submit"
-                [routerLink]="['/documents', documents.id, 'view']"
-                class="btn btn-light btn-sm"
-                data-cy="entityDetailsButton"
-              >
+              <button type="buton" class="btn btn-light btn-sm" (click)="download(documents)">
                 <i class="fa fa-download" aria-hidden="true"></i>
                 <span class="d-none d-md-inline">Download</span>
               </button>

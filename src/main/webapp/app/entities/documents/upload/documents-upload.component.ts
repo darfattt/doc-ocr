@@ -9,6 +9,7 @@ import { DocumentsService } from '../service/documents.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Attachment, AttachmentRequest } from '../attachment.model';
 import { DocumentsFormService } from '../update/documents-form.service';
+import { AlertService } from 'app/core/util/alert.service';
 
 @Component({
   selector: 'jhi-documents-upload',
@@ -28,7 +29,8 @@ export class DocumentsUploadComponent implements OnInit {
     protected documentsService: DocumentsService,
     protected documentsFormService: DocumentsFormService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private alertService: AlertService
   ) {
     this.editForm = this.fb.group(
       {
@@ -53,7 +55,6 @@ export class DocumentsUploadComponent implements OnInit {
   }
 
   save(): void {
-    this.attachmentRequest.name = this.attachmentRequest.number;
     this.isSaving = true;
     this.subscribeToSaveResponse(this.documentsService.upload(this.attachmentRequest));
   }
@@ -68,11 +69,21 @@ export class DocumentsUploadComponent implements OnInit {
   protected onSaveSuccess(): void {
     this.attachmentRequest = new AttachmentRequest();
     this.editForm.reset();
+    let alert: string | null = 'Upload document success';
+    this.alertService.addAlert({
+      type: 'success',
+      message: alert,
+    });
     // this.previousState();
   }
 
   protected onSaveError(): void {
     // Api for inheritance.
+    let alert: string | null = 'Upload document failed';
+    this.alertService.addAlert({
+      type: 'danger',
+      message: alert,
+    });
   }
 
   protected onSaveFinalize(): void {
@@ -96,7 +107,9 @@ export class DocumentsUploadComponent implements OnInit {
         attachment.blobFile = reader.result;
         if (attachment.blobFile) {
           attachment.blobFile = attachment.blobFile.split('base64,')[1];
-          console.log(attachment);
+          // console.log(attachment);
+          this.attachmentRequest.name = file.name;
+          this.attachmentRequest.attachments = [];
           this.attachmentRequest.attachments?.push(attachment);
         }
       };

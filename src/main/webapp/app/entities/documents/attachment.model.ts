@@ -7,8 +7,8 @@ export class AttachmentRequest {
     public basePath?: string,
     public className?: string,
     public attachments?: Attachment[],
-    public type?: string,
-    public number?: string
+    public docType?: string,
+    public docNumber?: string
   ) {
     this.attachments = [];
   }

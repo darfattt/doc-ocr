@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import dayjs from 'dayjs/esm';
@@ -29,6 +29,7 @@ export type EntityArrayResponseType = HttpResponse<IDocuments[]>;
 @Injectable({ providedIn: 'root' })
 export class DocumentsService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/documents');
+  protected resourceDownloadUrl = this.applicationConfigService.getEndpointFor('api/attachments/download');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
@@ -76,12 +77,20 @@ export class DocumentsService {
 
   upload(attachmentReq: AttachmentRequest): Observable<EntityResponseType> {
     return this.http
-      .post<RestDocuments>(`${this.resourceUrl}/${attachmentReq.type}/upload`, attachmentReq, { observe: 'response' })
+      .post<RestDocuments>(`${this.resourceUrl}/${attachmentReq.docType}/upload`, attachmentReq, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
   compareDocuments(o1: Pick<IDocuments, 'id'> | null, o2: Pick<IDocuments, 'id'> | null): boolean {
     return o1 && o2 ? this.getDocumentsIdentifier(o1) === this.getDocumentsIdentifier(o2) : o1 === o2;
+  }
+
+  downloadAttachment(attachmentGroupId: number): any {
+    const req = new HttpRequest('GET', `${this.resourceDownloadUrl}/${attachmentGroupId}`, {
+      reportProgress: true,
+      responseType: 'blob' as 'json',
+    });
+    return req;
   }
 
   addDocumentsToCollectionIfMissing<Type extends Pick<IDocuments, 'id'>>(
