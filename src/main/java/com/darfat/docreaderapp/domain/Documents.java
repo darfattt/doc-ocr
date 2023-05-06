@@ -6,6 +6,8 @@ import java.time.Instant;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.domain.Persistable;
 
@@ -15,6 +17,8 @@ import org.springframework.data.domain.Persistable;
 @JsonIgnoreProperties(value = { "new" })
 @Entity
 @Table(name = "documents")
+@Getter
+@Setter
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Documents extends AbstractAuditingEntity<String> implements Serializable, Persistable<String> {
 
@@ -28,9 +32,8 @@ public class Documents extends AbstractAuditingEntity<String> implements Seriali
     @Column(name = "id", length = 50, nullable = false)
     private String id;
 
-    @NotNull
     @Size(max = 12)
-    @Column(name = "type", length = 12, nullable = false)
+    @Column(name = "type", length = 12, nullable = true)
     private String type;
 
     @NotNull
@@ -50,59 +53,12 @@ public class Documents extends AbstractAuditingEntity<String> implements Seriali
     @Transient
     private boolean isPersisted;
 
+    @Size(max = 50)
+    @Column(name = "branch", length = 50)
+    private String branch;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
-    public String getId() {
-        return this.id;
-    }
-
-    public Documents id(String id) {
-        this.setId(id);
-        return this;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public Documents type(String type) {
-        this.setType(type);
-        return this;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public Documents name(String name) {
-        this.setName(name);
-        return this;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getStatus() {
-        return this.status;
-    }
-
-    public Documents status(String status) {
-        this.setStatus(status);
-        return this;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     @Transient
     @Override
@@ -155,11 +111,5 @@ public class Documents extends AbstractAuditingEntity<String> implements Seriali
             "}";
     }
 
-    public String getAttachmentGroupId() {
-        return attachmentGroupId;
-    }
 
-    public void setAttachmentGroupId(String attachmentGroupId) {
-        this.attachmentGroupId = attachmentGroupId;
-    }
 }

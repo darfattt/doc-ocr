@@ -34,6 +34,8 @@ public class AttachmentServiceImpl implements AttachmentService {
 
     private final FileManager fileManager;
 
+    private final static boolean WITHOUTKEY= true;
+
     AttachmentServiceImpl(
         AttachmentGroupRepository attachmentGroupRepository,
         AttachmentRepository attachmentRepository,
@@ -51,11 +53,12 @@ public class AttachmentServiceImpl implements AttachmentService {
             AttachmentGroup attachmentGroup = new AttachmentGroup();
             attachmentGroup.setEntity(object.getSimpleName());
             AttachmentGroup attachmentGroupResult = attachmentGroupRepository.save(attachmentGroup);
-            String newPath = attachmentGroupResult.getId();
+            String newPath = null;//attachmentGroupResult.getId();
             if (attachmentGroup.getBasePath() != null) {
-                newPath = attachmentGroup.getBasePath();
+                //attachmentGroup.getBasePath();
+            } else {
+                attachmentGroupResult.setBasePath(buildPathWithYear(newPath));
             }
-            attachmentGroupResult.setBasePath(buildPathWithYear(newPath));
             return attachmentGroupRepository.save(attachmentGroupResult);
         }
     }
@@ -79,11 +82,12 @@ public class AttachmentServiceImpl implements AttachmentService {
             attachmentGroup.setDescription(description);
             attachmentGroup.setName(name);
             AttachmentGroup attachmentGroupResult = attachmentGroupRepository.save(attachmentGroup);
-            String newPath = attachmentGroupResult.getId();
+            String newPath = null;//attachmentGroupResult.getId();
             if (basePath != null) {
-                newPath = basePath;
+                attachmentGroupResult.setBasePath(basePath);
+            } else {
+                attachmentGroupResult.setBasePath(buildPathWithYear(newPath));
             }
-            attachmentGroupResult.setBasePath(buildPathWithYear(newPath));
             return attachmentGroupRepository.save(attachmentGroupResult);
         }
     }
@@ -105,11 +109,12 @@ public class AttachmentServiceImpl implements AttachmentService {
         attachmentGroup.setDescription(description);
         attachmentGroup.setName(name);
         AttachmentGroup attachmentGroupResult = attachmentGroupRepository.save(attachmentGroup);
-        String newPath = attachmentGroupResult.getId();
+        String newPath = null;
         if (basePath != null) {
-            newPath = basePath;
+            attachmentGroupResult.setBasePath(basePath);
+        } else {
+            attachmentGroupResult.setBasePath(buildPathWithYear(newPath));
         }
-        attachmentGroupResult.setBasePath(buildPathWithYear(newPath));
         return attachmentGroupRepository.save(attachmentGroupResult);
     }
 
@@ -122,7 +127,7 @@ public class AttachmentServiceImpl implements AttachmentService {
                 attachmentRepository.deleteById(attachment.getId());
                 removeFile(attachment);
             } else {
-                if (attachment.getBlobFile() != null) {
+                if (attachmentGroup != null) {
                     attachment.setAttachmentGroup(attachmentGroup);
                     Attachment storedAttachment = attachmentRepository.save(attachment);
                     attachment.setId(storedAttachment.getId());
@@ -136,12 +141,14 @@ public class AttachmentServiceImpl implements AttachmentService {
                     } else {
                         log.info("attachment not null");
                     }
-                    if (attachment.getType().equals(AttachmentTypeEnum.Image.name())) {
+                    if (attachment.getBlobFile()!=null && attachment.getType().equals(AttachmentTypeEnum.Image.name())) {
                         writeImageFiles(attachment);
-                    } else if (attachment.getType().equals(AttachmentTypeEnum.Video.name())) {
+                    } else if (attachment.getBlobFile()!=null && attachment.getType().equals(AttachmentTypeEnum.Video.name())) {
                         writeNonImageFiles(attachment);
                     } else {
-                        writeNonImageFiles(attachment);
+                        if(attachment.getBlobFile()!=null) {
+                            writeNonImageFiles(attachment);
+                        }
                     }
                     attachmentGroupRepository.save(attachment.getAttachmentGroup());
                     attachmentResult.add(storedAttachment);
@@ -185,7 +192,11 @@ public class AttachmentServiceImpl implements AttachmentService {
     public OutputContentFile downloadAttachment(String id) {
         Attachment attachment = attachmentRepository.findById(id).orElseThrow(ExceptionPredicate.attachmentNotFound(id));
         try {
-            return fileManager.getFile(attachment.getAttachmentGroup().getBasePath(), attachment.getId(), attachment.getName());
+            if(!WITHOUTKEY) {
+                return fileManager.getFile(attachment.getAttachmentGroup().getBasePath(), attachment.getId(), attachment.getName());
+            }else {
+                return fileManager.getFile(attachment.getAttachmentGroup().getBasePath(), null, attachment.getName());
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -289,14 +300,17 @@ public class AttachmentServiceImpl implements AttachmentService {
     private String buildPathWithYear(String path) {
         String year = DateConvertUtil.toString(Instant.now(), DateConvertUtil.DATE_FORMAT_4);
         String month = DateConvertUtil.toString(Instant.now(), DateConvertUtil.DATE_FORMAT_10);
-
-        return new StringBuilder()
+        String yyyymm = new StringBuilder()
             .append(year)
             .append(File.separator)
-            .append(month)
-            .append(File.separator)
+            .append(month).toString();
+        if(path!=null){
+        return new StringBuilder()
+            .append(yyyymm)
             .append(path)
             .append(File.separator)
             .toString();
+        }
+        return yyyymm;
     }
 }

@@ -24,5 +24,6 @@
     <include file="config/liquibase/changelog/20230419_darmawan_0001_added_entity_attachment_group.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230419_darmawan_0002_added_entity_attachment.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230419_darmawan_0003_alter_documents_attachment_group.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230429_01_alter_documents.xml" relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

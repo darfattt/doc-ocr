@@ -1,8 +1,12 @@
 package com.darfat.docreaderapp.service;
 
 import com.darfat.docreaderapp.domain.Documents;
+
+import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
+import com.darfat.docreaderapp.domain.VerifiedDocuments;
 import com.darfat.docreaderapp.dto.request.AttachmentRequest;
 import com.darfat.docreaderapp.dto.response.AttachmentGroupResponse;
 import org.springframework.core.io.Resource;
@@ -61,7 +65,10 @@ public interface DocumentsService {
     void delete(String id);
 
     Documents approved(Documents documents,String contents);
+    VerifiedDocuments verify(Documents documents, String contents);
     AttachmentGroupResponse handleAttachment(AttachmentRequest attachmentRequest);
     Resource getDocumentFile(Documents documents);
     Documents rejected(Documents documents);
+    List<Documents> scanFolderForTheSource() throws IOException;
+    List<Documents> findAllByStatus(String status);
 }

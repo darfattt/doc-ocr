@@ -6,6 +6,8 @@ import java.time.Instant;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.domain.Persistable;
 
@@ -15,6 +17,8 @@ import org.springframework.data.domain.Persistable;
 @JsonIgnoreProperties(value = { "new" })
 @Entity
 @Table(name = "verified_documents")
+@Getter
+@Setter
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class VerifiedDocuments extends AbstractAuditingEntity<String>  implements Serializable, Persistable<String> {
 
@@ -43,9 +47,8 @@ public class VerifiedDocuments extends AbstractAuditingEntity<String>  implement
     @Column(name = "status", length = 12, nullable = false)
     private String status;
 
-    @NotNull
     @Size(max = 50)
-    @Column(name = "content_id", length = 50, nullable = false)
+    @Column(name = "content_id", length = 50, nullable = true)
     private String contentId;
 
     @Size(max = 36)
@@ -55,72 +58,19 @@ public class VerifiedDocuments extends AbstractAuditingEntity<String>  implement
     @Transient
     private boolean isPersisted;
 
+    @Size(max = 50)
+    @Column(name = "branch", length = 50)
+    private String branch;
+
+    @Size(max = 50)
+    @Column(name = "documents_id", length = 50)
+    private String documentsId;
+
+    @Size(max = 50)
+    @Column(name = "reference_number", length = 50)
+    private String referenceNumber;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
-
-    public String getId() {
-        return this.id;
-    }
-
-    public VerifiedDocuments id(String id) {
-        this.setId(id);
-        return this;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public VerifiedDocuments type(String type) {
-        this.setType(type);
-        return this;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public VerifiedDocuments name(String name) {
-        this.setName(name);
-        return this;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getStatus() {
-        return this.status;
-    }
-
-    public VerifiedDocuments status(String status) {
-        this.setStatus(status);
-        return this;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getContentId() {
-        return this.contentId;
-    }
-
-    public VerifiedDocuments contentId(String contentId) {
-        this.setContentId(contentId);
-        return this;
-    }
-
-    public void setContentId(String contentId) {
-        this.contentId = contentId;
-    }
 
     @Transient
     @Override
@@ -174,11 +124,4 @@ public class VerifiedDocuments extends AbstractAuditingEntity<String>  implement
             "}";
     }
 
-    public String getAttachmentGroupId() {
-        return attachmentGroupId;
-    }
-
-    public void setAttachmentGroupId(String attachmentGroupId) {
-        this.attachmentGroupId = attachmentGroupId;
-    }
 }

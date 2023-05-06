@@ -12,7 +12,7 @@ import java.util.List;
 public class AttachmentGroupResponse {
 
 	String attachmentGroupId;
-
+    String basePath;
 	List<AttachmentResponse> attachments;
 
 }

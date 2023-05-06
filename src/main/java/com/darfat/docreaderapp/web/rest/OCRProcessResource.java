@@ -255,6 +255,7 @@ public class OCRProcessResource {
 
     private AttachmentGroupResponse handleAttachment(AttachmentRequest attachmentRequest) {
         String attachmentGroupId = attachmentRequest.getAttachmentGroupId();
+        String basePath = null;
         List<Attachment> attachmentResult = attachmentService.saveAttachment(attachmentRequest);
         List<AttachmentResponse> attachmentDTOList = attachmentResult
             .stream()
@@ -262,7 +263,9 @@ public class OCRProcessResource {
             .collect(Collectors.toList());
         if (attachmentGroupId == null && !attachmentResult.isEmpty()) {
             attachmentGroupId = attachmentResult.get(0).getAttachmentGroup().getId();
+            basePath = attachmentResult.get(0).getAttachmentGroup().getBasePath();
+
         }
-        return new AttachmentGroupResponse(attachmentGroupId, attachmentDTOList);
+        return new AttachmentGroupResponse(attachmentGroupId, basePath,attachmentDTOList);
     }
 }

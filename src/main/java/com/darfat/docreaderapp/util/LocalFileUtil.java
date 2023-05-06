@@ -11,10 +11,10 @@ public class LocalFileUtil {
 
     public static String formatActualFile(String key,String fileName){
         Optional<String> ext = getExtensionByStringHandling(fileName);
-        if(ext.isPresent()){
-            return key+"."+ext.get();
-        } else {
-            return fileName;
+        if(key!=null && ext.isPresent()){
+            String dotExt = "."+ext.get();
+            return new StringBuilder().append(fileName.replaceAll(dotExt,"")).append("_").append(key).append(".").append(ext.get()).toString();
         }
+        return fileName;
     }
 }

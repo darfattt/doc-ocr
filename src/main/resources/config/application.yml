@@ -213,4 +213,7 @@ jhipster:
 file-storage:
   method: local
   local:
-    root: /home/app/files
+    root: /home/app/files/
+    source: source
+    original: original
+    verified: verified

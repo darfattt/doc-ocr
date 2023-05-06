@@ -1,14 +1,33 @@
 package com.darfat.docreaderapp.service.impl;
 
+import com.darfat.docreaderapp.config.FileStorageProperties;
+import com.darfat.docreaderapp.constants.AttachmentTypeEnum;
+import com.darfat.docreaderapp.constants.DocumentsTypeEnum;
+import com.darfat.docreaderapp.constants.VerifiedDocumentsStatusEnum;
 import com.darfat.docreaderapp.domain.*;
 import com.darfat.docreaderapp.dto.*;
+import com.darfat.docreaderapp.dto.request.AttachmentRequest;
+import com.darfat.docreaderapp.dto.response.AttachmentGroupResponse;
+import com.darfat.docreaderapp.dto.response.AttachmentResponse;
 import com.darfat.docreaderapp.repository.VerifiedDocumentsRepository;
 import com.darfat.docreaderapp.service.*;
+import com.darfat.docreaderapp.util.DateConvertUtil;
+import com.darfat.docreaderapp.util.LocalFileUtil;
 import com.darfat.docreaderapp.util.ObjectMapperUtil;
 import com.darfat.docreaderapp.util.form.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -29,6 +48,9 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
     private final FormPernyataanService formPernyataanService;
     private final FormBASTPBPPService formBASTPBPPService;
     private final FormBASTPBPService formBASTPBPService;
+    private final FileStorageProperties fileStorageProperties;
+
+    private final AttachmentService attachmentService;
 
     public VerifiedDocumentsServiceImpl(
         VerifiedDocumentsRepository verifiedDocumentsRepository,
@@ -36,14 +58,16 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
         FormSuratJalanService formSuratJalanService,
         FormPernyataanService formPernyataanService,
         FormBASTPBPPService formBASTPBPPService,
-        FormBASTPBPService formBASTPBPService
-    ) {
+        FormBASTPBPService formBASTPBPService,
+        FileStorageProperties fileStorageProperties, AttachmentService attachmentService) {
         this.verifiedDocumentsRepository = verifiedDocumentsRepository;
         this.formPengeluaranBarangService = formPengeluaranBarangService;
         this.formSuratJalanService = formSuratJalanService;
         this.formPernyataanService = formPernyataanService;
         this.formBASTPBPPService = formBASTPBPPService;
         this.formBASTPBPService = formBASTPBPService;
+        this.fileStorageProperties = fileStorageProperties;
+        this.attachmentService = attachmentService;
     }
 
     @Override
@@ -118,13 +142,16 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
 
     @Override
     public VerifiedDocuments newDocument(VerifiedDocuments documents, String text) {
-        documents.setStatus("Approval");
+        documents.setStatus(VerifiedDocumentsStatusEnum.APPROVAL.name());
+        boolean isValid = false;
         if (documents.getType().equals("001")) {
             FormPengeluaranBarang form = generateFormPengeluaranBarang(text);
             documents.setContentId(form.getId());
+            isValid = this.validate(documents,form);
         } else if (documents.getType().equals("002")) {
             FormSuratJalan form = generateFormSuratJalan(text);
             documents.setContentId(form.getId());
+            isValid = this.validate(documents,form);
         } else if (documents.getType().equals("003")) {
             FormPernyataan form = generateFormPernyataan(text);
             documents.setContentId(form.getId());
@@ -135,13 +162,54 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
             FormBASTPBP form = generateFormBAST(text);
             documents.setContentId(form.getId());
         }
+
+        if(isValid){
+            documents = approved(documents);
+        }
         return this.save(documents);
     }
 
     @Override
     public VerifiedDocuments approved(VerifiedDocuments documents) {
-        documents.setStatus("Approved");
+        documents.setStatus(VerifiedDocumentsStatusEnum.APPROVED.name());
         return this.save(documents);
+    }
+
+
+    @Override
+    public VerifiedDocuments classify(VerifiedDocuments documents, String text) {
+        documents.setStatus(VerifiedDocumentsStatusEnum.APPROVAL.name());
+        if(text.contains(DocumentsTypeEnum.SURAT_KELUAR.getValue())){
+            documents.setType(DocumentsTypeEnum.SURAT_KELUAR.getCode());
+        }else if(text.contains(DocumentsTypeEnum.SURAT_JALAN.getValue())){
+            documents.setType(DocumentsTypeEnum.SURAT_JALAN.getCode());
+        }
+        return documents;
+    }
+
+    @Override
+    public VerifiedDocuments classifyDocumentPath(VerifiedDocuments documents, Resource originalFile) throws IOException {
+        File file = originalFile.getFile();
+        String originalFileName = documents.getName();
+        String generatedFileName = LocalFileUtil.formatActualFile(String.valueOf(System.currentTimeMillis()), originalFileName);
+        String verifiedBasePath = fileStorageProperties.getLocal().getOriginal();
+
+        AttachmentRequest attachmentRequest = this.generateAttachmentRequest(file,originalFileName,generatedFileName,verifiedBasePath);
+        AttachmentGroupResponse attachmentGroupResponse = handleAttachment(attachmentRequest);
+        documents.setAttachmentGroupId(attachmentGroupResponse.getAttachmentGroupId());
+        return this.save(documents);
+    }
+
+    @Override
+    public List<VerifiedDocuments> findAllByStatus(String status) {
+        return verifiedDocumentsRepository.findAllByStatus(status);
+    }
+
+    public boolean validate(VerifiedDocuments documents,FormPengeluaranBarang form) {
+        return true;
+    }
+    public boolean validate(VerifiedDocuments documents,FormSuratJalan form) {
+        return false;
     }
 
     private FormPengeluaranBarang generateFormPengeluaranBarang(String textFromImage) {
@@ -279,5 +347,53 @@ public class VerifiedDocumentsServiceImpl implements VerifiedDocumentsService {
         form.setContents(textFromImage);
         form.setActive(Boolean.TRUE);
         return formBASTPBPService.save(form);
+    }
+
+    private AttachmentRequest generateAttachmentRequest(File file,String fileName, String generatedFileName, String basePath) throws IOException {
+        byte[] encoded = FileUtils.readFileToByteArray(file);
+        String blobStr = new String(encoded);
+        AttachmentRequest attachmentRequest = new AttachmentRequest();
+        attachmentRequest.setName(fileName);
+        attachmentRequest.setBasePath(pathBuildPathWithYear(basePath)); //root/original/yyyy/mmm
+        attachmentRequest.setClassName(Documents.class.getSimpleName());
+        AttachmentDTO attachmentDTO = new AttachmentDTO();
+        attachmentDTO.setName(generatedFileName);
+        attachmentDTO.setBlobFile(blobStr);
+        attachmentDTO.setType(AttachmentTypeEnum.Image.name());
+        List<AttachmentDTO> attachments = new ArrayList<>();
+        attachments.add(attachmentDTO);
+        attachmentRequest.setAttachments(attachments);
+        return attachmentRequest;
+    }
+    private String pathBuildPathWithYear(String path) {
+        String year = DateConvertUtil.toString(Instant.now(), DateConvertUtil.DATE_FORMAT_4);
+        String month = DateConvertUtil.toString(Instant.now(), DateConvertUtil.DATE_FORMAT_10);
+        String yyyymm = new StringBuilder()
+            .append(year)
+            .append(File.separator)
+            .append(month).toString();
+        if(path!=null){
+            return new StringBuilder()
+                .append(path)
+                .append(File.separator)
+                .append(yyyymm)
+                .toString();
+        }
+        return yyyymm;
+    }
+    private AttachmentGroupResponse handleAttachment(AttachmentRequest attachmentRequest) {
+        String attachmentGroupId = attachmentRequest.getAttachmentGroupId();
+        String basePath = null;
+        List<Attachment> attachmentResult = attachmentService.saveAttachment(attachmentRequest);
+        List<AttachmentResponse> attachmentDTOList = attachmentResult
+            .stream()
+            .map(attachment -> ObjectMapperUtil.MAPPER.convertValue(attachment, AttachmentResponse.class))
+            .collect(Collectors.toList());
+        if (attachmentGroupId == null && !attachmentResult.isEmpty()) {
+            attachmentGroupId = attachmentResult.get(0).getAttachmentGroup().getId();
+            basePath = attachmentResult.get(0).getAttachmentGroup().getBasePath();
+
+        }
+        return new AttachmentGroupResponse(attachmentGroupId, basePath,attachmentDTOList);
     }
 }
