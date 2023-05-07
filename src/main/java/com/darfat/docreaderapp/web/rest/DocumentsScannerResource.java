@@ -2,6 +2,7 @@ package com.darfat.docreaderapp.web.rest;
 
 import com.darfat.docreaderapp.service.DocumentsService;
 import com.darfat.docreaderapp.service.OCRService;
+import com.itextpdf.text.DocumentException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class DocumentsScannerResource {
 
     @PostMapping("/classify")
     public ResponseEntity<String> classify(
-    ) throws IOException {
+    ) throws IOException, DocumentException {
         log.info("Start classify..");
         ocrService.classifyDocuments();
         log.info("End classify...");

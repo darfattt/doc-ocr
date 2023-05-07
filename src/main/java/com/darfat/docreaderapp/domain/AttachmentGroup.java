@@ -16,7 +16,6 @@ import java.util.*;
 @Data
 @Getter
 @Setter
-@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

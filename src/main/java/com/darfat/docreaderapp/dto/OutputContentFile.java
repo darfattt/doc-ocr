@@ -17,5 +17,6 @@ public class OutputContentFile extends ContentFile implements Serializable {
 	private String mimeType;
 
 	private String path;
+    private String fileName;
 
 }

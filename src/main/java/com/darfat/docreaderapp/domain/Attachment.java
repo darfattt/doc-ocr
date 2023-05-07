@@ -17,7 +17,6 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

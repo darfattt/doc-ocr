@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import com.itextpdf.text.DocumentException;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -64,6 +65,6 @@ public interface VerifiedDocumentsService {
     VerifiedDocuments newDocument(VerifiedDocuments documents,String text);
     VerifiedDocuments approved(VerifiedDocuments documents);
     VerifiedDocuments classify(VerifiedDocuments documents,String text);
-    VerifiedDocuments classifyDocumentPath(VerifiedDocuments documents, Resource originalFile) throws IOException;
+    VerifiedDocuments classifyDocumentPath(VerifiedDocuments documents,String sourceDocumentPath,String sourceDocumentGeneratedFileName) throws IOException, DocumentException;
     List<VerifiedDocuments> findAllByStatus(String status);
 }

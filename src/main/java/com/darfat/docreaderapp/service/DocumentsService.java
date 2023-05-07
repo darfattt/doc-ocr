@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.darfat.docreaderapp.domain.VerifiedDocuments;
+import com.darfat.docreaderapp.dto.OutputContentFile;
 import com.darfat.docreaderapp.dto.request.AttachmentRequest;
 import com.darfat.docreaderapp.dto.response.AttachmentGroupResponse;
 import org.springframework.core.io.Resource;
@@ -71,4 +72,5 @@ public interface DocumentsService {
     Documents rejected(Documents documents);
     List<Documents> scanFolderForTheSource() throws IOException;
     List<Documents> findAllByStatus(String status);
+    OutputContentFile getLocalPath(Documents documents);
 }

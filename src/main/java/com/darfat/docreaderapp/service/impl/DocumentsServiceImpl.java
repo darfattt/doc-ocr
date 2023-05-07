@@ -4,6 +4,7 @@ import com.darfat.docreaderapp.config.FileStorageProperties;
 import com.darfat.docreaderapp.constants.AttachmentTypeEnum;
 import com.darfat.docreaderapp.constants.DocumentsStatusEnum;
 import com.darfat.docreaderapp.domain.Attachment;
+import com.darfat.docreaderapp.domain.AttachmentGroup;
 import com.darfat.docreaderapp.domain.Documents;
 import com.darfat.docreaderapp.domain.VerifiedDocuments;
 import com.darfat.docreaderapp.dto.AttachmentDTO;
@@ -11,6 +12,8 @@ import com.darfat.docreaderapp.dto.OutputContentFile;
 import com.darfat.docreaderapp.dto.request.AttachmentRequest;
 import com.darfat.docreaderapp.dto.response.AttachmentGroupResponse;
 import com.darfat.docreaderapp.dto.response.AttachmentResponse;
+import com.darfat.docreaderapp.exception.ExceptionPredicate;
+import com.darfat.docreaderapp.repository.AttachmentGroupRepository;
 import com.darfat.docreaderapp.repository.DocumentsRepository;
 import com.darfat.docreaderapp.service.AttachmentService;
 import com.darfat.docreaderapp.service.DocumentsService;
@@ -20,7 +23,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,14 +62,17 @@ public class DocumentsServiceImpl implements DocumentsService {
 
     private final FileStorageProperties fileStorageProperties;
 
+    private final AttachmentGroupRepository attachmentGroupRepository;
+
 
     public DocumentsServiceImpl(DocumentsRepository documentsRepository,
-                                VerifiedDocumentsService verifiedDocumentsService, AttachmentService attachmentService, ResourceLoader resourceLoader, FileStorageProperties fileStorageProperties) {
+                                VerifiedDocumentsService verifiedDocumentsService, AttachmentService attachmentService, ResourceLoader resourceLoader, FileStorageProperties fileStorageProperties, AttachmentGroupRepository attachmentGroupRepository) {
         this.documentsRepository = documentsRepository;
         this.verifiedDocumentsService = verifiedDocumentsService;
         this.attachmentService = attachmentService;
         this.resourceLoader = resourceLoader;
         this.fileStorageProperties = fileStorageProperties;
+        this.attachmentGroupRepository = attachmentGroupRepository;
     }
 
     @Override
@@ -248,6 +253,20 @@ public class DocumentsServiceImpl implements DocumentsService {
     @Override
     public List<Documents> findAllByStatus(String status) {
         return documentsRepository.findAllByStatus(status);
+    }
+
+    @Override
+    public OutputContentFile getLocalPath(Documents documents) {
+        AttachmentGroup attachmentGroup =  attachmentGroupRepository.findById(documents.getAttachmentGroupId()).orElseThrow(ExceptionPredicate.attachmentGroupNotFound(documents.getAttachmentGroupId()));
+        String imagePath = fileStorageProperties.getLocal().getRoot() +  attachmentGroup.getBasePath();
+        List<Attachment> attachments = attachmentService.findAllAttachmentByGroupId(documents.getAttachmentGroupId());
+        if(attachments == null || attachments.isEmpty()) {
+            throw new EntityNotFoundException("Attachment not found");
+        }
+        OutputContentFile output = new OutputContentFile();
+        output.setPath(imagePath);
+        output.setFileName(attachments.get(0).getName());
+        return output;
     }
 
     private AttachmentRequest generateAttachmentRequestWithEmptyFile(String fileName,String generatedFileName,String basePath) throws IOException {

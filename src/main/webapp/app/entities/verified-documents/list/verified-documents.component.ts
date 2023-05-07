@@ -124,7 +124,7 @@ export class VerifiedDocumentsComponent implements OnInit {
       size: this.itemsPerPage,
       sort: this.getSortQueryParam(predicate, ascending),
     };
-    queryObject['status.equals'] = 'VERIFIED';
+    //queryObject['status.equals'] = 'VERIFIED';
     filterOptions?.forEach(filterOption => {
       queryObject[filterOption.name] = filterOption.values;
     });
