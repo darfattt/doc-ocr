@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Attachment, AttachmentRequest } from '../attachment.model';
 import { DocumentsFormService } from '../update/documents-form.service';
 import { AlertService } from 'app/core/util/alert.service';
+import { DOC_TYPES, DOC_TYPES_NO } from 'app/app.constants';
 
 @Component({
   selector: 'jhi-documents-upload',
@@ -19,8 +20,8 @@ export class DocumentsUploadComponent implements OnInit {
   isSaving = false;
   documents: IDocuments | null = null;
 
-  types: string[] = ['Surat Jalan', 'Pengeluaran Barang', 'Pernyataan', 'BASTPBP', 'BASTPBPP'];
-  typeNumbers: string[] = ['001', '002', '003', '004', '005'];
+  types: string[] = DOC_TYPES;
+  typeNumbers: string[] = DOC_TYPES_NO;
   attachmentRequest = new AttachmentRequest();
   editForm: FormGroup;
   number: string = '';
@@ -44,9 +45,6 @@ export class DocumentsUploadComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ documents }) => {
       this.documents = documents;
-      // if (documents) {
-      //   this.updateForm(documents);
-      // }
     });
   }
 

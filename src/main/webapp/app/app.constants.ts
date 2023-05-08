@@ -7,3 +7,7 @@ declare const __VERSION__: string;
 
 export const VERSION = __VERSION__;
 export const DEBUG_INFO_ENABLED = __DEBUG_INFO_ENABLED__;
+export const DOC_TYPES = ['Pengeluaran Barang', 'Surat Jalan', 'Pernyataan', 'BASTPBPP', 'BASTPBP'];
+export const DOC_TYPES_NO = ['001', '002', '003', '004', '005'];
+export const DOC_VERIFIED_STATUSES = ['APPROVAL', 'APPROVED'];
+export const ALL = 'all';

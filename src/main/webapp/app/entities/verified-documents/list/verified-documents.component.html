@@ -5,7 +5,7 @@
     <br /><br />
     <form class="form-inline">
       <div class="row">
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-2">
           <label for="number" class="sr-only">Search by Number</label>
           <input
             type="text"
@@ -16,11 +16,14 @@
             [(ngModel)]="filterDocNumber"
           />
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-2">
           <label for="type" class="sr-only">Search by Type</label>
-          <input type="text" class="form-control" id="type" name="field_type" placeholder="Search by Type" [(ngModel)]="filterDocType" />
+          <select class="form-control" id="type" name="field_type" [(ngModel)]="filterDocType">
+            <option [ngValue]="all" selected>-- Select Document Type --</option>
+            <option *ngFor="let typeOpt of types; let i = index" [ngValue]="typeNumbers[i]">{{ typeNumbers[i] }} - {{ typeOpt }}</option>
+          </select>
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-2">
           <label for="type" class="sr-only">Search by Name</label>
           <input
             type="text"
@@ -31,20 +34,22 @@
             [(ngModel)]="filterDocFileName"
           />
         </div>
+        <div class="form-group col-md-2">
+          <label for="branch" class="sr-only">Search by Branch</label>
+          <select class="form-control" id="branch" name="field_branch" [(ngModel)]="filterDocBranch">
+            <option [ngValue]="all" selected>-- Select Branch --</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="status" class="sr-only">Search by Status</label>
+          <select class="form-control" id="status" name="field_status" [(ngModel)]="filterDocStatus">
+            <option [ngValue]="all" selected>-- Select Status --</option>
+            <option *ngFor="let statusOpt of statuses; let i = index" [ngValue]="statusOpt">{{ statusOpt }}</option>
+          </select>
+        </div>
         <div class="form-group col-md-1">
           <button type="button" class="btn btn-info mb-2" (click)="search()">
             <span class="fa fa-search"></span>&nbsp;<span>Search</span>
-          </button>
-        </div>
-        <div class="form-group col-md-2">
-          <button
-            id="jh-create-entity"
-            data-cy="entityCreateButton"
-            class="btn btn-primary jh-create-entity create-verified-documents"
-            [routerLink]="['/verified-documents/new']"
-          >
-            <fa-icon icon="plus"></fa-icon>
-            <span> Create a new Verified Documents </span>
           </button>
         </div>
       </div>
@@ -156,7 +161,7 @@
             <div class="btn-group">
               <button
                 type="submit"
-                [routerLink]="['/verified-documents', verifiedDocuments.id, 'view']"
+                [routerLink]="[getViewEditUrl(verifiedDocuments.type), verifiedDocuments.contentId, 'view']"
                 class="btn btn-info btn-sm"
                 data-cy="entityDetailsButton"
               >
@@ -166,17 +171,12 @@
 
               <button
                 type="submit"
-                [routerLink]="['/verified-documents', verifiedDocuments.id, 'edit']"
+                [routerLink]="[getViewEditUrl(verifiedDocuments.type), verifiedDocuments.contentId, 'edit']"
                 class="btn btn-primary btn-sm"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(verifiedDocuments)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
               </button>
 
               <button type="button" class="btn btn-light btn-sm" (click)="download(verifiedDocuments)">

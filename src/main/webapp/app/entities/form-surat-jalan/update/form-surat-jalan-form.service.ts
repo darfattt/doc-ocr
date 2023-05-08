@@ -95,7 +95,7 @@ export class FormSuratJalanFormService {
         validators: [Validators.maxLength(100)],
       }),
       recipientAddress: new FormControl(formSuratJalanRawValue.recipientAddress, {
-        validators: [Validators.maxLength(100)],
+        validators: [Validators.maxLength(500)],
       }),
       npwp: new FormControl(formSuratJalanRawValue.npwp, {
         validators: [Validators.maxLength(100)],

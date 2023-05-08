@@ -10,6 +10,7 @@ import { EntityArrayResponseType, DocumentsService } from '../service/documents.
 import { DocumentsDeleteDialogComponent } from '../delete/documents-delete-dialog.component';
 import { FilterOptions, IFilterOptions, IFilterOption } from 'app/shared/filter/filter.model';
 import { TOTAL_COUNT_RESPONSE_HEADER } from 'app/config/pagination.constants';
+import { ALL, DOC_TYPES, DOC_TYPES_NO } from 'app/app.constants';
 
 @Component({
   selector: 'jhi-documents',
@@ -26,9 +27,12 @@ export class DocumentsComponent implements OnInit {
   itemsPerPage = ITEMS_PER_PAGE;
   totalItems = 0;
   page = 1;
-  filterDocType: string = '';
+  all: string = ALL;
+  filterDocType: string = ALL;
   filterDocNumber: string = '';
   filterDocFileName: string = '';
+  types: string[] = DOC_TYPES;
+  typeNumbers: string[] = DOC_TYPES_NO;
 
   constructor(
     protected documentsService: DocumentsService,
@@ -125,7 +129,7 @@ export class DocumentsComponent implements OnInit {
     if (this.filterDocNumber) {
       queryObject['id.contains'] = this.filterDocNumber;
     }
-    if (this.filterDocType) {
+    if (this.filterDocType !== ALL) {
       queryObject['type.contains'] = this.filterDocType;
     }
     if (this.filterDocFileName) {

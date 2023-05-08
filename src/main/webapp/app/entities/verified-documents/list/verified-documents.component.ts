@@ -12,6 +12,7 @@ import { EntityArrayResponseType, VerifiedDocumentsService } from '../service/ve
 import { VerifiedDocumentsDeleteDialogComponent } from '../delete/verified-documents-delete-dialog.component';
 import { FilterOptions, IFilterOptions, IFilterOption } from 'app/shared/filter/filter.model';
 import { DocumentsService } from 'app/entities/documents/service/documents.service';
+import { ALL, DOC_TYPES, DOC_TYPES_NO, DOC_VERIFIED_STATUSES } from 'app/app.constants';
 
 @Component({
   selector: 'jhi-verified-documents',
@@ -28,9 +29,15 @@ export class VerifiedDocumentsComponent implements OnInit {
   itemsPerPage = ITEMS_PER_PAGE;
   totalItems = 0;
   page = 1;
-  filterDocType: string = '';
+  all: string = ALL;
+  filterDocType: string = ALL;
   filterDocNumber: string = '';
   filterDocFileName: string = '';
+  filterDocBranch: string = ALL;
+  filterDocStatus: string = ALL;
+  types: string[] = DOC_TYPES;
+  typeNumbers: string[] = DOC_TYPES_NO;
+  statuses: string[] = DOC_VERIFIED_STATUSES;
 
   constructor(
     protected verifiedDocumentsService: VerifiedDocumentsService,
@@ -45,7 +52,6 @@ export class VerifiedDocumentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
-
     this.filters.filterChanges.subscribe(filterOptions => this.handleNavigation(1, this.predicate, this.ascending, filterOptions));
   }
 
@@ -131,11 +137,17 @@ export class VerifiedDocumentsComponent implements OnInit {
     if (this.filterDocNumber) {
       queryObject['id.contains'] = this.filterDocNumber;
     }
-    if (this.filterDocType) {
+    if (this.filterDocType !== ALL) {
       queryObject['type.contains'] = this.filterDocType;
     }
     if (this.filterDocFileName) {
       queryObject['name.contains'] = this.filterDocFileName;
+    }
+    if (this.filterDocBranch !== ALL) {
+      // queryObject['branch.contains'] = this.filterDocBranch;
+    }
+    if (this.filterDocStatus !== ALL) {
+      queryObject['status.contains'] = this.filterDocStatus;
     }
 
     return this.verifiedDocumentsService.query(queryObject).pipe(tap(() => (this.isLoading = false)));
@@ -189,5 +201,21 @@ export class VerifiedDocumentsComponent implements OnInit {
         }
       });
     }
+  }
+
+  getViewEditUrl(type: any) {
+    let viewEditUrl = '';
+    if (type == DOC_TYPES_NO[0]) {
+      viewEditUrl = '/form-pengeluaran-barang';
+    } else if (type == DOC_TYPES_NO[1]) {
+      viewEditUrl = '/form-surat-jalan';
+    } else if (type == DOC_TYPES_NO[2]) {
+      viewEditUrl = '/form-pernyataan';
+    } else if (type == DOC_TYPES_NO[3]) {
+      viewEditUrl = '/form-bastpbpp';
+    } else if (type == DOC_TYPES_NO[4]) {
+      viewEditUrl = '/form-bastpbp';
+    }
+    return viewEditUrl;
   }
 }

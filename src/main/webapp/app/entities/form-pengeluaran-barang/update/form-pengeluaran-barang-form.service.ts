@@ -101,7 +101,7 @@ export class FormPengeluaranBarangFormService {
         validators: [Validators.maxLength(100)],
       }),
       recipientAddress: new FormControl(formPengeluaranBarangRawValue.recipientAddress, {
-        validators: [Validators.maxLength(100)],
+        validators: [Validators.maxLength(500)],
       }),
       npwp: new FormControl(formPengeluaranBarangRawValue.npwp, {
         validators: [Validators.maxLength(100)],
